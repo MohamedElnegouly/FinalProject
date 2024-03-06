@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:graduationproject/screens/forget_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -35,7 +36,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                ]),
          ),
            SizedBox(height: 30.sp,),
-           Image.asset('assets/images/Desk Share-logos_transparent 1.png'),
+           InkWell(
+               onTap: (){
+                 Navigator.push(context, MaterialPageRoute(builder: (context)=> ForgetScreen()));
+
+               },
+               child: Image.asset('assets/images/Desk Share-logos_transparent 1.png')),
            SizedBox(height: 30.sp,),
            Expanded(
              child: Row(
