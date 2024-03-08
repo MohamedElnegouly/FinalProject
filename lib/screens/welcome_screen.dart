@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:graduationproject/screens/forget_screen.dart';
+import 'package:graduationproject/screens/login_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -9,7 +11,23 @@ class WelcomeScreen extends StatefulWidget {
   State<WelcomeScreen> createState() => _WelcomeScreenState();
 }
 
-class _WelcomeScreenState extends State<WelcomeScreen> {
+class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProviderStateMixin {
+
+  @override
+  void initState() {
+    super.initState();
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
+    Future.delayed(Duration(seconds: 3), (){
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_)=> LoginScreen()));
+    });
+  }
+  @override
+  void dispose() {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+    overlays: SystemUiOverlay.values
+    );
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,12 +54,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                ]),
          ),
            SizedBox(height: 30.sp,),
-           InkWell(
-               onTap: (){
-                 Navigator.push(context, MaterialPageRoute(builder: (context)=> ForgetScreen()));
-
-               },
-               child: Image.asset('assets/images/Desk Share-logos_transparent 1.png')),
+           Image.asset('assets/images/Desk Share-logos_transparent 1.png'),
            SizedBox(height: 30.sp,),
            Expanded(
              child: Row(

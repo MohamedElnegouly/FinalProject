@@ -1,16 +1,18 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:graduationproject/screens/login_screen.dart';
 import 'package:graduationproject/screens/welcome_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-void main() => runApp(
+void main() {
+ runApp(
   DevicePreview(
     enabled: !kReleaseMode,
     builder: (context) => MyApp(), // Wrap your app
   ),
 );
-
+}
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -30,7 +32,7 @@ class MyApp extends StatelessWidget {
                       seedColor: Colors.deepPurple),
                   useMaterial3: true,
                 ),
-                home: const WelcomeScreen()
+                home: WelcomeScreen()
             );
         }
     );
