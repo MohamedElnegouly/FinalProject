@@ -1,9 +1,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:graduationproject/colors/colors.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CustomInputField extends StatefulWidget {
-  final String labelText;
   final String hintText;
   final bool suffixIcon;
   final bool? isDense;
@@ -12,7 +12,6 @@ class CustomInputField extends StatefulWidget {
 
   const CustomInputField(
       {Key? key,
-        required this.labelText,
         required this.hintText,
         this.suffixIcon = false,
         this.isDense,
@@ -29,21 +28,20 @@ class _CustomInputFieldState extends State<CustomInputField> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Container(
-      width: size.width * 0.9,
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 3),
-      child: Column(
+    return
+      Column(
         children: [
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              widget.labelText,
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-          ),
           TextFormField(
             obscureText: (widget.obscureText && _obscureText),
-            decoration: InputDecoration(
+            decoration:
+            InputDecoration(
+              border : OutlineInputBorder(
+                borderRadius: BorderRadius.circular(13.sp),
+                      borderSide:
+                      BorderSide(color: mainColor)
+                  ),
+                  fillColor: Colors.grey.shade200,
+                  filled: true,
               isDense: (widget.isDense != null) ? widget.isDense : false,
               hintText: widget.hintText,
               suffixIcon: widget.suffixIcon
@@ -62,7 +60,7 @@ class _CustomInputFieldState extends State<CustomInputField> {
               )
                   : null,
               suffixIconConstraints: (widget.isDense != null)
-                  ? const BoxConstraints(maxHeight: 33)
+                  ?  BoxConstraints(maxHeight: 33.sp)
                   : null,
             ),
             autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -75,7 +73,6 @@ class _CustomInputFieldState extends State<CustomInputField> {
             controller: widget.controller,
           ),
         ],
-      ),
     );
   }
 }

@@ -3,9 +3,9 @@ import 'package:graduationproject/screens/forget_screen.dart';
 import 'package:graduationproject/screens/register_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '../models/button.dart';
+import '../models/custom_button.dart';
 import '../models/square_tile.dart';
-import '../models/text_field.dart';
+import '../models/custom_text_field.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
@@ -63,68 +63,52 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
 
-                 SizedBox(height: 30.sp),
+                SizedBox(height: 30.sp),
 
-                MyTextField(
+                CustomInputField(
+                    hintText: 'Enter your Email',
                   controller: usernameController,
-                  hintText: 'Enter your Email',
-                  obscureText: obscureText,
                 ),
 
-                 SizedBox(height: 10.sp),
+                SizedBox(height: 10.sp),
 
                 SizedBox(
                   height: 35.sp,
-                  child: MyTextField(
-                      controller: passwordController,
-                      hintText: "Enter your password",
-                      obscureText: obscureText,
-                    suffixIcon: IconButton(
-                      onPressed: () {
-                        obscureText = !obscureText;
-                        setState(() {});
-                      },
-                      icon: Icon(
-                        obscureText ? Icons.visibility_off :
-                        Icons.visibility,
-                      ),
+                  child:
+                  CustomInputField(
+                    hintText: 'Your password',
+                    obscureText: true,
+                    suffixIcon: true,
+                    controller: passwordController,
+                  ),
+
+                ),
+
+                SizedBox(height: 5.sp),
+
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: InkWell(
+                    onTap: (){
+                      Navigator.push(
+                          context, MaterialPageRoute(
+                          builder: (context)=> ForgetScreen()));
+                    },
+                    child: Text(
+                      'Forgot Password?',
+                      style: TextStyle(color: Colors.grey[600]),
                     ),
-                    validator: (value){
-          if(value!.isEmpty){
-          return 'Enter Your password';
-          }if(value.length < 6){
-          return "Password must be at least 6 characters";
-          }
-          return null;
-          },
                   ),
                 ),
 
-                 SizedBox(height: 5.sp),
-
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: InkWell(
-                        onTap: (){
-                          Navigator.push(
-                              context, MaterialPageRoute(
-                              builder: (context)=> ForgetScreen()));
-                        },
-                        child: Text(
-                          'Forgot Password?',
-                          style: TextStyle(color: Colors.grey[600]),
-                        ),
-                      ),
-                    ),
-
-                 SizedBox(height: 30.sp),
+                SizedBox(height: 30.sp),
 
                 // sign in button
-                MyButton(
-                  onTap: signUserIn,
-                ),
+                CustomFormButton(
+                    innerText: "Login",
+                    onPressed: ()=> signUserIn),
 
-                 SizedBox(height: 15.sp),
+                SizedBox(height: 15.sp),
 
                 // or continue with
                 Padding(
@@ -154,9 +138,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
 
-                 SizedBox(height: 10.sp),
+                SizedBox(height: 10.sp),
 
-                  Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     // google but
@@ -168,7 +152,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
 
-                 SizedBox(height: 40.sp),
+                SizedBox(height: 40.sp),
 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

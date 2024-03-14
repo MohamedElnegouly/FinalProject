@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:graduationproject/colors/colors.dart';
-import 'package:graduationproject/models/button.dart';
+import 'package:graduationproject/models/custom_button.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../models/square_tile.dart';
-import '../models/text_field.dart';
+import '../models/custom_text_field.dart';
 
 class RegisterScreen extends StatefulWidget {
   RegisterScreen({super.key});
@@ -65,106 +64,65 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ],
                 ),
 
-                 SizedBox(height: 25.sp),
-
-                MyTextField(
-                  controller: usernameController ,
-                  hintText: 'Username',
-                  obscureText: false,
-                ),
-
-                 SizedBox(height: 10.sp),
-
-                MyTextField(
-                  controller: emailController,
-                  hintText: 'Email',
-                  obscureText: false,
-                ),
-
-                 SizedBox(height: 10.sp),
+                 SizedBox(height: 20.sp),
 
                 SizedBox(
-                  height: 33.sp,
-                  child: MyTextField(
-                    controller: passwordController,
-                    hintText: "password",
-                    obscureText: obscureText,
-                    suffixIcon: IconButton(
-                      onPressed: () {
-                        obscureText = !obscureText;
-                        setState(() {});
-                      },
-                      icon: Icon(
-                        obscureText ? Icons.visibility_off :
-                        Icons.visibility,
-                      ),
-                    ),
-                    validator: (value){
-                      if(value!.isEmpty){
-                        return 'Enter Your password';
-                      }if(value.length < 6){
-                        return "Password must be at least 6 characters";
-                      }
-                      return null;
-                    },
+                  height: 35.sp,
+                  child: CustomInputField(
+                    hintText: 'UserName',
+                    controller: usernameController,
                   ),
                 ),
 
+                 SizedBox(height: 10.sp),
 
+               SizedBox(
+                 height: 35.sp,
+                 child: CustomInputField(
+                     hintText: "Email",
+                 controller: emailController,
+                 ),
+               ),
                  SizedBox(height: 10.sp),
 
                 SizedBox(
-                  height: 33.sp,
-                  child: MyTextField(
+                  height: 35.sp,
+                  child:
+                  CustomInputField(
+                    hintText: 'password',
+                    obscureText: true,
+                    suffixIcon: true,
                     controller: passwordController,
-                    hintText: "confirm password",
-                    obscureText: obscureText,
-                    suffixIcon: IconButton(
-                      onPressed: () {
-                        obscureText = !obscureText;
-                        setState(() {});
-                      },
-                      icon: Icon(
-                        obscureText ? Icons.visibility_off :
-                        Icons.visibility,
-                      ),
-                    ),
                   ),
                 ),
+                 SizedBox(height: 10.sp),
 
-
+                SizedBox(
+                  height: 35.sp,
+                  child:
+                  CustomInputField(
+                    hintText: 'Confirm password',
+                    obscureText: true,
+                    suffixIcon: true,
+                    controller: confirmPasswordController,
+                  ),
+                ),
 
                  SizedBox(height: 20.sp),
 
                 // sign in button
-              GestureDetector(
-                onTap: (){
-                  Navigator.pop(context);
-                },
-                child: Container(
-                  padding:  EdgeInsets.all(17.sp),
-                  decoration:  BoxDecoration(
-                    color: mainColor,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: const Center(
-                    child: Text(
-                      "Agree and Register",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
 
-                 SizedBox(height: 25.sp),
+                CustomFormButton(
+                    innerText:  "Agree and Register",
+                    onPressed: (){
+                      Navigator.pop(context);
+                    }),
+
+                 SizedBox(height: 20.sp),
 
                 // or continue with
                 Padding(
-                  padding:  EdgeInsets.symmetric(horizontal: 25.sp),
+                  padding:  EdgeInsets.symmetric(horizontal: 20.sp),
                   child: Row(
                     children: [
                       Expanded(
