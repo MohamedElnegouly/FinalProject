@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduationproject/models/dont_have_account.dart';
 import 'package:graduationproject/screens/forget_screen.dart';
 import 'package:graduationproject/screens/register_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import '../core/auth_cubit.dart';
 import '../models/custom_button.dart';
 import '../models/square_tile.dart';
 import '../models/custom_text_field.dart';
+import 'homeScreen.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
@@ -16,14 +20,11 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   // text editing controllers
-  final usernameController = TextEditingController();
-
-  final passwordController = TextEditingController();
 
   bool obscureText = false;
-
-  // sign user in method
-  void signUserIn() {}
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +45,32 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
         backgroundColor: Colors.white,
-        body: SafeArea(
+    body: Form(
+    key: formKey,
+    child: BlocConsumer<AuthCubit, AuthState>(
+    listener: (context, state) {
+    if(state is LoginSuccessState)
+    {
+    ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("logged in successfully"),
+        behavior: SnackBarBehavior.floating,
+        ));
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> HomeScreen()));
+    }
+    else if(state is LoginFailedState)
+    {
+    showDialog(context: context, builder: (context)=>
+    AlertDialog(
+    content: Text(state.errorMessage,
+    style: TextStyle(color: Colors.white),
+    ),
+    backgroundColor: Colors.red,
+    ));
+    }
+    },
+    builder: (context, state) {
+      return
+        SafeArea(
           child: Padding(
             padding: EdgeInsets.all(15.sp),
             child: ListView(
@@ -66,8 +92,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(height: 30.sp),
 
                 CustomInputField(
-                    hintText: 'Enter your Email',
-                  controller: usernameController,
+                  hintText: 'Enter your Email',
+                  controller: emailController,
                 ),
 
                 SizedBox(height: 10.sp),
@@ -89,10 +115,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 Align(
                   alignment: Alignment.centerRight,
                   child: InkWell(
-                    onTap: (){
+                    onTap: () {
                       Navigator.push(
                           context, MaterialPageRoute(
-                          builder: (context)=> ForgetScreen()));
+                          builder: (context) => ForgetScreen()));
                     },
                     child: Text(
                       'Forgot Password?',
@@ -105,14 +131,24 @@ class _LoginScreenState extends State<LoginScreen> {
 
                 // sign in button
                 CustomFormButton(
-                    innerText: "Login",
-                    onPressed: ()=> signUserIn),
+                    innerText:
+                    state is LoginLoadingState
+                        ? "loading..."
+                        :
+                    'Login',
+                    onPressed: () {
+                      if (formKey.currentState!.validate()) {
+                        BlocProvider.of<AuthCubit>(context).login(
+                            email: emailController.text,
+                            password: passwordController.text);
+                      }
+                    }),
 
                 SizedBox(height: 15.sp),
 
                 // or continue with
                 Padding(
-                  padding:  EdgeInsets.symmetric(horizontal: 25.sp),
+                  padding: EdgeInsets.symmetric(horizontal: 25.sp),
                   child: Row(
                     children: [
                       Expanded(
@@ -153,36 +189,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
 
                 SizedBox(height: 40.sp),
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Don\'t have an account? ',
-                      style: TextStyle(color: Colors.grey[700]),
-                    ),
-                    const SizedBox(width: 4),
-                    InkWell(
-                      onTap: (){
-                        Navigator.push(
-                            context, MaterialPageRoute(
-                            builder: (context)=> RegisterScreen()));
-                      },
-                      child: Text(
-                        'Register now',
-                        style: TextStyle(
-                          color: Colors.cyanAccent[700],
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
-                )
+            DontHaveAnAccountWidget(),
               ],
             ),
           ),
-        ),
-      ),
+        );
+    }),
+    ),
+    ),
     );
+    }
   }
-}

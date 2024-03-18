@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:graduationproject/colors/colors.dart';
 import 'package:graduationproject/screens/register_screen.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class DontHaveAnAccountWidget extends StatelessWidget {
   const DontHaveAnAccountWidget({
     super.key,
-    required this.size,
   });
-
-  final Size size;
 
   @override
   Widget build(BuildContext context) {
