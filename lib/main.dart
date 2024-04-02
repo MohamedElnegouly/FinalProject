@@ -2,7 +2,8 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:graduationproject/screens/login_screen.dart';
+import 'package:graduationproject/main_page.dart';
+import 'package:graduationproject/screens/authentication/login_screen.dart';
 import 'package:graduationproject/screens/welcome_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -44,7 +45,7 @@ class MyApp extends StatelessWidget {
                       seedColor: Colors.deepPurple),
                   useMaterial3: true,
                 ),
-                home: WelcomeScreen()
+                home: MainPage(),
             );
         }
     );

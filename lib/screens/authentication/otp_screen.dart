@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:graduationproject/colors/colors.dart';
-import 'package:graduationproject/screens/reset_screen.dart';
+import 'package:graduationproject/screens/authentication/reset_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class ReciveOtpScreen extends StatefulWidget {

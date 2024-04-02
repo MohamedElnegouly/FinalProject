@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduationproject/main_page.dart';
 import 'package:graduationproject/models/dont_have_account.dart';
-import 'package:graduationproject/screens/forget_screen.dart';
-import 'package:graduationproject/screens/register_screen.dart';
+import 'package:graduationproject/screens/authentication/forget_screen.dart';
+import 'package:graduationproject/screens/authentication/register_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '../core/auth_cubit.dart';
-import '../models/custom_button.dart';
-import '../models/square_tile.dart';
-import '../models/custom_text_field.dart';
-import 'homeScreen.dart';
+import '../../core/auth_cubit.dart';
+import '../../models/custom_button.dart';
+import '../../models/square_tile.dart';
+import '../../models/custom_text_field.dart';
+import '../nav_bar_screens/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
@@ -55,7 +56,7 @@ class _LoginScreenState extends State<LoginScreen> {
         SnackBar(content: Text("logged in successfully"),
         behavior: SnackBarBehavior.floating,
         ));
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> HomeScreen()));
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> MainPage()));
     }
     else if(state is LoginFailedState)
     {
@@ -99,7 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(height: 10.sp),
 
                 SizedBox(
-                  height: 35.sp,
+                  height: 40.sp,
                   child:
                   CustomInputField(
                     hintText: 'Your password',
@@ -188,7 +189,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
 
-                SizedBox(height: 40.sp),
+                SizedBox(height: 35.sp),
             DontHaveAnAccountWidget(),
               ],
             ),

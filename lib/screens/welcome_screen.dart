@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:graduationproject/screens/forget_screen.dart';
-import 'package:graduationproject/screens/login_screen.dart';
+import 'package:graduationproject/screens/authentication/forget_screen.dart';
+import 'package:graduationproject/screens/authentication/login_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class WelcomeScreen extends StatefulWidget {

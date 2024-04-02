@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:graduationproject/screens/otp_screen.dart';
+import 'package:graduationproject/screens/authentication/otp_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '../colors/colors.dart';
+import '../../colors/colors.dart';
 
 class ForgetScreen extends StatefulWidget {
   const ForgetScreen({super.key});
