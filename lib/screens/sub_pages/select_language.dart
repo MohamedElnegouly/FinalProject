@@ -1,13 +1,14 @@
+
+
 import 'package:flutter/material.dart';
+import 'package:graduationproject/models/language_model.dart';
 
-import '1.dart';
-
-class HomePage extends StatefulWidget {
+class SelectLanguageScreen extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _SelectLanguageScreenState createState() => _SelectLanguageScreenState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
   List<LanguageModel> languages = [
     LanguageModel("English(US)",  false),
     LanguageModel("Arabic", false),
@@ -27,7 +28,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
-        title: const Text('Select Language'),
+        title: Text('Select Language',style: Theme.of(context).textTheme.titleMedium,),
       ),
       body: SafeArea(
         child: Container(

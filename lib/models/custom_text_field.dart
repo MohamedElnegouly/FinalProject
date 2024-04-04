@@ -5,6 +5,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CustomInputField extends StatefulWidget {
   final String hintText;
+  final String labelText;
   final bool suffixIcon;
   final bool? isDense;
   final bool obscureText;
@@ -12,11 +13,13 @@ class CustomInputField extends StatefulWidget {
 
   const CustomInputField(
       {Key? key,
-        required this.hintText,
+         this.hintText='',
         this.suffixIcon = false,
         this.isDense,
         this.obscureText = false,
-        this.controller})
+        this.controller,
+        this.labelText='',
+      })
       : super(key: key);
 
   @override
@@ -44,6 +47,7 @@ class _CustomInputFieldState extends State<CustomInputField> {
                   filled: true,
               isDense: (widget.isDense != null) ? widget.isDense : false,
               hintText: widget.hintText,
+              labelText: widget.labelText,
               suffixIcon: widget.suffixIcon
                   ? IconButton(
                 icon: Icon(
@@ -64,7 +68,8 @@ class _CustomInputFieldState extends State<CustomInputField> {
                   : null,
             ),
             autovalidateMode: AutovalidateMode.onUserInteraction,
-            validator: (textValue) {
+            validator:
+                (textValue) {
               if (textValue == null || textValue.isEmpty) {
                 return 'required!';
               }
