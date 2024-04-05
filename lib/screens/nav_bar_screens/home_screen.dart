@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:graduationproject/colors/colors.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -9,11 +12,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        margin: EdgeInsets.all(25),
+        margin: EdgeInsets.all(25.sp),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,9 +37,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   )
                 ],
               ),
-              SizedBox(
-                width: 220,
-              ),
+              // SizedBox(
+              //   width: 220.sp,
+              // ),
               Icon(
                 Icons.notifications_none,
                 size: 30,
@@ -64,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
             Stack(children: [
               Image.asset(
-                  "FinalProject/assets/images/photo_2024-04-04_12-18-30.jpg",
+                  "assets/images/photo_2024-04-04_12-18-30.jpg",
                   height: 170,
                   width: 500,
                   fit: BoxFit.cover),
@@ -109,9 +113,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   "Popular Workspace",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
                 ),
-                SizedBox(
-                  width: 120,
-                ),
+                // SizedBox(
+                //   width: 120,
+                // ),
                 Text("See all")
               ],
             ),
@@ -123,9 +127,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 Stack(
                   children: [
                     Image.asset(
-                      "FinalProject/assets/images/photo_2024-04-04_12-18-30.jpg",
-                      height: 200,
-                      width: 200,
+                      "assets/images/photo_2024-04-04_12-19-27.jpg",
+                      height: 150,
+                      width: 150,
                     ),
                     Container(
                       child: Icon(
@@ -138,68 +142,46 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
                 ///////////////////////
-                Container(
-                  padding: EdgeInsetsDirectional.only(top: 50),
-                  width: 250,
-                  height: 200,
-                  child: Column(
+
+                  Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           "Gowork park 29",
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20),
+                              fontWeight: FontWeight.bold, fontSize: 15),
                         ),
                         Row(children: [
                           Icon(Icons.location_on_outlined),
                           Text("petaling Malaysia")
                         ]),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.grade,
-                              color: Color.fromARGB(255, 24, 42, 238),
+
+                        Padding(
+                          padding: EdgeInsets.only(left: 15,bottom: 15),
+                          child: RatingBar.builder(
+                            initialRating: 3,
+                            minRating: 1,
+                            itemSize: 20,
+                            direction: Axis.horizontal,
+                            allowHalfRating: true,
+                            itemCount: 5,
+                            itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                            itemBuilder: (context, _) => Icon(
+                              Icons.star,
+                              color: Colors.blue,
                             ),
-                            Icon(
-                              Icons.grade,
-                              color: Color.fromARGB(255, 24, 42, 238),
-                            ),
-                            Icon(
-                              Icons.grade,
-                              color: Color.fromARGB(255, 24, 42, 238),
-                            ),
-                            Icon(
-                              Icons.grade,
-                              color: Color.fromARGB(255, 24, 42, 238),
-                            ),
-                            Icon(
-                              Icons.grade,
-                              color: Color.fromARGB(255, 24, 42, 238),
-                            )
-                          ],
+                            onRatingUpdate: (rating) {
+                              print(rating);
+                            },
+                          )
                         ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        Row(
-                          children: [
                             Text(
-                              "&17",
+                              "&17/Hour",
                               style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 20),
+                                  fontWeight: FontWeight.bold, fontSize: 15),
                             ),
-                            Text("/Hour"),
-                            SizedBox(width: 120),
-                            Text(
-                              "&*",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 20),
-                            ),
-                          ],
-                        )
                       ]),
-                )
               ],
             )
           ],

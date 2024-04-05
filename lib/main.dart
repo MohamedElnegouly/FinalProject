@@ -66,8 +66,9 @@ class MyApp extends StatelessWidget {
                             color: Colors.black87,
                             fontSize: 25,
                             fontWeight: FontWeight.bold)),
-                    iconTheme: IconThemeData(color: Colors.black87)),
-                home: HomeScreen());
+                    iconTheme: IconThemeData(color: mainColor)),
+
+                home: WelcomeScreen());
           });
         }));
   }

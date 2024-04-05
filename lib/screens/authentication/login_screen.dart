@@ -95,6 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 CustomInputField(
                   hintText: 'Enter your Email',
                   controller: emailController,
+                  labelText: "email",
                 ),
 
                 SizedBox(height: 10.sp),
@@ -104,6 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child:
                   CustomInputField(
                     hintText: 'Your password',
+                    labelText: "password",
                     obscureText: true,
                     suffixIcon: true,
                     controller: passwordController,

@@ -47,6 +47,7 @@ class _CustomInputFieldState extends State<CustomInputField> {
                   filled: true,
               isDense: (widget.isDense != null) ? widget.isDense : false,
               hintText: widget.hintText,
+              hintStyle: TextStyle(color: Colors.black12),
               labelText: widget.labelText,
               suffixIcon: widget.suffixIcon
                   ? IconButton(

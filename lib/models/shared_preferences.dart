@@ -5,7 +5,8 @@ enum PreferenceKey{
   ProfileData,
   apiToken,
   language,
-  notification
+  notification,
+  theme
 }
 class PreferenceUtils {
   static Future<SharedPreferences> get _instance async => _prefsInstance ??= await SharedPreferences.getInstance();
