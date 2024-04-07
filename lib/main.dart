@@ -9,6 +9,7 @@ import 'package:graduationproject/screens/SearchScreen/search_screen.dart';
 import 'package:graduationproject/screens/authentication/login_screen.dart';
 import 'package:graduationproject/screens/nav_bar_screens/home_screen.dart';
 import 'package:graduationproject/screens/nav_bar_screens/profile_screen.dart';
+import 'package:graduationproject/screens/nav_bar_screens/workspace-detail.dart';
 import 'package:graduationproject/screens/sub_pages/edit_screen.dart';
 import 'package:graduationproject/screens/sub_pages/notifications.dart';
 import 'package:graduationproject/screens/sub_pages/select_language.dart';
@@ -69,8 +70,7 @@ class MyApp extends StatelessWidget {
                             fontSize: 25,
                             fontWeight: FontWeight.bold)),
                     iconTheme: IconThemeData(color: mainColor)),
-
-                home: SearchScreen());
+                home: workspacedetail());
           });
         }));
   }
