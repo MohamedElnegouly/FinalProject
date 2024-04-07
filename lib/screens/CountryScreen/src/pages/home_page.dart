@@ -1,6 +1,5 @@
-import 'package:finalproject/screens/CountryScreen/src/models/CitiesModel.dart';
-import 'package:finalproject/screens/CountryScreen/src/models/country_state_model.dart'
-      as cs_model;
+import '/screens/CountryScreen/src/models/CitiesModel.dart';
+import'/screens/CountryScreen/src/models/country_state_model.dart' as cs_model;
 import '../repositories/country_state_city_repo.dart';
 import 'package:flutter/material.dart';
 

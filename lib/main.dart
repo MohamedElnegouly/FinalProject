@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduationproject/colors/colors.dart';
 import 'package:graduationproject/main_page.dart';
+import 'package:graduationproject/screens/CountryScreen/src/pages/home_page.dart';
+import 'package:graduationproject/screens/SearchScreen/search_screen.dart';
 import 'package:graduationproject/screens/authentication/login_screen.dart';
 import 'package:graduationproject/screens/nav_bar_screens/home_screen.dart';
 import 'package:graduationproject/screens/nav_bar_screens/profile_screen.dart';
@@ -68,7 +70,7 @@ class MyApp extends StatelessWidget {
                             fontWeight: FontWeight.bold)),
                     iconTheme: IconThemeData(color: mainColor)),
 
-                home: WelcomeScreen());
+                home: SearchScreen());
           });
         }));
   }
