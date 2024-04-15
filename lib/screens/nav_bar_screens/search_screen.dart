@@ -6,7 +6,7 @@ class SearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return   Scaffold(
+    return Scaffold(
       body: Column(
           children: [
             const SizedBox(
@@ -65,7 +65,6 @@ class SearchScreen extends StatelessWidget {
                       fontSize: 15,
                     ),
                   ),
-
                 ],
                 // crossAxisAlignment: CrossAxisAlignment.end,
               ),
@@ -74,7 +73,7 @@ class SearchScreen extends StatelessWidget {
               child: ListView.builder(
                   itemCount: 5,
                   itemBuilder: ( context,index ){
-                    return  category();
+                    return category();
                   }),
             ),
         ],
