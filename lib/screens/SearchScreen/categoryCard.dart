@@ -1,146 +1,126 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:graduationproject/colors/colors.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class category extends StatelessWidget {
   const category({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return  Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Stack(
-          children: [
-            Container(
-              alignment: Alignment.center,
-              child: Image.network('https://images.unsplash.com/photo-1709577938593-1fc3991d3c93?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                fit: BoxFit.fitWidth,
-                height: 155,
-                width: 345,
+    return
+      Padding(
+        padding: const EdgeInsets.all(10),
+        child: Container(
+          decoration: BoxDecoration(
+              color:Colors.grey[100],
+
+              borderRadius: BorderRadius.circular(15)),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child:
+                Stack(
+                    alignment: Alignment.topRight,
+                    children:[
+                      SizedBox(
+                        width: double.infinity,
+                        height: 170,
+                        child: ClipRRect(
+                            child: Image.network('https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg',
+                              fit: BoxFit.fitWidth,)),
+                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Container(
+                          height: 30,
+                          width: 30,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.grey.withOpacity(0.4),
+                          ),
+                          child:
+                          InkWell(
+                              onTap: (){
+                              },
+                              child: Icon(Icons.favorite_border,color: mainColor,)
+                          ),
+                        ),
+                      ),
+                    ]
+                ),
+
               ),
-            ),
-             Positioned(
-              height: 50,
-                right: 45,
-                child:IconButton(
-                   icon: const Icon(Icons.favorite_border,
-                   size: 27,),
-                  color: Colors.blueAccent,
-                  onPressed: (){
-                     //Navigator.push(context, route),
+
+
+              SizedBox(height: 10,),
+              Padding(
+                padding: EdgeInsets.only(left: 15),
+                child: Text(
+                    "title",
+                    style: Theme.of(context).textTheme.titleMedium
+
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 15),
+                child: Row(
+                  children: [
+                    Icon(Icons.location_on),
+                    Text(
+                        "address",
+                        style: Theme.of(context).textTheme.titleSmall
+
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 15,bottom: 15,top: 10),
+                child: RatingBar.builder(
+                  initialRating: 3,
+                  minRating: 1,
+                  itemSize: 15,
+                  direction: Axis.horizontal,
+                  allowHalfRating: true,
+                  itemCount: 5,
+                  itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                  itemBuilder: (context, _) => Icon(
+                    Icons.star,
+                    color: mainColor,
+                  ),
+                  onRatingUpdate: (rating) {
+                    print(rating);
                   },
                 ),
-            ),
-          ],
-        ),
-        const SizedBox(
-          height: 5,
-        ),
-        const Padding(
-          padding: EdgeInsets.only(
-            left: 22,
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text('Solaria Cafe and workspace',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-
               ),
-            ],
-          ),
-
-        ),
-        const SizedBox(
-          height: 2,
-        ),
-         const Padding(
-          padding: EdgeInsets.only(
-              left: 22,
-        ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Icon(Icons.location_on),
-              Text('kuala lumpur ,malaysia',
+              Padding(
+                padding: EdgeInsets.only(left: 15,bottom: 15),
+          child: RichText(
+                    text: const TextSpan(
+                      text: '\$20 ',
                       style: TextStyle(
-                        color: Colors.grey,
-                      ),
+                          color: Colors.black,
+                          fontWeight: FontWeight.w900, fontSize: 15),
+                      children: [
+                        TextSpan(
+                          text: '/Hour',
+                          style: TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.normal
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ],
-              ),
-
         ),
-        const SizedBox(
-          height: 5,
-        ),
-        const Padding(
-          padding: EdgeInsets.only(
-            left: 22,
-          ),
-          child: Row(
-            children: [
-              Icon(
-                Icons.star,
-              ),
-              Icon(
-                Icons.star,
-              ),
-              Icon(
-                Icons.star,
-              ),
-              Icon(
-                Icons.star,
-              ),
-              Icon(
-                Icons.star,
-              ),
-
             ],
           ),
         ),
-        const SizedBox(
-          height: 20,
-        ),
-         const Padding(
-          padding: EdgeInsets.only(
-            left: 22,
-          ),
-          child: Row(
-            children: [
-              Text('\$',
-                style: TextStyle(
-                  fontSize: 25,
-                ),
-              ),
-              Text('20',
-                style: TextStyle(
-                  fontSize: 20,
-                ),
-              ),
-              Text('/Hour',
-              ),
-              SizedBox(
-                width: 240,
-              ),
-              Text('\$\$\$',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-
-                ),
-              ),
-
-            ],
-          ),
-        ),
-
-      ],
-    );
+      );
   }
-
-
 }

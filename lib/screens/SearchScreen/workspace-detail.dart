@@ -21,7 +21,6 @@ class _WorkSpaceDetailsState extends State<WorkSpaceDetails> {
         slivers: [
           SliverAppBar(
             flexibleSpace: Stack(
-              alignment: Alignment.topRight,
               children: [
                 const Positioned.fill(
                   child: FadeInImage(
@@ -30,46 +29,33 @@ class _WorkSpaceDetailsState extends State<WorkSpaceDetails> {
                     fit: BoxFit.cover,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Container(
-                    height: double.infinity,
-                    width: double.infinity,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        CircleAvatar(
-                          radius: 17,
-                          backgroundColor: Colors.grey.withOpacity(0.5),
-                          child: IconButton(
-                            onPressed: () {},
-                            //onPressed: () => Navigator.pop(context),
-                            icon: const Icon(
-                              Icons.arrow_back,
-                              color: Colors.black,
-                            ),
-                            iconSize: 18,
-                          ),
-                        ),
-                        AnimatedContainer(
-                          duration: const Duration(milliseconds: 750),
-                          height: 35,
-                          width: 35,
-                          child: CircleAvatar(
-                            radius: 17,
-                            backgroundColor: Colors.grey.withOpacity(0.5),
-                            child: IconButton(
-                              onPressed: () {},
-                              icon: const Icon(Icons.favorite_border),
-                              iconSize: 18,
-                              color: Colors.blue,
-                            ),
-                          ),
-                        ),
-                      ],
+                  Positioned(
+                    height: 100,
+                    right: 20,
+                    child:
+                    IconButton(
+                      icon: const Icon(Icons.favorite_border,
+                        size: 27,),
+                      color: mainColor,
+                      onPressed: (){
+                        //Navigator.push(context, route),
+                      },
+                    ),
+
+                  ),
+                Positioned(
+                    height: 100,
+                    left: 20,
+                    child:
+                    IconButton(
+                      icon: const Icon(Icons.arrow_back_ios,
+                        size: 25,),
+                      color: mainColor,
+                      onPressed: (){
+                        Navigator.pop(context);
+                      },
                     ),
                   ),
-                ),
               ],
             ),
             //backgroundColor: Colors.blue,
@@ -91,12 +77,11 @@ class _WorkSpaceDetailsState extends State<WorkSpaceDetails> {
             ),
           ),
 
-          ///***************************************************************************************** */
           SliverToBoxAdapter(
             child: Container(
                 padding: const EdgeInsets.all(10),
                 decoration: const BoxDecoration(color: Colors.white),
-                height: 3000,
+                height: 1000,
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

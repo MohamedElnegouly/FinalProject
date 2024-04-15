@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:graduationproject/colors/colors.dart';
+import 'package:graduationproject/screens/SearchScreen/workspace-detail.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 
@@ -120,33 +121,40 @@ class _HomeScreenState extends State<HomeScreen> {
     ListView.builder(
         shrinkWrap: true,
         physics: ScrollPhysics(),
-    itemCount: 1,
+    itemCount: 2,
     itemBuilder: (context, index) {
     return Padding(
     padding: const EdgeInsets.only(bottom: 8),
     child: Row(
     mainAxisAlignment: MainAxisAlignment.start,
     children: [
-    Stack(
-    alignment: Alignment.topLeft,
-    children: [
-    Image.asset(
-    "assets/images/photo_2024-04-04_12-19-27.jpg",
-    height: 50.sp,
-    width: 50.sp,
-    fit: BoxFit.cover,
+    InkWell(
+      onTap: (){
+        Navigator.push(context, MaterialPageRoute(builder: (context)=> WorkSpaceDetails()));
+      },
+      child: Stack(
+      alignment: Alignment.topLeft,
+      children: [
+      Image.asset(
+      "assets/images/photo_2024-04-04_12-19-27.jpg",
+      height: 50.sp,
+      width: 50.sp,
+      fit: BoxFit.cover,
+      ),
+        Positioned(
+          height: 40,
+          child:IconButton(
+            icon: const Icon(Icons.favorite_border,
+              size: 27,),
+            color: Colors.blueAccent,
+            onPressed: (){
+              //Navigator.push(context, route),
+            },
+          ),
+        ),
+      ],
+      ),
     ),
-    Container(
-    child: Icon(
-    Icons.favorite,
-    size: 30,
-    color: Color.fromARGB(255, 0, 85, 255),
-    ),
-    padding: EdgeInsetsDirectional.only(top: 50, start: 20),
-    )
-    ],
-    ),
-///////////////////////
 
     Padding(
     padding: EdgeInsets.all(15.sp),

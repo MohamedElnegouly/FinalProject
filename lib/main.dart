@@ -4,17 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduationproject/colors/colors.dart';
 import 'package:graduationproject/main_page.dart';
-<<<<<<< HEAD
 import 'package:graduationproject/screens/authentication/signin_screen.dart';
 import 'package:graduationproject/screens/authentication/signup_screen.dart';
-=======
 import 'package:graduationproject/screens/CountryScreen/src/pages/home_page.dart';
-import 'package:graduationproject/screens/SearchScreen/search_screen.dart';
-import 'package:graduationproject/screens/authentication/login_screen.dart';
->>>>>>> ddb931255efa3d36bcff58c1eeca2077e88d70c7
+import 'package:graduationproject/screens/nav_bar_screens/search_screen.dart';
 import 'package:graduationproject/screens/nav_bar_screens/home_screen.dart';
 import 'package:graduationproject/screens/nav_bar_screens/profile_screen.dart';
-import 'package:graduationproject/screens/nav_bar_screens/workspace-detail.dart';
+import 'package:graduationproject/screens/SearchScreen/workspace-detail.dart';
 import 'package:graduationproject/screens/sub_pages/edit_screen.dart';
 import 'package:graduationproject/screens/sub_pages/notifications.dart';
 import 'package:graduationproject/screens/sub_pages/select_language.dart';
@@ -65,7 +61,7 @@ class MyApp extends StatelessWidget {
                     scaffoldBackgroundColor: Colors.white,
                     textTheme: TextTheme(
                         titleSmall: TextStyle(
-                          color: Colors.black87,
+                          color: Colors.black45,
                           fontSize: 15,
                         ),
                         titleMedium: TextStyle(
@@ -78,12 +74,8 @@ class MyApp extends StatelessWidget {
                             fontSize: 25,
                             fontWeight: FontWeight.bold)),
                     iconTheme: IconThemeData(color: mainColor)),
-<<<<<<< HEAD
 
                 home: MainPage());
-=======
-                home: workspacedetail());
->>>>>>> ddb931255efa3d36bcff58c1eeca2077e88d70c7
           });
         }));
   }

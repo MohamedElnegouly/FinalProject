@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:graduationproject/colors/colors.dart';
 
-import 'models/shared_preferences.dart';
+import '../../models/shared_preferences.dart';
 
 class FavoriteScreen extends StatefulWidget {
   const FavoriteScreen({super.key});
