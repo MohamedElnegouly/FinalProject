@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:graduationproject/screens/authentication/forget_screen.dart';
-import 'package:graduationproject/screens/authentication/login_screen.dart';
+import 'package:graduationproject/screens/authentication/signin_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -18,7 +18,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
     super.initState();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
     Future.delayed(Duration(seconds: 3), (){
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_)=> LoginScreen()));
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_)=> SignInScreen()));
     });
   }
   @override

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:graduationproject/colors/colors.dart';
 import 'package:graduationproject/screens/nav_bar_screens/home_screen.dart';
 import 'package:graduationproject/screens/nav_bar_screens/profile_screen.dart';
+import 'package:graduationproject/screens/sub_pages/select_language.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -16,7 +17,7 @@ class _MainPageState extends State<MainPage> {
   List screens = [
     HomeScreen(),
     SizedBox(),
-    SizedBox(),
+    SelectLanguageScreen(),
     ProfileScreen(),
   ];
 

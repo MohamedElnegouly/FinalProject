@@ -1,9 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:graduationproject/models/custom_text_field.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../colors/colors.dart';
 import '../../models/custom_button.dart';
+import '../../models/shared_preferences.dart';
 
 class EditScreen extends StatefulWidget {
   const EditScreen({super.key});
@@ -34,18 +37,54 @@ class _EditScreenState extends State<EditScreen> {
         child: ListView(children: [
           Padding(
             padding:  EdgeInsets.all(8.sp),
-            child: CustomInputField(
-              labelText: "full name",
+            child:
+            CustomInputField(
+              hintText: PreferenceUtils.getString(
+                  PreferenceKey.name,),
+              labelText:
+              PreferenceUtils.getString(
+                PreferenceKey.name,),
+              //"full name",
             controller: nameController,
+            ),
+          ),
+      // Padding(
+      //   padding: const EdgeInsets.all(8.0),
+      //   child: Container(
+      //     margin: const EdgeInsets.all(10.0),
+      //     color: Colors.blue[600],
+      //     width: double.infinity,
+      //     height: 150,
+      //     child: Text(PreferenceUtils.getString(PreferenceKey.name)),
+      //   ),
+      // ),
+      //
+      //     Padding(
+      //   padding: const EdgeInsets.all(8.0),
+      //   child: Container(
+      //     margin: const EdgeInsets.all(10.0),
+      //     color: Colors.blue[600],
+      //     width: double.infinity,
+      //     height: 150,
+      //     child: Text(PreferenceUtils.getString(PreferenceKey.email)),
+      //   ),
+      // ),
+
+          Padding(
+            padding:  EdgeInsets.all(8.sp),
+            child: CustomInputField(
+              labelText: "user name",controller: usernameController,
             ),
           ),
           Padding(
             padding:  EdgeInsets.all(8.sp),
-            child: CustomInputField(labelText: "user name",controller: usernameController,),
-          ),
-          Padding(
-            padding:  EdgeInsets.all(8.sp),
-            child: CustomInputField(labelText: "Email",controller: emailController,),
+            child: CustomInputField(
+              labelText: PreferenceUtils.getString(
+                  PreferenceKey.email,),
+              hintText: PreferenceUtils.getString(
+                  PreferenceKey.email,
+              ),
+              controller: emailController,),
           ),
           Padding(
             padding:  EdgeInsets.all(8.sp),
@@ -92,12 +131,29 @@ class _EditScreenState extends State<EditScreen> {
             padding:  EdgeInsets.only(top: 15.sp),
             child: CustomFormButton(
                 innerText: 'Update',
-                onPressed: () {}
+                onPressed: () {
+
+                }
             ),
           ),
 
         ],),
       ),
     );
+  }
+  void saveUserData() {
+    PreferenceUtils.setString(
+        PreferenceKey.name,
+        nameController.text
+    );
+    PreferenceUtils.setString(
+        PreferenceKey.email,
+        emailController.text
+    );
+    PreferenceUtils.setString(
+        PreferenceKey.phone,
+        phoneController.text
+    );
+
   }
 }

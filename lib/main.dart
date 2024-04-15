@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduationproject/colors/colors.dart';
 import 'package:graduationproject/main_page.dart';
-import 'package:graduationproject/screens/authentication/login_screen.dart';
+import 'package:graduationproject/screens/authentication/signin_screen.dart';
+import 'package:graduationproject/screens/authentication/signup_screen.dart';
 import 'package:graduationproject/screens/nav_bar_screens/home_screen.dart';
 import 'package:graduationproject/screens/nav_bar_screens/profile_screen.dart';
 import 'package:graduationproject/screens/sub_pages/edit_screen.dart';
@@ -14,8 +15,11 @@ import 'package:graduationproject/screens/welcome_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import 'core/auth_cubit.dart';
+import 'models/shared_preferences.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await PreferenceUtils.init();
   runApp(
     DevicePreview(
       enabled: !kReleaseMode,
@@ -68,7 +72,7 @@ class MyApp extends StatelessWidget {
                             fontWeight: FontWeight.bold)),
                     iconTheme: IconThemeData(color: mainColor)),
 
-                home: WelcomeScreen());
+                home: MainPage());
           });
         }));
   }

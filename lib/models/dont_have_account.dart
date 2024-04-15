@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduationproject/colors/colors.dart';
-import 'package:graduationproject/screens/authentication/register_screen.dart';
+import 'package:graduationproject/screens/authentication/signup_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class DontHaveAnAccountWidget extends StatelessWidget {
@@ -25,7 +25,7 @@ class DontHaveAnAccountWidget extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => RegisterScreen(),
+                builder: (context) => SignUPScreen(),
               ),
             )
           },

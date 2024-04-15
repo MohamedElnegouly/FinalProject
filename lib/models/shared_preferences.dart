@@ -1,12 +1,18 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 enum PreferenceKey{
+  name,
+  email,
   loggedIn,
   ProfileData,
   apiToken,
+  phone,
   language,
   notification,
-  theme
+  theme,
+  darkTheme,
+  lightTheme,
+
 }
 class PreferenceUtils {
   static Future<SharedPreferences> get _instance async => _prefsInstance ??= await SharedPreferences.getInstance();

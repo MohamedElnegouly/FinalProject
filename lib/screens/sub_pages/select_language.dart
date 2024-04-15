@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:graduationproject/models/language_model.dart';
 
+import '../../models/shared_preferences.dart';
+
 class SelectLanguageScreen extends StatefulWidget {
   @override
   _SelectLanguageScreenState createState() => _SelectLanguageScreenState();
@@ -20,7 +22,6 @@ class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
     LanguageModel("Turkey", false),
     LanguageModel("Deutsch", false),
   ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,7 +56,9 @@ class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
   }
 
   Widget ContactItem(
-      String name,  bool isSelected, int index) {
+      String name,
+      bool isSelected,
+      int index) {
     return ListTile(
       title: Text(
         name,
@@ -93,10 +96,24 @@ class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
       ),
       onTap: () {
         setState(() {
-          languages[index].isSelected = !languages[index].isSelected;
-
+    for(int i = 0; i < languages.length; i++) {
+      if (i == index) {
+        setState(() {
+          languages[i].isSelected = true;
+          PreferenceUtils.setString(
+            PreferenceKey.language,
+            languages[index].name
+          );
+          Navigator.pop(context);
         });
-      },
+      } else {
+        setState(() {
+          languages[i].isSelected = false;
+        });
+      }
+    }
+    });
+    },
     );
   }
 }

@@ -3,23 +3,24 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduationproject/main_page.dart';
 import 'package:graduationproject/models/dont_have_account.dart';
 import 'package:graduationproject/screens/authentication/forget_screen.dart';
-import 'package:graduationproject/screens/authentication/register_screen.dart';
+import 'package:graduationproject/screens/authentication/signup_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../core/auth_cubit.dart';
 import '../../models/custom_button.dart';
+import '../../models/shared_preferences.dart';
 import '../../models/square_tile.dart';
 import '../../models/custom_text_field.dart';
 import '../nav_bar_screens/home_screen.dart';
 
-class LoginScreen extends StatefulWidget {
-  LoginScreen({super.key});
+class SignInScreen extends StatefulWidget {
+  SignInScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignInScreen> createState() => _SignInScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignInScreenState extends State<SignInScreen> {
   // text editing controllers
 
   bool obscureText = false;

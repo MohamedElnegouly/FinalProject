@@ -5,18 +5,19 @@ import 'package:graduationproject/screens/nav_bar_screens/home_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../core/auth_cubit.dart';
+import '../../models/shared_preferences.dart';
 import '../../models/square_tile.dart';
 import '../../models/custom_text_field.dart';
-import 'login_screen.dart';
+import 'signin_screen.dart';
 
-class RegisterScreen extends StatefulWidget {
-  RegisterScreen({super.key});
+class SignUPScreen extends StatefulWidget {
+  SignUPScreen({super.key});
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  State<SignUPScreen> createState() => _SignUPScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class _SignUPScreenState extends State<SignUPScreen> {
   bool obscureText = false;
   final nameController = TextEditingController();
   final emailController = TextEditingController();
@@ -94,7 +95,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
            SizedBox(height: 15.sp),
 
           SizedBox(
-            height: 35.sp,
+            height: 36.sp,
             child: CustomInputField(
               hintText: 'UserName',
               controller: nameController,
@@ -104,7 +105,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
            SizedBox(height: 10.sp),
 
          SizedBox(
-           height: 35.sp,
+           height: 36.sp,
            child: CustomInputField(
                hintText: "Email",
            controller: emailController,
@@ -113,7 +114,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
            SizedBox(height: 10.sp),
 
           SizedBox(
-            height: 35.sp,
+            height: 36.sp,
             child:
             CustomInputField(
               hintText: 'password',
@@ -135,7 +136,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           //   ),
           // ),
           SizedBox(
-            height: 35.sp,
+            height: 36.sp,
             child:
             CustomInputField(
               hintText: 'country',
@@ -143,7 +144,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
           ),
           SizedBox(
-            height: 35.sp,
+            height: 36.sp,
             child:
             CustomInputField(
               hintText: 'city ',
@@ -162,14 +163,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
               onPressed: (){
       if(formKey.currentState!.validate())
       {
-      BlocProvider.of<AuthCubit>(context).register(
+        saveUserData();
+        BlocProvider.of<AuthCubit>(context).register(
       name: nameController.text,
       email: emailController.text,
       password: passwordController.text,
       //phone: phoneController.text
       country: countryController.text,
       city: cityController.text
-      );
+      ).then((value) => Navigator.pop(context));
       }
               }),
 
@@ -225,5 +227,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
       );
     },
       );
+  }
+
+  void saveUserData() {
+    PreferenceUtils.setString(
+      PreferenceKey.name,
+      nameController.text
+    );
+    PreferenceUtils.setString(
+      PreferenceKey.email,
+      emailController.text
+    );
+
   }
 }

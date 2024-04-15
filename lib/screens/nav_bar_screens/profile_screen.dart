@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduationproject/colors/colors.dart';
 import 'package:graduationproject/screens/sub_pages/edit_screen.dart';
 import 'package:graduationproject/screens/sub_pages/notifications.dart';
+import 'package:graduationproject/screens/sub_pages/select_language.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -147,14 +148,14 @@ class _ProfileScreenState extends State<ProfileScreen>
                     onTap: () => goToNotificationScreen(),
                     icon: Icons.notifications_on_outlined,
                     title: "Notification",
-                   // value: PreferenceUtils.getString(PreferenceKey.notification, 'ON')
+                   value: PreferenceUtils.getString(PreferenceKey.notification, 'ON')
                   ),
 
                   ProfileItem(
                     onTap: () => goToSelectLanguageScreen(),
                     icon: Icons.language,
                     title: "Language",
-                    // value: PreferenceUtils.getString(PreferenceKey.language,'en')
+                    value: PreferenceUtils.getString(PreferenceKey.language)
                   ),
                   SizedBox(height: 10,),
                 ],),
@@ -190,12 +191,12 @@ class _ProfileScreenState extends State<ProfileScreen>
                   ),
 
                   ProfileItem(
-                    onTap: () => selectTheme(),
+                    onTap: () => showChangeThemeBottomSheet(),
                     icon: Icons.color_lens_outlined,
                     title: "Theme",
-                    //value: PreferenceUtils.getString(PreferenceKey.theme, 'Light mode')
-                  ),
-
+                    value:  PreferenceUtils.getBool(PreferenceKey.darkTheme)
+                               ? "Dark"
+                               : "Light"),
                   SizedBox(height: 10,),
                 ],),
               ),
@@ -264,16 +265,18 @@ class _ProfileScreenState extends State<ProfileScreen>
     required String title,
     String value = '',
   }) {
-    //print('Theme => ${Theme.of(context).brightness}');
     return InkWell(
         onTap: onTap,
         child:
         Padding(
-          padding: EdgeInsets.only(left: 10, top: 10),
+          padding: EdgeInsets.only(left: 15.sp, top: 15.sp),
           child: Row(
             children: [
-              Icon(
-                icon,
+              Padding(
+                padding: EdgeInsets.all(8.sp),
+                child: Icon(
+                  icon,
+                ),
               ),
               const SizedBox(width: 5),
               Text(
@@ -284,12 +287,14 @@ class _ProfileScreenState extends State<ProfileScreen>
                     .titleSmall,
               ),
               const Spacer(),
-              Text(
-                value,
-                style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: mainColor
+              Padding(
+                padding: EdgeInsets.only(top: 10.sp,right: 15.sp),
+                child: Text(
+                  value,
+                  style: const TextStyle(
+                      fontSize: 15,
+                      color: mainColor
+                  ),
                 ),
               ),
             ],
@@ -302,19 +307,84 @@ class _ProfileScreenState extends State<ProfileScreen>
     Navigator.push(context,
       MaterialPageRoute(
           builder: (context) =>
-              NotificationScreen()),
-    ).then((value) {
-      BlocProvider.of<AppCubit>(context).notificationChanged();
-    });
+              NotificationScreen()));
   }
 
   goToSelectLanguageScreen() {
-
+  Navigator.push(context, 
+      MaterialPageRoute(
+          builder: (context)=>
+              SelectLanguageScreen())).then((value) => setState(() {}));
   }
 
 
-  selectTheme() {
-
+  showChangeThemeBottomSheet() {
+    showModalBottomSheet<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          height: 200,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(25),
+          ),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max,
+              children: <Widget>[
+                const SizedBox(height: 20),
+                const Text('Select Theme',style: TextStyle(color: mainColor,fontWeight: FontWeight.bold),),
+                InkWell(
+                  onTap: () async {
+                    await PreferenceUtils.setBool(
+                      PreferenceKey.darkTheme,
+                      false,
+                    );
+                     Navigator.pop(context);
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(10),
+                    // color: Colors.grey[200],
+                    child: const Text(
+                      'Light',
+                      style: TextStyle(
+                        fontSize: 22,
+                        color: mainColor
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                InkWell(
+                  onTap: () async {
+                    await PreferenceUtils.setBool(
+                      PreferenceKey.darkTheme,
+                      true,
+                    );
+                    Navigator.pop(context);
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(10),
+                    // color: Colors.grey[200],
+                    child: const Text(
+                      'Dark',
+                      style: TextStyle(
+                        fontSize: 22,
+                        color: mainColor
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    ).then((value) {
+      BlocProvider.of<AppCubit>(context).themeChanged();
+    });
   }
 
 
