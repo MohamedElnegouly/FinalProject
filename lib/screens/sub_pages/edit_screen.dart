@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:graduationproject/models/custom_text_field.dart';
+import 'package:graduationproject/models/ui/custom_text_field.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../colors/colors.dart';
-import '../../models/custom_button.dart';
+import '../../models/ui/custom_button.dart';
 import '../../models/shared_preferences.dart';
 
 class EditScreen extends StatefulWidget {

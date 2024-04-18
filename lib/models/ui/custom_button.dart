@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '../colors/colors.dart';
+import '../../colors/colors.dart';
 
 class CustomFormButton extends StatelessWidget {
   final String innerText;

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:graduationproject/models/custom_button.dart';
+import 'package:graduationproject/models/ui/custom_button.dart';
 import 'package:graduationproject/screens/nav_bar_screens/home_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../core/auth_cubit.dart';
 import '../../models/shared_preferences.dart';
-import '../../models/square_tile.dart';
-import '../../models/custom_text_field.dart';
+import '../../models/ui/square_tile.dart';
+import '../../models/ui/custom_text_field.dart';
 import 'signin_screen.dart';
 
 class SignUPScreen extends StatefulWidget {

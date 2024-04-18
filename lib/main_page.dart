@@ -1,11 +1,13 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:graduationproject/colors/colors.dart';
+import 'package:graduationproject/screens/CountryScreen/src/pages/home_page.dart';
 import 'package:graduationproject/screens/nav_bar_screens/search_screen.dart';
 import 'package:graduationproject/screens/nav_bar_screens/home_screen.dart';
 import 'package:graduationproject/screens/nav_bar_screens/profile_screen.dart';
 import 'package:graduationproject/screens/sub_pages/select_language.dart';
 import 'package:graduationproject/screens/nav_bar_screens/favorite_screen.dart';
+import 'package:graduationproject/test/test_home.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});

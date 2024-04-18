@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
+import 'package:graduationproject/models/shared_preferences.dart';
 import 'package:http/http.dart';
 import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
@@ -62,6 +63,10 @@ class AuthCubit extends Cubit<AuthState> {
       if(response.statusCode == 200){
         if(data['status']==true){
           print('success $data');
+         await PreferenceUtils.setString(
+              PreferenceKey.apiToken,
+              data['token']
+          );
           emit(LoginSuccessState());
         }
       }else if (response.statusCode == 400){
@@ -71,6 +76,7 @@ class AuthCubit extends Cubit<AuthState> {
       }
     } catch (e){
       emit(LoginFailedState(errorMessage: e.toString()));
+      print('error message : ${e.toString()}');
     }
   }
 

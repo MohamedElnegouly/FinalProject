@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:graduationproject/models/language_model.dart';
+import 'package:graduationproject/models/ui/language_model.dart';
 
 import '../../models/shared_preferences.dart';
 
