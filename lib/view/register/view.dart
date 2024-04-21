@@ -1,22 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:graduationproject/widget/custom_button.dart';
-import 'package:graduationproject/screens/nav_bar_screens/home_screen.dart';
+import 'package:graduationproject/view/register/register_cubit.dart';
+import 'package:graduationproject/widget/app_button.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-
-import '../../core/auth_manager/auth_cubit.dart';
 import '../../core/shared_preferences.dart';
 import '../../widget/square_tile.dart';
 import '../../widget/custom_text_field.dart';
-import '../../view/login/login_screen.dart';
 
 class SignUPScreen extends StatefulWidget {
   SignUPScreen({super.key});
-
   @override
   State<SignUPScreen> createState() => _SignUPScreenState();
 }
-
 class _SignUPScreenState extends State<SignUPScreen> {
   bool obscureText = false;
   final nameController = TextEditingController();
@@ -24,14 +19,12 @@ class _SignUPScreenState extends State<SignUPScreen> {
   final passwordController = TextEditingController();
   final countryController = TextEditingController();
   final cityController = TextEditingController();
-
-
   final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return
-      BlocConsumer<AuthCubit,AuthState>(
+      BlocConsumer<RegisterCubit,RegisterState>(
         listener: (context, state) {
       if(state is RegisterSuccessState)
       {
@@ -155,26 +148,25 @@ class _SignUPScreenState extends State<SignUPScreen> {
 
           // sign in button
 
-          CustomFormButton(
-              innerText: state is RegisterLoadingState
-    ? "loading..."
-        :
-    "Agree and Register",
-              onPressed: (){
-      if(formKey.currentState!.validate())
-      {
-        saveUserData();
-        BlocProvider.of<AuthCubit>(context).register(
-      name: nameController.text,
-      email: emailController.text,
-      password: passwordController.text,
-      //phone: phoneController.text
-      country: countryController.text,
-      city: cityController.text
-      ).then((value) => Navigator.pop(context));
-      }
-              }),
-
+          AppButton(title:
+           state is RegisterLoadingState
+          ? "loading..."
+              :
+          "Agree and Register",
+          onTap: (){
+            if(formKey.currentState!.validate())
+            {
+              saveUserData();
+              BlocProvider.of<RegisterCubit>(context).register(
+                  name: nameController.text,
+                  email: emailController.text,
+                  password: passwordController.text,
+                  country: countryController.text,
+                  city: cityController.text
+              ).then((value) => Navigator.pop(context));
+            }
+          },
+          ),
            SizedBox(height: 20.sp),
 
           // or continue with

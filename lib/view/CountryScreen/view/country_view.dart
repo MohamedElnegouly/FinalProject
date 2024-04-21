@@ -1,9 +1,7 @@
-import '/screens/CountryScreen/src/models/CitiesModel.dart';
-import'/screens/CountryScreen/src/models/country_state_model.dart' as cs_model;
+import '../models/CitiesModel.dart';
+import '../models/country_state_model.dart' as cs_model;
 import '../repositories/country_state_city_repo.dart';
 import 'package:flutter/material.dart';
-
-
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:graduationproject/main_page.dart';
+import 'package:graduationproject/view/forget_password/view.dart';
+import 'package:graduationproject/view/nav_bar/view.dart';
+import 'package:graduationproject/widget/app_button.dart';
 import 'package:graduationproject/widget/dont_have_account.dart';
-import 'package:graduationproject/screens/authentication/forget_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'login_cubit.dart';
-import '../../widget/custom_button.dart';
 import '../../widget/square_tile.dart';
 import '../../widget/custom_text_field.dart';
 
@@ -53,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
         SnackBar(content: Text("logged in successfully"),
         behavior: SnackBarBehavior.floating,
         ));
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> MainPage()));
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> NavBarView()));
     }
     else if(state is LoginFailedState)
     {
@@ -118,7 +118,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     onTap: () {
                       Navigator.push(
                           context, MaterialPageRoute(
-                          builder: (context) => ForgetScreen()));
+                          builder: (context) => ForgetPasswordView()));
                     },
                     child: Text(
                       'Forgot Password?',
@@ -130,23 +130,19 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(height: 30.sp),
 
                 // sign in button
-                CustomFormButton(
-                    innerText:
-                    state is LoginLoadingState
-                        ? "loading..."
-                        :
-                    'Login',
-                    onPressed: () {
-                      if (formKey.currentState!.validate()) {
-                        BlocProvider.of<LoginCubit>(context).login(
-                            email: emailController.text,
-                            password: passwordController.text);
-                      }
-                    }),
-
+                AppButton(title: state is LoginLoadingState
+                    ? "loading..."
+                    :
+                'Login',
+                onTap: (){
+                  if (formKey.currentState!.validate()) {
+                    BlocProvider.of<LoginCubit>(context).login(
+                        email: emailController.text,
+                        password: passwordController.text);
+                  }
+                },
+                ),
                 SizedBox(height: 15.sp),
-
-                // or continue with
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 25.sp),
                   child: Row(

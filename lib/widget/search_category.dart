@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:graduationproject/constants/constants.dart';
+import 'package:graduationproject/constants.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-class category extends StatelessWidget {
-  const category({super.key});
+class SearchCategory extends StatelessWidget {
+  const SearchCategory({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -55,15 +55,12 @@ class category extends StatelessWidget {
                 ),
 
               ),
-
-
               SizedBox(height: 10,),
               Padding(
                 padding: EdgeInsets.only(left: 15),
                 child: Text(
                     "title",
                     style: Theme.of(context).textTheme.titleMedium
-
                 ),
               ),
               Padding(

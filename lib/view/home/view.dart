@@ -1,42 +1,32 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:graduationproject/app_core/layout_cubit.dart';
-import 'package:graduationproject/constants.dart';
-import 'package:graduationproject/widget/custom_workspace.dart';
-import 'package:graduationproject/models/workspace_detail_model.dart';
-import 'package:graduationproject/models/workspace_model.dart';
-import 'package:graduationproject/services/get_all_workspaces.dart';
-import 'package:graduationproject/screens/custom_workspace_details.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-
+import '../workspace/workspace_view.dart';
+import 'home_cubit.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
-
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   @override
   Widget build(BuildContext context) {
-    final cubit = BlocProvider.of<LayoutCubit>(context);
+    final cubit = BlocProvider.of<HomeCubit>(context);
     return
       MultiBlocProvider(
         providers: [
-    BlocProvider(create: (context) => LayoutCubit()..getWorkspaces())
+    BlocProvider(create: (context) => HomeCubit()..getWorkspaces())
     ],
-    child: BlocBuilder<LayoutCubit, LayoutState>(builder: (context, state) {
+    child: BlocBuilder<HomeCubit, HomeState>(builder: (context, state) {
     return Scaffold(
       body: Padding(
         padding:EdgeInsets.only(left: 15.sp,right: 15.sp,top: 15.sp),
         child:
         ListView(
           children: [
-            //1**********************************
             Row(children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -65,7 +55,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 size: 30,
               )
             ]),
-
             TextField(
               decoration: InputDecoration(
                   prefixIcon: Icon(
@@ -118,7 +107,6 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: 20,
             ),
-
             Row(
               children: [
                 Text(
@@ -133,6 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ? Center(child: const CupertinoActivityIndicator())
               : ListView.builder(
                       shrinkWrap: true,
+                      physics: ScrollPhysics(),
                       itemCount: cubit.workspaceList.length,
                       itemBuilder: (context, index) {
                         return CustomWorkspace(workspace: cubit.workspaceList[index]);

@@ -5,7 +5,7 @@ import 'package:graduationproject/widget/app_button.dart';
 import 'package:graduationproject/widget/custom_text_field.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '../../constants/constants.dart';
+import '../../constants.dart';
 import '../../core/shared_preferences.dart';
 
 class EditScreen extends StatefulWidget {

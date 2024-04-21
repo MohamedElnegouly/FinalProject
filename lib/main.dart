@@ -2,29 +2,24 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:graduationproject/colors/colors.dart';
-import 'package:graduationproject/core/constance/constants.dart';
-import 'package:graduationproject/main_page.dart';
-import 'package:graduationproject/screens/authentication/signin_screen.dart';
-import 'package:graduationproject/screens/authentication/signup_screen.dart';
-import 'package:graduationproject/screens/CountryScreen/src/pages/home_page.dart';
-import 'package:graduationproject/screens/nav_bar_screens/search_screen.dart';
-import 'package:graduationproject/screens/nav_bar_screens/home_screen.dart';
-import 'package:graduationproject/screens/nav_bar_screens/profile_screen.dart';
-import 'package:graduationproject/screens/sub_pages/workspace-detail.dart';
-import 'package:graduationproject/screens/sub_pages/edit_screen.dart';
-import 'package:graduationproject/screens/sub_pages/notifications.dart';
-import 'package:graduationproject/screens/sub_pages/select_language.dart';
-import 'package:graduationproject/screens/welcome_screen.dart';
+import 'package:graduationproject/constants.dart';
+import 'package:graduationproject/view/home/home_cubit.dart';
+import 'package:graduationproject/view/login/login_cubit.dart';
+import 'package:graduationproject/view/login/view.dart';
+import 'package:graduationproject/view/nav_bar/view.dart';
+import 'package:graduationproject/view/register/view.dart';
+import 'package:graduationproject/view/search/search_screen.dart';
+import 'package:graduationproject/view/home/view.dart';
+import 'package:graduationproject/view/profile/profile_screen.dart';
+import 'package:graduationproject/view/welcome_screen.dart';
+import 'package:graduationproject/view/workspac_details/view.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-
-import 'core/auth_cubit.dart';
-import 'models/shared_preferences.dart';
+import 'core/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await PreferenceUtils.init();
-  PreferenceUtils.getString(PreferenceKey.apiToken);
+  PreferenceUtils.getString(PreferenceKey.token);
   print('token is : ${token}');
   runApp(
     DevicePreview(
@@ -36,24 +31,24 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (context) => AuthCubit(),
+            create: (context) => LoginCubit(),
           ),
+          BlocProvider(create: (context) => HomeCubit()..getWorkspaces()),
         ],
-        child: BlocBuilder<AuthCubit, AuthState>(builder: (context, state) {
+        child: BlocBuilder<LoginCubit, LoginState>(builder: (context, state) {
           return ResponsiveSizer(builder: (context, orientation, screenType) {
             return MaterialApp(
                 locale: DevicePreview.locale(context),
                 builder: DevicePreview.appBuilder,
                 title: 'Flutter Demo',
                 debugShowCheckedModeBanner: false,
-                theme: ThemeData(
+                theme:
+                ThemeData(
                     brightness: Brightness.light,
                     useMaterial3: true,
                     appBarTheme: AppBarTheme(
@@ -77,11 +72,11 @@ class MyApp extends StatelessWidget {
                             fontSize: 25,
                             fontWeight: FontWeight.bold)),
                     iconTheme: IconThemeData(color: mainColor)),
-
                 home:
-                token != null && token !=""
-                    ? MainPage()
-                    : SignInScreen()
+                // token == null
+                //     ? SignInScreen()
+                //     :
+                NavBarView()
             );
           });
         }));

@@ -1,20 +1,17 @@
 import 'dart:async';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:graduationproject/models/workspace_detail_model.dart';
-import 'package:graduationproject/models/workspace_model.dart';
+import 'package:graduationproject/view/custom_details/workspace_details_cubit.dart';
+import 'package:graduationproject/view/workspac_details/workspace_detail_model.dart';
 import 'package:graduationproject/view/workspace/workspace_model.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../constants.dart';
+import '../home/home_cubit.dart';
 
-import '../app_core/layout_cubit.dart';
-import '../constants/constants.dart';
-import '../view/home/home_cubit.dart';
-
-class CustomNewsDetailsScreen extends StatefulWidget {
-   CustomNewsDetailsScreen({
+class WorkSpaceDetailsScreen extends StatefulWidget {
+   WorkSpaceDetailsScreen({
     super.key,
     required this.workspaceDetails,
      required this.id
@@ -23,10 +20,10 @@ class CustomNewsDetailsScreen extends StatefulWidget {
    int id;
 
    @override
-  State<CustomNewsDetailsScreen> createState() => _CustomNewsDetailsScreenState();
+  State<WorkSpaceDetailsScreen> createState() => _WorkSpaceDetailsScreenState();
 }
 
-class _CustomNewsDetailsScreenState extends State<CustomNewsDetailsScreen> {
+class _WorkSpaceDetailsScreenState extends State<WorkSpaceDetailsScreen> {
   double dimension = 40;
   DateTime selectedDate = DateTime.now();
   late Timer timer;
@@ -52,13 +49,13 @@ class _CustomNewsDetailsScreenState extends State<CustomNewsDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = BlocProvider.of<HomeCubit>(context);
+    final cubit = BlocProvider.of<WorkspaceDetailsCubit>(context);
     return
       MultiBlocProvider(
           providers: [
             //BlocProvider(create: (context) => HomeCubit()..getWorkspacesDetails(id: widget.workspaceDetails.id!))
           ],
-          child: BlocBuilder<HomeCubit, HomeState>(builder: (context, state) {
+          child: BlocBuilder<WorkspaceDetailsCubit, WorkspaceDetailsState>(builder: (context, state) {
     return Scaffold(
     body: CustomScrollView(
     slivers: [
@@ -115,15 +112,7 @@ class _CustomNewsDetailsScreenState extends State<CustomNewsDetailsScreen> {
     flexibleSpace: FlexibleSpaceBar(
     background:
     widget.workspaceDetails.cover == null
-    ? const Padding(
-    padding: EdgeInsets.only(top: 20),
-    child: Center(
-    child: Icon(
-    Icons.image_not_supported_outlined,
-    size: 70,
-    ),
-    ),
-    )
+        ? nullImage
         : CachedNetworkImage(
     imageUrl: widget.workspaceDetails.cover!,
     width: double.infinity,
@@ -132,7 +121,8 @@ class _CustomNewsDetailsScreenState extends State<CustomNewsDetailsScreen> {
     ),
     ),
     SliverToBoxAdapter(
-    child: Container(
+    child:
+    Container(
     padding: const EdgeInsets.all(10),
     decoration: const BoxDecoration(color: Colors.white),
     height: 1000,

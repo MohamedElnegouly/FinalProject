@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:bloc/bloc.dart';
-import 'package:graduationproject/models/workspace_detail_model.dart';
+import 'package:graduationproject/view/workspac_details/workspace_detail_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:meta/meta.dart';
@@ -23,10 +23,10 @@ class WorkspaceDetailsCubit extends Cubit<WorkspaceDetailsState> {
 
     if(response.statusCode == 200)
     {
-      for (int i = 0; i < responseBody.length; i++){
-        workspaceDetails.add(workspaceDetails.fromJson( data: responseBody[i])
-        );
-      }
+      // for (int i = 0; i < responseBody.length; i++){
+      //   workspaceDetails.add(workspaceDetails.fromJson( data: responseBody[i])
+      //   );
+      // }
     emit(GetWorkspacesDetailsSuccess())  ;
     }
     else{
@@ -35,4 +35,4 @@ class WorkspaceDetailsCubit extends Cubit<WorkspaceDetailsState> {
   }
 }
 
-}
+

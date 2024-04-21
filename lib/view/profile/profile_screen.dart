@@ -1,16 +1,14 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:graduationproject/constants/constants.dart';
-import 'package:graduationproject/screens/sub_pages/edit_screen.dart';
-import 'package:graduationproject/screens/sub_pages/notifications.dart';
-import 'package:graduationproject/screens/sub_pages/select_language.dart';
+import 'package:graduationproject/constants.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-
-import '../../app_core/app_cubit.dart';
+import '../../core/app_manager/app_cubit.dart';
 import '../../core/shared_preferences.dart';
+import '../sub_pages/edit_screen.dart';
+import '../sub_pages/notifications.dart';
+import '../language/view.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -316,7 +314,6 @@ class _ProfileScreenState extends State<ProfileScreen>
           builder: (context)=>
               SelectLanguageScreen())).then((value) => setState(() {}));
   }
-
 
   showChangeThemeBottomSheet() {
     showModalBottomSheet<void>(

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:graduationproject/screens/authentication/forget_screen.dart';
 import 'package:graduationproject/view/login/view.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 

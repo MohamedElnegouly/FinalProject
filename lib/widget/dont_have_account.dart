@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduationproject/constants.dart';
-import 'package:graduationproject/screens/authentication/signup_screen.dart';
+import 'package:graduationproject/view/register/view.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class DontHaveAnAccountWidget extends StatelessWidget {

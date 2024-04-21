@@ -1,9 +1,9 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import '../../constants.dart';
-import '../../screens/nav_bar_screens/favorite_screen.dart';
-import '../../screens/nav_bar_screens/profile_screen.dart';
-import '../../screens/nav_bar_screens/search_screen.dart';
+import '../favorite/favorite_screen.dart';
+import '../profile/profile_screen.dart';
+import '../search/search_screen.dart';
 import '../home/view.dart';
 
 class NavBarView extends StatefulWidget {

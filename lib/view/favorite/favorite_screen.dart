@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:graduationproject/constants/constants.dart';
+import 'package:graduationproject/constants.dart';
 
 import '../../core/shared_preferences.dart';
 

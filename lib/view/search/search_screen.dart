@@ -1,4 +1,4 @@
-import '/screens/SearchScreen/categoryCard.dart';
+import '../../widget/search_category.dart';
 import 'package:flutter/material.dart';
 
 class SearchScreen extends StatelessWidget {
@@ -73,7 +73,7 @@ class SearchScreen extends StatelessWidget {
               child: ListView.builder(
                   itemCount: 5,
                   itemBuilder: ( context,index ){
-                    return category();
+                    return SearchCategory();
                   }),
             ),
         ],
