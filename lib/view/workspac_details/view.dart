@@ -24,28 +24,8 @@ class WorkSpaceDetailsScreen extends StatefulWidget {
 }
 
 class _WorkSpaceDetailsScreenState extends State<WorkSpaceDetailsScreen> {
-  double dimension = 40;
   DateTime selectedDate = DateTime.now();
-  late Timer timer;
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   timer = Timer.periodic(
-  //     const Duration(milliseconds: 1000),
-  //         (timer) {
-  //       setState(() {
-  //         dimension = dimension == 40 ? 50 : 40;
-  //       });
-  //     },
-  //   );
-  // }
-
-  // @override
-  // void dispose() {
-  //   super.dispose();
-  //   timer.cancel();
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -79,16 +59,11 @@ class _WorkSpaceDetailsScreenState extends State<WorkSpaceDetailsScreen> {
     ),
     ),
     ),
-    AnimatedContainer(
-    duration: const Duration(milliseconds: 1000),
-    width: dimension,
-    height: dimension,
-    child: CircleAvatar(
+    CircleAvatar(
     backgroundColor: Colors.grey.withOpacity(0.5),
     child: IconButton(
     onPressed: () {},
     icon: const Icon(Icons.favorite_border,color: mainColor,),
-    ),
     ),
     ),
     ],
