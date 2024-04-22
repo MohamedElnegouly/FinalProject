@@ -1,13 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:graduationproject/test/body_details_screen.dart';
+import 'package:graduationproject/view/workspac_details/view/body_details_screen.dart';
 import 'package:graduationproject/view/custom_details/workspace_details_cubit.dart';
 import 'package:graduationproject/widget/rating_bar_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '../constants.dart';
-import '../view/workspac_details/workspace_detail_model.dart';
+import '../../../constants.dart';
+import '../workspace_detail_model.dart';
 
 class ViewDetailsWorkspace extends StatefulWidget {
   ViewDetailsWorkspace({

@@ -73,7 +73,7 @@ class BodyOfFavoriteScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              RatingBarWidget(),
+              StarRatingBar(),
             ],
           ),
         ),

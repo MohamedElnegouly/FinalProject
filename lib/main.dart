@@ -3,8 +3,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduationproject/constants.dart';
+import 'package:graduationproject/view/custom_details/workspace_details_cubit.dart';
 import 'package:graduationproject/view/forget_password/view/view.dart';
 import 'package:graduationproject/view/home/manager/home_cubit.dart';
+import 'package:graduationproject/view/home/view/view.dart';
 import 'package:graduationproject/view/login/login_cubit.dart';
 import 'package:graduationproject/view/login/view.dart';
 import 'package:graduationproject/view/nav_bar/view.dart';
@@ -13,7 +15,7 @@ import 'package:graduationproject/view/register/view.dart';
 import 'package:graduationproject/view/search/search_screen.dart';
 import 'package:graduationproject/view/profile/profile_screen.dart';
 import 'package:graduationproject/view/welcome_screen.dart';
-import 'package:graduationproject/view/workspac_details/view.dart';
+import 'package:graduationproject/view/workspace/manager/workspace_cubit.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'core/shared_preferences.dart';
 
@@ -41,6 +43,9 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider(
             create: (context) => RegisterCubit(),
+          ),
+          BlocProvider(
+              create: (context) =>WorkspaceDetailsCubit(),
           ),
           BlocProvider(create: (context) => HomeCubit()..getWorkspaces()),
         ],
@@ -80,7 +85,7 @@ class MyApp extends StatelessWidget {
                 // token == null
                 //     ? SignInScreen()
                 //     :
-                WelcomeScreen()
+                NavBarView()
             );
           });
         }));

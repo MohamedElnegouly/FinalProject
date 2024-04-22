@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:graduationproject/view/workspac_details/view/view_details_screen.dart';
 import 'package:graduationproject/view/workspace/manager/workspace_cubit.dart';
 import 'package:graduationproject/view/workspace/workspace_model.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -30,7 +31,7 @@ class CustomWorkspace extends StatelessWidget {
                     children: [
                       InkWell(
                         onTap: () {
-                          // Navigator.push(context, MaterialPageRoute(builder: (context)=> WorkSpaceDetailsScreen(workspaceDetails: workspace, id: workspace.id!,)));
+                          // Navigator.push(context, MaterialPageRoute(builder: (context)=> ViewDetailsWorkspace(workspaceDetails: workspaceDetails)));
                         },
                         child:
                         Stack(

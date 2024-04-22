@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:graduationproject/core/assets/app_assets.dart';
-import 'package:graduationproject/test/workspace_available.dart';
+import 'package:graduationproject/view/workspac_details/view/workspace_available.dart';
 import 'package:graduationproject/widget/app_text.dart';
 import 'package:graduationproject/widget/booking_button.dart';
 import 'package:graduationproject/widget/rich_text_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '../constants.dart';
-import '../widget/rating_bar_widget.dart';
+import '../../../constants.dart';
+import '../../../widget/rating_bar_widget.dart';
 
 class DetailsScreenBody extends StatefulWidget {
   const DetailsScreenBody({super.key});

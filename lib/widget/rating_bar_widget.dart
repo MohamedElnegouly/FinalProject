@@ -1,30 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../constants.dart';
 
-class RatingBarWidget extends StatelessWidget {
-  const RatingBarWidget({super.key});
+class StarRatingBar extends StatelessWidget {
+  const StarRatingBar({super.key, this.itemCount});
+  final int? itemCount;
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-        padding: EdgeInsets.only(left: 15,bottom: 15,top: 10),
-        child: RatingBar.builder(
-          initialRating: 3,
-          minRating: 1,
-          itemSize: 15,
-          direction: Axis.horizontal,
-          allowHalfRating: true,
-          itemCount: 5,
-          itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-          itemBuilder: (context, _) => Icon(
-            Icons.star,
-            color: mainColor,
-          ),
-          onRatingUpdate: (rating) {
-            print(rating);
-          },
-        ),
-      );
+    return RatingBar.builder(
+      initialRating: 5,
+      minRating: 1,
+      direction: Axis.horizontal,
+      allowHalfRating: true,
+      itemCount: itemCount ?? 5,
+      itemSize: 20.sp,
+      itemPadding: const EdgeInsets.symmetric(horizontal: 2.0),
+      itemBuilder: (context, _) => const Icon(
+        Icons.star,
+        color: Colors.yellow,
+      ),
+      onRatingUpdate: (rating) {
+        print(rating);
+      },
+    );
   }
 }
 
