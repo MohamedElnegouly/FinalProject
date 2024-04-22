@@ -8,7 +8,7 @@ import 'package:graduationproject/view/workspac_details/workspace_detail_model.d
 import 'package:graduationproject/view/workspace/workspace_model.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../constants.dart';
-import '../home/home_cubit.dart';
+import '../home/manager/home_cubit.dart';
 
 class WorkSpaceDetailsScreen extends StatefulWidget {
    WorkSpaceDetailsScreen({

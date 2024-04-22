@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -11,11 +12,10 @@ class SearchCategory extends StatelessWidget {
   Widget build(BuildContext context) {
     return
       Padding(
-        padding: const EdgeInsets.all(10),
+        padding: EdgeInsets.all(10.sp),
         child: Container(
           decoration: BoxDecoration(
               color:Colors.grey[100],
-
               borderRadius: BorderRadius.circular(15)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,11 +29,12 @@ class SearchCategory extends StatelessWidget {
                       SizedBox(
                         width: double.infinity,
                         height: 170,
-                        child: ClipRRect(
-                            child: Image.network('https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg',
-                              fit: BoxFit.fitWidth,)),
+                        child:
+                        CachedNetworkImage(
+                          imageUrl: 'https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg',
+                          fit: BoxFit.fitWidth,
+                        ),
                       ),
-
                       Padding(
                         padding: const EdgeInsets.all(10),
                         child: Container(
@@ -55,7 +56,6 @@ class SearchCategory extends StatelessWidget {
                 ),
 
               ),
-              SizedBox(height: 10,),
               Padding(
                 padding: EdgeInsets.only(left: 15),
                 child: Text(

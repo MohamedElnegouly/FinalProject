@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:meta/meta.dart';
-import '../workspace/workspace_model.dart';
+import '../../workspace/workspace_model.dart';
 
 part 'home_state.dart';
 

@@ -5,4 +5,6 @@ part 'workspace_state.dart';
 
 class WorkspaceCubit extends Cubit<WorkspaceState> {
   WorkspaceCubit() : super(WorkspaceInitial());
+
+
 }

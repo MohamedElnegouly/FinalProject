@@ -1,10 +1,10 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:graduationproject/view/home/view/view.dart';
 import '../../constants.dart';
-import '../favorite/favorite_screen.dart';
+import '../favorite/favorite_view.dart';
 import '../profile/profile_screen.dart';
 import '../search/search_screen.dart';
-import '../home/view.dart';
 
 class NavBarView extends StatefulWidget {
   const NavBarView({super.key});
@@ -14,7 +14,7 @@ class NavBarView extends StatefulWidget {
 
 class _NavBarViewState extends State<NavBarView> {
   List screens = [
-    HomeScreen(),
+    HomeView(),
     SearchScreen(),
     FavoriteScreen(),
     ProfileScreen(),

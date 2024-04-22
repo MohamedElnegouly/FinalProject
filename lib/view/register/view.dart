@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduationproject/core/validator/validator.dart';
 import 'package:graduationproject/view/register/register_cubit.dart';
 import 'package:graduationproject/widget/app_button.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../core/assets/app_assets.dart';
 import '../../core/shared_preferences.dart';
+import '../../widget/app_text.dart';
 import '../../widget/square_tile.dart';
 import '../../widget/custom_text_field.dart';
 
-class SignUPScreen extends StatefulWidget {
-  SignUPScreen({super.key});
+class RegisterScreen extends StatefulWidget {
+  RegisterScreen({super.key});
   @override
-  State<SignUPScreen> createState() => _SignUPScreenState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
-class _SignUPScreenState extends State<SignUPScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
   bool obscureText = false;
   final nameController = TextEditingController();
   final emailController = TextEditingController();
@@ -84,75 +87,76 @@ class _SignUPScreenState extends State<SignUPScreen> {
               ),
             ],
           ),
-
            SizedBox(height: 15.sp),
-
           SizedBox(
-            height: 36.sp,
-            child: CustomInputField(
-              hintText: 'UserName',
-              controller: nameController,
-            ),
+            height: 42.sp,
+            child:
+                CustomInputField(
+                  labelText: "UserName",
+                  hintText: 'enter your name',
+                  controller: nameController,
+                  validator: (value){
+                    return Validator.validateName(value);}
+                )
           ),
 
            SizedBox(height: 10.sp),
 
          SizedBox(
-           height: 36.sp,
+           height: 42.sp,
            child: CustomInputField(
-               hintText: "Email",
+             labelText: "email",
+             hintText: "Enter your Email",
            controller: emailController,
+               validator: (value){
+                 return Validator.validateEmail(value);}
            ),
          ),
            SizedBox(height: 10.sp),
 
           SizedBox(
-            height: 36.sp,
+            height: 42.sp,
             child:
             CustomInputField(
+              labelText: "password",
               hintText: 'password',
               obscureText: true,
               suffixIcon: true,
               controller: passwordController,
-            ),
+              validator: (value) {
+                return Validator.validatePassword(value);
+              }
+              )
           ),
            SizedBox(height: 10.sp),
 
-          // SizedBox(
-          //   height: 35.sp,
-          //   child:
-          //   CustomInputField(
-          //     hintText: 'Confirm password',
-          //     obscureText: true,
-          //     suffixIcon: true,
-          //     controller: confirmPasswordController,
-          //   ),
-          // ),
           SizedBox(
-            height: 36.sp,
+            height: 42.sp,
             child:
             CustomInputField(
               hintText: 'country',
               controller: countryController,
+                validator: (value) {
+                  return Validator.validateAnotherField(value);
+                }
             ),
           ),
           SizedBox(
-            height: 36.sp,
+            height: 42.sp,
             child:
             CustomInputField(
               hintText: 'city ',
               controller: cityController,
+                validator: (value) {
+                  return Validator.validateAnotherField(value);
+                }
             ),
           ),
            SizedBox(height: 20.sp),
-
-          // sign in button
-
           AppButton(title:
            state is RegisterLoadingState
           ? "loading..."
-              :
-          "Agree and Register",
+              : "Agree and Register",
           onTap: (){
             if(formKey.currentState!.validate())
             {
@@ -168,46 +172,21 @@ class _SignUPScreenState extends State<SignUPScreen> {
           },
           ),
            SizedBox(height: 20.sp),
-
-          // or continue with
-          Padding(
-            padding:  EdgeInsets.symmetric(horizontal: 20.sp),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Divider(
-                    thickness: 0.5,
-                    color: Colors.grey[400],
-                  ),
-                ),
-                Padding(
-                  padding:  EdgeInsets.symmetric(horizontal: 10.sp),
-                  child: Text(
-                    'Or login with',
-                    style: TextStyle(color: Colors.grey[700]),
-                  ),
-                ),
-                Expanded(
-                  child: Divider(
-                    thickness: 0.5,
-                    color: Colors.grey[400],
-                  ),
-                ),
-              ],
+          Align(
+            alignment: Alignment.center,
+            child: AppText(
+              text: 'Or login with social account',
             ),
           ),
 
-           SizedBox(height: 20.sp),
+           SizedBox(height: 15.sp),
 
-          const  Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // google but
-              SquareTile(imagePath: 'assets/images/Facebook.png'),
-
-              SquareTile(imagePath: 'assets/images/google.png'),
-
-              SquareTile(imagePath: 'assets/images/apple.png'),
+              SquareTile(imagePath: AppAssets.faceBookAsset),
+              SquareTile(imagePath: AppAssets.googleAsset),
+              SquareTile(imagePath: AppAssets.appleAsset),
             ],
           ),
 
@@ -215,7 +194,7 @@ class _SignUPScreenState extends State<SignUPScreen> {
       ),
     ),
       ),
-      )
+    ),
       );
     },
       );

@@ -25,7 +25,7 @@ class DontHaveAnAccountWidget extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => SignUPScreen(),
+                builder: (context) => RegisterScreen(),
               ),
             )
           },

@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:meta/meta.dart';
@@ -11,6 +13,9 @@ part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit() : super(LoginInitial());
+
+  final GlobalKey<FormState> formKey = GlobalKey();
+  String? email, password;
 
   Future<void> login({
     required String email,

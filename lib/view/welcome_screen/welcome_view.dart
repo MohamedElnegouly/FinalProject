@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:graduationproject/features/welcome_screen/welcome_body.dart';
 import 'package:graduationproject/view/login/view.dart';
+import 'package:graduationproject/view/welcome_screen/welcome_body.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});

@@ -4,7 +4,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:graduationproject/constants.dart';
 
 import '../../core/shared_preferences.dart';
-import '../../widget/favorite_category.dart';
+import 'favorite_body.dart';
 
 class FavoriteScreen extends StatefulWidget {
   const FavoriteScreen({super.key});
@@ -27,7 +27,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
         itemCount: 4,
         itemBuilder: (context, index) {
           print(index);
-          return FvoriteCategory();
+          return BodyOfFavoriteScreen();
         },
       ),
     );

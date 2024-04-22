@@ -1,12 +1,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:graduationproject/widget/rating_bar_widget.dart';
+import '../../constants.dart';
 
-import '../constants.dart';
-
-class FvoriteCategory extends StatelessWidget {
-  const FvoriteCategory({super.key});
+class BodyOfFavoriteScreen extends StatelessWidget {
+  const BodyOfFavoriteScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +15,6 @@ class FvoriteCategory extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
               color: Colors.grey[100],
-
               borderRadius: BorderRadius.circular(15)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,10 +30,9 @@ class FvoriteCategory extends StatelessWidget {
                         height: 170,
                         child: ClipRRect(
                             borderRadius: BorderRadius.circular(10),
-                            child: Image.network('https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg',
+                            child: Image.network('https://thumbs.dreamstime.com/b/green-landscape-13598486.jpg',
                               fit: BoxFit.fill,)),
                       ),
-
                       Padding(
                         padding: const EdgeInsets.all(10),
                         child: Container(
@@ -55,17 +52,13 @@ class FvoriteCategory extends StatelessWidget {
                       ),
                     ]
                 ),
-
               ),
-
-
               SizedBox(height: 10,),
               Padding(
                 padding: EdgeInsets.only(left: 15),
                 child: Text(
                     "title",
                     style: Theme.of(context).textTheme.titleMedium
-
                 ),
               ),
               Padding(
@@ -76,31 +69,11 @@ class FvoriteCategory extends StatelessWidget {
                     Text(
                         "address",
                         style: Theme.of(context).textTheme.titleSmall
-
                     ),
                   ],
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(left: 15,bottom: 15,top: 10),
-                child: RatingBar.builder(
-                  initialRating: 3,
-                  minRating: 1,
-                  itemSize: 15,
-                  direction: Axis.horizontal,
-                  allowHalfRating: true,
-                  itemCount: 5,
-                  itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                  itemBuilder: (context, _) => Icon(
-                    Icons.star,
-                    color: mainColor,
-                  ),
-                  onRatingUpdate: (rating) {
-                    print(rating);
-                  },
-                ),
-              ),
-
+              RatingBarWidget(),
             ],
           ),
         ),

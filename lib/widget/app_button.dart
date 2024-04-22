@@ -10,14 +10,15 @@ class AppButton extends StatelessWidget {
   final String title;
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return
+      GestureDetector(
       onTap: onTap,
       child: Container(
-        height: 48.h,
+        height: 30.sp,
         width: double.infinity,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(25.0),
-            color: primaryAppColor),
+            borderRadius: BorderRadius.circular(10),
+            color: mainColor),
         child: Align(
             alignment: Alignment.center,
             child: AppText(

@@ -2,7 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:graduationproject/view/language/language_model.dart';
 
-import '../../core/shared_preferences.dart';
+import '../../../constants.dart';
+import '../../../core/shared_preferences.dart';
+import 'contact_item.dart';
 
 class SelectLanguageScreen extends StatefulWidget {
   @override
@@ -10,18 +12,6 @@ class SelectLanguageScreen extends StatefulWidget {
 }
 
 class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
-  List<LanguageModel> languages = [
-    LanguageModel("English(US)",  false),
-    LanguageModel("Arabic", false),
-    LanguageModel("Mandarin",  false),
-    LanguageModel("स्वागतम्",  false),
-    LanguageModel("Spanish", false),
-    LanguageModel("French",  false),
-    LanguageModel("Russian", false),
-    LanguageModel("Indonesia", false),
-    LanguageModel("Turkey", false),
-    LanguageModel("Deutsch", false),
-  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,82 +28,17 @@ class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
                 child: ListView.builder(
                     itemCount: languages.length,
                     itemBuilder: (BuildContext context, int index) {
-                      // return item
                       return ContactItem(
-                        languages[index].name,
-
-                        languages[index].isSelected,
-                        index,
+                        name: languages[index].name,
+                        isSelected: languages[index].isSelected,
+                        index: index,
                       );
                     }),
               ),
-
             ],
           ),
         ),
       ),
-    );
-  }
-
-  Widget ContactItem(
-      String name,
-      bool isSelected,
-      int index) {
-    return ListTile(
-      title: Text(
-        name,
-        style: TextStyle(
-          fontWeight: FontWeight.w500,
-        ),
-      ),
-
-      trailing: isSelected
-          ? Stack(
-        alignment: AlignmentDirectional.center,
-        children: [
-          CircleAvatar(
-            radius: 12,
-            backgroundColor: Colors.blue[900],
-          ), // active or not
-          CircleAvatar(
-            radius: 6,
-            backgroundColor: Colors.white,
-          ), // active circle space
-        ],
-      )
-          : Stack(
-        alignment: AlignmentDirectional.center,
-        children: [
-          CircleAvatar(
-            radius: 12,
-            backgroundColor: Colors.blue[400],
-          ), // active or not
-          CircleAvatar(
-            radius: 10,
-            backgroundColor: Colors.blue[200],
-          ), // active circle space
-        ],
-      ),
-      onTap: () {
-        setState(() {
-    for(int i = 0; i < languages.length; i++) {
-      if (i == index) {
-        setState(() {
-          languages[i].isSelected = true;
-          PreferenceUtils.setString(
-            PreferenceKey.language,
-            languages[index].name
-          );
-          Navigator.pop(context);
-        });
-      } else {
-        setState(() {
-          languages[i].isSelected = false;
-        });
-      }
-    }
-    });
-    },
     );
   }
 }

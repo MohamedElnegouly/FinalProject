@@ -5,4 +5,5 @@ class LanguageModel{
   bool isSelected;
 
   LanguageModel(this.name, this.isSelected);
+
 }

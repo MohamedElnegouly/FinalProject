@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:graduationproject/view/language/language_model.dart';
 
 String? token;
 
@@ -11,6 +12,19 @@ const nullImage = const Padding(
     ),
   ),
 );
+
+ List<LanguageModel> languages = [
+  LanguageModel("English(US)",  false),
+  LanguageModel("Arabic", false),
+  LanguageModel("Mandarin",  false),
+  LanguageModel("स्वागतम्",  false),
+  LanguageModel("Spanish", false),
+  LanguageModel("French",  false),
+  LanguageModel("Russian", false),
+  LanguageModel("Indonesia", false),
+  LanguageModel("Turkey", false),
+  LanguageModel("Deutsch", false),
+];
 
 const Color mainColor = Color(0XFF0D9276);
 const Color primaryAppColor = Color(0XFFFDFDFF);

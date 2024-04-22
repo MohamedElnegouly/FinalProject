@@ -3,13 +3,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduationproject/constants.dart';
-import 'package:graduationproject/view/home/home_cubit.dart';
+import 'package:graduationproject/view/forget_password/view/view.dart';
+import 'package:graduationproject/view/home/manager/home_cubit.dart';
 import 'package:graduationproject/view/login/login_cubit.dart';
 import 'package:graduationproject/view/login/view.dart';
 import 'package:graduationproject/view/nav_bar/view.dart';
+import 'package:graduationproject/view/register/register_cubit.dart';
 import 'package:graduationproject/view/register/view.dart';
 import 'package:graduationproject/view/search/search_screen.dart';
-import 'package:graduationproject/view/home/view.dart';
 import 'package:graduationproject/view/profile/profile_screen.dart';
 import 'package:graduationproject/view/welcome_screen.dart';
 import 'package:graduationproject/view/workspac_details/view.dart';
@@ -38,9 +39,12 @@ class MyApp extends StatelessWidget {
           BlocProvider(
             create: (context) => LoginCubit(),
           ),
+          BlocProvider(
+            create: (context) => RegisterCubit(),
+          ),
           BlocProvider(create: (context) => HomeCubit()..getWorkspaces()),
         ],
-        child: BlocBuilder<LoginCubit, LoginState>(builder: (context, state) {
+        child: BlocBuilder<RegisterCubit, RegisterState>(builder: (context, state) {
           return ResponsiveSizer(builder: (context, orientation, screenType) {
             return MaterialApp(
                 locale: DevicePreview.locale(context),
@@ -59,7 +63,7 @@ class MyApp extends StatelessWidget {
                     scaffoldBackgroundColor: Colors.white,
                     textTheme: TextTheme(
                         titleSmall: TextStyle(
-                          color: Colors.black45,
+                          color: Colors.black87.withOpacity(0.8),
                           fontSize: 15,
                         ),
                         titleMedium: TextStyle(
@@ -76,7 +80,7 @@ class MyApp extends StatelessWidget {
                 // token == null
                 //     ? SignInScreen()
                 //     :
-                NavBarView()
+                WelcomeScreen()
             );
           });
         }));

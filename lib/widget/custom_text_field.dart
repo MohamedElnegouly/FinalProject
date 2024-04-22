@@ -9,6 +9,9 @@ class CustomInputField extends StatefulWidget {
   final bool suffixIcon;
   final bool? isDense;
   final bool obscureText;
+  final String? Function(String?)? validator;
+
+
   final TextEditingController? controller;
 
   const CustomInputField(
@@ -16,6 +19,7 @@ class CustomInputField extends StatefulWidget {
          this.hintText='',
         this.suffixIcon = false,
         this.isDense,
+        this.validator,
         this.obscureText = false,
         this.controller,
         this.labelText='',
@@ -30,7 +34,6 @@ class _CustomInputFieldState extends State<CustomInputField> {
   bool _obscureText = true;
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return
       Column(
         children: [
@@ -67,18 +70,23 @@ class _CustomInputFieldState extends State<CustomInputField> {
               suffixIconConstraints: (widget.isDense != null)
                   ?  BoxConstraints(maxHeight: 33.sp)
                   : null,
+              enabledBorder: inputBorder(primaryAppColor),
+              focusedBorder: inputBorder(mainColor),
+              errorBorder: inputBorder(error),
+              focusedErrorBorder: inputBorder(error),
+              disabledBorder: inputBorder(white),
             ),
             autovalidateMode: AutovalidateMode.onUserInteraction,
-            validator:
-                (textValue) {
-              if (textValue == null || textValue.isEmpty) {
-                return 'required!';
-              }
-              return null;
-            },
+            validator: widget.validator,
             controller: widget.controller,
           ),
         ],
     );
   }
+}
+InputBorder inputBorder(Color color) {
+  return OutlineInputBorder(
+    borderRadius: BorderRadius.circular(10),
+    borderSide: BorderSide(color: color),
+  );
 }
