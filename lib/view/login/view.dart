@@ -173,13 +173,4 @@ class _LoginScreenState extends State<LoginScreen> {
     )
       );
   }
-
-  void isLoggedIn() async {
-    final loggedIn = PreferenceUtils.getBool(PreferenceKey.loggedIn);
-    print('LoggedIn => $loggedIn');
-  }
-
-  void saveLogout() async {
-    PreferenceUtils.setBool(PreferenceKey.loggedIn, false);
-  }
   }
