@@ -6,7 +6,7 @@ import '../../core/validator/validator.dart';
 import '../../widget/app_button.dart';
 import '../../widget/app_text.dart';
 import '../../widget/app_text_form_field.dart';
-import 'forget_password_cubit.dart';
+import 'manager/forget_password_cubit.dart';
 
 class ForgetPasswordView extends StatelessWidget {
   const ForgetPasswordView({super.key});
