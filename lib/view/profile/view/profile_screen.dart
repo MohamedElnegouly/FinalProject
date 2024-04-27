@@ -1,8 +1,14 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduationproject/constants/colors.dart';
+import 'package:graduationproject/core/shared_preferences.dart';
 import 'package:graduationproject/widget/profile_container.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+
+import '../../core/app_manager/app_cubit.dart';
+import '../../core/intl/generated/l10n.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -39,7 +45,6 @@ class _ProfileScreenState extends State<ProfileScreen>
             ),
           ],
         ),
-
         body:
         Column(
             children: [
@@ -52,6 +57,9 @@ class _ProfileScreenState extends State<ProfileScreen>
                     GestureDetector(
                       onTap: () => pickImage(),
                       child: CircleAvatar(
+                        backgroundColor: PreferenceUtils.getBool(PreferenceKey.darkTheme)
+                            ? Colors.grey
+                            : Colors.grey[300],
                         radius: 40,
                         child:
                         _selectedImage != null
@@ -63,10 +71,16 @@ class _ProfileScreenState extends State<ProfileScreen>
                           ),
                         )
                             : CircleAvatar(
+                          backgroundColor: PreferenceUtils.getBool(PreferenceKey.darkTheme)
+                              ? Colors.grey
+                              : Colors.grey[300],
                           radius: 30,
                           child: Icon(
                             Icons.person,
                             size: 45,
+                            color: PreferenceUtils.getBool(PreferenceKey.darkTheme)
+                             ? Colors.black54
+                             : mainColor,
                           ),
                         ),
                       ),
@@ -78,27 +92,29 @@ class _ProfileScreenState extends State<ProfileScreen>
                     ),
                     CircleAvatar(
                         radius: 15,
-                        backgroundColor: Colors.grey.withOpacity(0.5),
+                        backgroundColor: PreferenceUtils.getBool(PreferenceKey.darkTheme)
+                        ? Colors.grey
+                        : Colors.grey.withOpacity(0.5),
                         child: Icon(Icons.edit_outlined,
                           size: 16,
-                          color: Colors.black87,)
+                          color: Colors.black87
+                          ,)
                     ),
                   ],
                 ),
               ),
               SizedBox(height: 10.sp,),
 
-              Text("Puerto Rico",
+              Text(S().yourname,
                 style: Theme
                     .of(context)
                     .textTheme
                     .titleMedium,),
               Text("Youremail@gmail.com | +01234565643",
-                style: Theme
-                    .of(context)
-                    .textTheme
-                    .titleSmall,),
-
+                style:TextStyle(color:PreferenceUtils.getBool(PreferenceKey.darkTheme)
+                    ? Colors.white
+                    : Colors.black,),
+              ),
               SizedBox(height: 10,),
               BodyOfContainer(),
             ]),
@@ -112,4 +128,5 @@ class _ProfileScreenState extends State<ProfileScreen>
       _selectedImage = File(returnedImage!.path);
     });
   }
+
 }

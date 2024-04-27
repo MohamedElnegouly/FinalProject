@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduationproject/widget/profile_item.dart';
 import 'package:graduationproject/widget/show_model_bottom_sheet.dart';
 
+import '../core/app_manager/app_cubit.dart';
+import '../core/intl/generated/l10n.dart';
 import '../core/shared_preferences.dart';
 import '../view/language/view/view.dart';
 import '../view/sub_pages/edit_screen.dart';
@@ -17,6 +20,9 @@ class _BodyOfContainerState extends State<BodyOfContainer> {
   @override
   Widget build(BuildContext context) {
     return Material(
+    color: PreferenceUtils.getBool(PreferenceKey.darkTheme)
+        ? Colors.black87
+        : Colors.white,
       child: Column(
         children: [
           Container(
@@ -24,7 +30,9 @@ class _BodyOfContainerState extends State<BodyOfContainer> {
             // height: 200,
             width: double.infinity,
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: PreferenceUtils.getBool(PreferenceKey.darkTheme)
+                  ? Colors.black38
+                  : Colors.white,
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(10),
                   topRight: Radius.circular(10),
@@ -73,7 +81,9 @@ class _BodyOfContainerState extends State<BodyOfContainer> {
             // height: 200,
             width: double.infinity,
             decoration: BoxDecoration(
-              color: Colors.white,
+              color:  PreferenceUtils.getBool(PreferenceKey.darkTheme)
+                  ? Colors.black38
+                  : Colors.white,
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(10),
                   topRight: Radius.circular(10),
@@ -111,7 +121,9 @@ class _BodyOfContainerState extends State<BodyOfContainer> {
         margin: EdgeInsets.only(left: 30, top: 20, right: 30),
         width: double.infinity,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: PreferenceUtils.getBool(PreferenceKey.darkTheme)
+              ? Colors.black38
+              : Colors.white,
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(10),
               topRight: Radius.circular(10),
@@ -162,13 +174,15 @@ class _BodyOfContainerState extends State<BodyOfContainer> {
     Navigator.push(context, MaterialPageRoute(
         builder: (context)=> SelectLanguageScreen())).then((value) => setState(() {}));
   }
-
   showChangeThemeBottomSheet() {
     showModalBottomSheet<void>(
         context: context,
         builder: (BuildContext context) {
           return
             showThemeBottomSheet();
-        }).then((value) => setState(() {}));
+        }).then((value) {
+      BlocProvider.of<AppCubit>(context).themeChanged();
+    });
+
   }
 }
