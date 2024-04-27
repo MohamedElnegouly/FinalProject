@@ -4,10 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart'as http;
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../constants/colors.dart';
-import '../core/shared_preferences.dart';
-import '../view/home/view/body_home.dart';
-import '../widget/rating_bar_widget.dart';
+import '../../constants/colors.dart';
+import '../../core/shared_preferences.dart';
+import '../home/view/body_home.dart';
+import '../../widget/rating_bar_widget.dart';
 class WorkScreen extends StatefulWidget {
   const WorkScreen({super.key});
 
@@ -73,124 +73,126 @@ class _WorkScreenState extends State<WorkScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Center(child:
-      Text("All Workspaes",
+      appBar: AppBar(title: Text("All Workspaes",
         style: TextStyle(
-            fontWeight: FontWeight.bold),)),),
+            fontWeight: FontWeight.bold),),),
         body:
         items.isEmpty
         ? Center(child: const CupertinoActivityIndicator())
-     : ListView.builder(
-          shrinkWrap: true,
-      physics: PageScrollPhysics(),
-      controller: scrollController,
-        itemCount:
-        isLoadMore
-            ? items.length +1
-        : items.length,
-          itemBuilder: (context,index) {
-            if (index >= items.length) {
-              return Center(child: CircularProgressIndicator(),);
-            }
-            else {
-              return Padding(
-                  padding: const EdgeInsets.only(bottom: 8),
-                  child:
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        InkWell(
-                          onTap: () {},
-                          child:
-                          Stack(
-                            alignment: Alignment.topLeft,
-                            children: [
-                              items[index]['cover'] == null
-                                  ? Padding(
-                                padding: EdgeInsets.only(top: 20),
-                                child: Center(
-                                  child: Icon(
-                                    Icons.image_not_supported_outlined,
-                                    size: 50.sp,
+     : Padding(
+       padding: const EdgeInsets.all(8.0),
+       child: ListView.builder(
+            shrinkWrap: true,
+        physics: PageScrollPhysics(),
+        controller: scrollController,
+          itemCount:
+          isLoadMore
+              ? items.length +1
+          : items.length,
+            itemBuilder: (context,index) {
+              if (index >= items.length) {
+                return Center(child: CircularProgressIndicator(),);
+              }
+              else {
+                return Padding(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    child:
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          InkWell(
+                            onTap: () {},
+                            child:
+                            Stack(
+                              alignment: Alignment.topLeft,
+                              children: [
+                                items[index]['cover'] == null
+                                    ? Padding(
+                                  padding: EdgeInsets.only(top: 20),
+                                  child: Center(
+                                    child: Icon(
+                                      Icons.image_not_supported_outlined,
+                                      size: 50.sp,
+                                    ),
+                                  ),
+                                )
+                                    : CachedNetworkImage(
+                                  imageUrl: items[index]['cover'],
+                                  width: 50.sp,
+                                  height: 50.sp,
+                                  fit: BoxFit.cover,
+                                ),
+                                Positioned(
+                                  height: 40,
+                                  child: IconButton(
+                                    icon: const Icon(Icons.favorite_border,
+                                      size: 27,),
+                                    color: mainColor,
+                                    onPressed: () {
+                                      //Navigator.push(context, route),
+                                    },
                                   ),
                                 ),
-                              )
-                                  : CachedNetworkImage(
-                                imageUrl: items[index]['cover'],
-                                width: 50.sp,
-                                height: 50.sp,
-                                fit: BoxFit.cover,
-                              ),
-                              Positioned(
-                                height: 40,
-                                child: IconButton(
-                                  icon: const Icon(Icons.favorite_border,
-                                    size: 27,),
-                                  color: mainColor,
-                                  onPressed: () {
-                                    //Navigator.push(context, route),
-                                  },
-                                ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.all(15.sp),
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  items[index]['name'],
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20),
-                                ),
-                                Row(
-                                    children: [
-                                      Icon(Icons.location_on_outlined),
-                                      Text(items[index]['address'],
+                          Padding(
+                            padding: EdgeInsets.all(15.sp),
+                            child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    items[index]['name'],
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20),
+                                  ),
+                                  Row(
+                                      children: [
+                                        Icon(Icons.location_on_outlined),
+                                        Text(items[index]['address'],
+                                          style: TextStyle(
+                                              color: PreferenceUtils.getBool(
+                                                  PreferenceKey.darkTheme)
+                                                  ? Colors.white
+                                                  : Colors.black87
+                                          ),
+                                        )
+                                      ]),
+                                  StarRatingBar(size: 15),
+                                  Padding(
+                                    padding: EdgeInsets.only(top: 25.sp),
+                                    child:
+                                    RichText(
+                                      text: TextSpan(
+                                        text: '\$17 ',
                                         style: TextStyle(
                                             color: PreferenceUtils.getBool(
                                                 PreferenceKey.darkTheme)
                                                 ? Colors.white
-                                                : Colors.black87
-                                        ),
-                                      )
-                                    ]),
-                                StarRatingBar(size: 15),
-                                Padding(
-                                  padding: EdgeInsets.only(top: 25.sp),
-                                  child:
-                                  RichText(
-                                    text: TextSpan(
-                                      text: '\$17 ',
-                                      style: TextStyle(
-                                          color: PreferenceUtils.getBool(
-                                              PreferenceKey.darkTheme)
-                                              ? Colors.white
-                                              : Colors.black,
-                                          fontWeight: FontWeight.w900,
-                                          fontSize: 15),
-                                      children: [
-                                        TextSpan(
-                                          text: '/Hour',
-                                          style: TextStyle(
-                                              fontSize: 13,
-                                              fontWeight: FontWeight.normal
+                                                : Colors.black,
+                                            fontWeight: FontWeight.w900,
+                                            fontSize: 15),
+                                        children: [
+                                          TextSpan(
+                                            text: '/Hour',
+                                            style: TextStyle(
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.normal
+                                            ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ]),
-                        )
-                      ])
-              );
-            }
-          })
+                                ]),
+                          )
+                        ])
+                );
+              }
+            }),
+     )
 
     );
     }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'constants.dart';
+import 'colors.dart';
 
 ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
@@ -30,17 +30,17 @@ ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
     primarySwatch: Colors.grey,
     appBarTheme: AppBarTheme(
-        color: Colors.black87,
+        color: Colors.black54,
         titleTextStyle: TextStyle(
             fontSize: 20,
             color: Colors.white
         ),
         iconTheme: IconThemeData(color: Colors.white)
     ),
-    scaffoldBackgroundColor: Colors.black87,
+    scaffoldBackgroundColor: Colors.black54,
     textTheme: TextTheme(
         titleSmall: TextStyle(
-          color: Color(0XFF95d5b2),
+          color: Colors.white,
           fontSize: 15,
         ),
         titleMedium: TextStyle(

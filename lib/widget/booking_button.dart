@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../constants.dart';
+import '../constants/colors.dart';
+import '../constants/constants.dart';
 
 class BookingButton extends StatefulWidget {
   const BookingButton({super.key});

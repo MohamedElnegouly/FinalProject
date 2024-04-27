@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduationproject/constants/colors.dart';
 import 'package:graduationproject/core/shared_preferences.dart';
-import 'package:graduationproject/widget/profile_container.dart';
+import 'package:graduationproject/view/profile/view/profile_container.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-
-import '../../core/app_manager/app_cubit.dart';
-import '../../core/intl/generated/l10n.dart';
+import '../../../generated/l10n.dart';
+import '../../sub_pages/edit_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -30,6 +29,9 @@ class _ProfileScreenState extends State<ProfileScreen>
   Widget build(BuildContext context) {
     return
       Scaffold(
+        backgroundColor: PreferenceUtils.getBool(PreferenceKey.darkTheme)
+            ? Colors.black87
+            : Colors.white,
         appBar: AppBar(
           leading: Icon(Icons.notifications_none,
             size: 30,
@@ -46,78 +48,89 @@ class _ProfileScreenState extends State<ProfileScreen>
           ],
         ),
         body:
-        Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 8, right: 8, top: 8),
-                child:
-                Stack(
-                  alignment: AlignmentDirectional.bottomEnd,
-                  children: [
-                    GestureDetector(
-                      onTap: () => pickImage(),
-                      child: CircleAvatar(
-                        backgroundColor: PreferenceUtils.getBool(PreferenceKey.darkTheme)
-                            ? Colors.grey
-                            : Colors.grey[300],
-                        radius: 40,
-                        child:
-                        _selectedImage != null
-                            ? ClipOval(
-                          child: SizedBox.fromSize(
-                              size: Size.fromRadius(48), // Image radius
-                              child: Image.file(
-                                _selectedImage!, fit: BoxFit.cover,)
-                          ),
-                        )
-                            : CircleAvatar(
+        Container(
+          color: PreferenceUtils.getBool(PreferenceKey.darkTheme)
+              ? Colors.black87
+              : Colors.white,
+          child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 8, right: 8, top: 8),
+                  child:
+                  Stack(
+                    alignment: AlignmentDirectional.bottomEnd,
+                    children: [
+                      GestureDetector(
+                        onTap: () => pickImage(),
+                        child: CircleAvatar(
                           backgroundColor: PreferenceUtils.getBool(PreferenceKey.darkTheme)
                               ? Colors.grey
                               : Colors.grey[300],
-                          radius: 30,
-                          child: Icon(
-                            Icons.person,
-                            size: 45,
-                            color: PreferenceUtils.getBool(PreferenceKey.darkTheme)
-                             ? Colors.black54
-                             : mainColor,
+                          radius: 40,
+                          child:
+                          _selectedImage != null
+                              ? ClipOval(
+                            child: SizedBox.fromSize(
+                                size: Size.fromRadius(48), // Image radius
+                                child: Image.file(
+                                  _selectedImage!, fit: BoxFit.cover,)
+                            ),
+                          )
+                              : CircleAvatar(
+                            backgroundColor: PreferenceUtils.getBool(PreferenceKey.darkTheme)
+                                ? Colors.grey
+                                : Colors.grey[300],
+                            radius: 30,
+                            child: Icon(
+                              Icons.person,
+                              size: 45,
+                              color: PreferenceUtils.getBool(PreferenceKey.darkTheme)
+                               ? Colors.black54
+                               : mainColor,
+                            ),
                           ),
                         ),
                       ),
-                    ),
 
-                    CircleAvatar(
-                      radius: 17,
-                      backgroundColor: Colors.white,
-                    ),
-                    CircleAvatar(
-                        radius: 15,
-                        backgroundColor: PreferenceUtils.getBool(PreferenceKey.darkTheme)
-                        ? Colors.grey
-                        : Colors.grey.withOpacity(0.5),
-                        child: Icon(Icons.edit_outlined,
-                          size: 16,
-                          color: Colors.black87
-                          ,)
-                    ),
-                  ],
+                      CircleAvatar(
+                        radius: 17,
+                        backgroundColor: Colors.white,
+                      ),
+                      CircleAvatar(
+                          radius: 15,
+                          backgroundColor: PreferenceUtils.getBool(PreferenceKey.darkTheme)
+                          ? Colors.grey
+                          : Colors.grey.withOpacity(0.5),
+                          child: IconButton(
+                            color: Colors.black87,
+                            onPressed: () { Navigator.push(context,
+                              MaterialPageRoute(
+                                  builder: (context)=> EditScreen()));
+                              },
+                            icon: Icon(Icons.edit_outlined,
+                            size: 17,
+                            )
+                            ,)
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              SizedBox(height: 10.sp,),
+                SizedBox(height: 10.sp,),
 
-              Text(S().yourname,
-                style: Theme
-                    .of(context)
-                    .textTheme
-                    .titleMedium,),
-              Text("Youremail@gmail.com | +01234565643",
-                style:TextStyle(color:PreferenceUtils.getBool(PreferenceKey.darkTheme)
-                    ? Colors.white
-                    : Colors.black,),
-              ),
-              SizedBox(height: 10,),
-              BodyOfContainer(),
-            ]),
+                Text(S().yourname,
+                  style: Theme
+                      .of(context)
+                      .textTheme
+                      .titleMedium,),
+                Text("Youremail@gmail.com | +01234565643",
+                  style:TextStyle(color:PreferenceUtils.getBool(PreferenceKey.darkTheme)
+                      ? Colors.white
+                      : Colors.black,),
+                ),
+                SizedBox(height: 10,),
+                BodyOfContainer(),
+              ]),
+        ),
       );
   }
 

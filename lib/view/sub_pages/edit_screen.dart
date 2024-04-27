@@ -5,7 +5,8 @@ import 'package:graduationproject/widget/app_button.dart';
 import 'package:graduationproject/widget/custom_text_field.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '../../constants.dart';
+import '../../constants/colors.dart';
+import '../../constants/constants.dart';
 import '../../core/shared_preferences.dart';
 
 class EditScreen extends StatefulWidget {
@@ -39,12 +40,7 @@ class _EditScreenState extends State<EditScreen> {
             padding:  EdgeInsets.all(8.sp),
             child:
             CustomInputField(
-              hintText: PreferenceUtils.getString(
-                  PreferenceKey.name,),
-              labelText:
-              PreferenceUtils.getString(
-                PreferenceKey.name,),
-              //"full name",
+              labelText: "full name",
             controller: nameController,
             ),
           ),
@@ -57,11 +53,7 @@ class _EditScreenState extends State<EditScreen> {
           Padding(
             padding:  EdgeInsets.all(8.sp),
             child: CustomInputField(
-              labelText: PreferenceUtils.getString(
-                  PreferenceKey.email,),
-              hintText: PreferenceUtils.getString(
-                  PreferenceKey.email,
-              ),
+              labelText: "Email",
               controller: emailController,),
           ),
           Padding(
@@ -77,7 +69,7 @@ class _EditScreenState extends State<EditScreen> {
                 border : OutlineInputBorder(
                     borderRadius: BorderRadius.circular(13.sp),
                     borderSide:
-                    BorderSide(color: mainColor)
+                    BorderSide.none
                 ),
                 fillColor: Colors.grey.shade200,
                 filled: true,

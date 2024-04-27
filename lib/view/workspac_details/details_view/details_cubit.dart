@@ -23,7 +23,7 @@ class DetailsCubit extends Cubit<DetailsState> {
         }
     );
     var responseBody = jsonDecode(response.body);
-    print('workspacedata is : ${responseBody}');
+    print('workspaceDetailsdata is : ${responseBody}');
 
     if(response.statusCode == 200)
     {

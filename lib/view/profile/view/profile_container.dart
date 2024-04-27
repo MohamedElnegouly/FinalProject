@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduationproject/widget/change_language_bottom_sheet.dart';
 import 'package:graduationproject/widget/profile_item.dart';
 import 'package:graduationproject/widget/show_model_bottom_sheet.dart';
-
-import '../core/app_manager/app_cubit.dart';
-import '../core/intl/generated/l10n.dart';
-import '../core/shared_preferences.dart';
-import '../view/language/view/view.dart';
-import '../view/sub_pages/edit_screen.dart';
-import '../view/sub_pages/notifications.dart';
+import '../../../core/app_manager/app_cubit.dart';
+import '../../../core/shared_preferences.dart';
+import '../../../generated/l10n.dart';
+import '../../language/view/view.dart';
+import '../../sub_pages/edit_screen.dart';
+import '../../sub_pages/notifications.dart';
 
 class BodyOfContainer extends StatefulWidget {
   const BodyOfContainer({super.key,});
@@ -57,20 +57,20 @@ class _BodyOfContainerState extends State<BodyOfContainer> {
                             builder: (context)=> EditScreen()));
                   },
                   icon: Icons.edit_note_outlined,
-                  title: "Edit Profile Information"
+                  title: S().EditProfileInformation
               ),
 
               ProfileItem(
                   onTap: () => goToNotificationScreen(),
                   icon: Icons.notifications_on_outlined,
-                  title: "Notification",
-                  value: PreferenceUtils.getString(PreferenceKey.notification, 'ON')
+                  title: S().Notification,
+                  value: PreferenceUtils.getString(PreferenceKey.notification, S().on)
               ),
 
               ProfileItem(
-                  onTap: () => goToSelectLanguageScreen(),
+                  onTap: () => showLanguageBottomSheet(),
                   icon: Icons.language,
-                  title: "Language",
+                  title: S().Language,
                   value: PreferenceUtils.getString(PreferenceKey.language)
               ),
               SizedBox(height: 10,),
@@ -104,16 +104,19 @@ class _BodyOfContainerState extends State<BodyOfContainer> {
               ProfileItem(
                   onTap: () {},
                   icon: Icons.security,
-                  title: "Security"
+                  title: S().Security
               ),
 
               ProfileItem(
-                  onTap: () => showChangeThemeBottomSheet(),
+                  onTap: () {
+                    print('tappped');
+                    showChangeThemeBottomSheet();
+                    },
                   icon: Icons.color_lens_outlined,
-                  title: "Theme",
+                  title: S().Theme,
                   value:  PreferenceUtils.getBool(PreferenceKey.darkTheme)
-                      ? "Dark"
-                      : "Light"),
+                      ? S().Dark
+                      : S().Light),
               SizedBox(height: 10,),
             ],),
           ),
@@ -144,19 +147,19 @@ class _BodyOfContainerState extends State<BodyOfContainer> {
           ProfileItem(
               onTap: () {},
               icon: Icons.person_pin,
-              title: "Help & Support"
+              title: S().help
           ),
 
           ProfileItem(
             onTap: () {},
             icon: Icons.contact_mail_sharp,
-            title: "Contact Us",
+            title: S().contact,
           ),
 
           ProfileItem(
             onTap: () {},
             icon: Icons.lock_outline,
-            title: "Privacy Policy",
+            title: S().privacy,
           ),
           SizedBox(height: 10,),
         ],),
@@ -170,9 +173,15 @@ class _BodyOfContainerState extends State<BodyOfContainer> {
     Navigator.push(context, MaterialPageRoute(
         builder: (context) => NotificationScreen())); }
 
-  goToSelectLanguageScreen() {
-    Navigator.push(context, MaterialPageRoute(
-        builder: (context)=> SelectLanguageScreen())).then((value) => setState(() {}));
+  showLanguageBottomSheet(){
+    showModalBottomSheet<void>(
+        context: context,
+        builder: (BuildContext context) {
+          return
+            ChangeLanguageBottomSheet();
+        }).then((value) {
+      BlocProvider.of<AppCubit>(context).languageChanged();
+    });
   }
   showChangeThemeBottomSheet() {
     showModalBottomSheet<void>(

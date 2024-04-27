@@ -3,10 +3,12 @@ import 'dart:async';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduationproject/view/workspac_details/manager/workspace_detail_model.dart';
 import 'package:graduationproject/view/workspac_details/view/details_review.dart';
 import 'package:graduationproject/view/workspac_details/view/sliver_bar_details.dart';
 import 'package:graduationproject/view/workspac_details/view/text_sliver_bar.dart';
 import 'package:graduationproject/view/workspac_details/view/workspace_available.dart';
+import 'package:graduationproject/view/workspace/workspace_model.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../core/assets/app_assets.dart';
@@ -18,11 +20,11 @@ import '../manager/workspace_details_cubit.dart';
 class ViewWorkspaceDetails extends StatefulWidget {
    ViewWorkspaceDetails({
     super.key,
-     //this.workspaceDetails,
+     required this.model,
     required this.id
   });
-  // WorkspaceDetaislModel? workspaceDetails;
-  final String id;
+   WorkspaceModel model;
+   String id;
 
   @override
   State<ViewWorkspaceDetails> createState() => _ViewWorkspaceDetailsState();
@@ -30,16 +32,15 @@ class ViewWorkspaceDetails extends StatefulWidget {
 
 class _ViewWorkspaceDetailsState extends State<ViewWorkspaceDetails> {
 
-  final cubit = WorkspaceDetailsCubit();
+  //final cubit = WorkspaceDetailsCubit();
    int index = 0;
   @override
   void initState() {
     super.initState();
-    cubit.getWorkspacesDetails(id: '6622c211e5b1d7c1f63d21f0');
+    //cubit.getWorkspacesDetails(id: '6622c211e5b1d7c1f63d21f0');
   }
   @override
   Widget build(BuildContext context) {
-    final cubit = WorkspaceDetailsCubit();
     return Scaffold(
       body:
     //   MultiBlocProvider(
@@ -73,15 +74,15 @@ class _ViewWorkspaceDetailsState extends State<ViewWorkspaceDetails> {
                                       ),
                                       alignment: PlaceholderAlignment.middle),
                                   TextSpan(
-                                      text: cubit.workspaceDetails[index].address,
+                                      text: widget.model.address,
                                       style: TextStyle(
                                           fontSize: 15,
                                           color: Colors.grey
                                       )),
                                 ])),
-                            Text(cubit.workspaceDetails[index].name!,
+                            Text(widget.model.name!,
                                 style: Theme.of(context).textTheme.titleLarge),
-                            StarRatingBar(),
+                            StarRatingBar(size: 20,),
                             SizedBox(
                               height: 15.sp,
                             ),

@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:graduationproject/testttttttt/details_cubit.dart';
-import 'package:graduationproject/testttttttt/testooo.dart';
+import 'package:graduationproject/view/workspac_details/details_view/testooo.dart';
+
+import 'details_cubit.dart';
 
 class DetailView extends StatefulWidget {
   const DetailView({super.key});

@@ -1,9 +1,11 @@
+import 'package:graduationproject/core/shared_preferences.dart';
+
+import '../../generated/l10n.dart';
 import '../../widget/search_category.dart';
 import 'package:flutter/material.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,14 +25,14 @@ class SearchScreen extends StatelessWidget {
                 decoration: InputDecoration(
                   prefixIcon: const Icon(Icons.search),
                   iconColor: Colors.grey.shade50,
-                  hintText: "Where do you want to work ?",
+                  hintText: S().Wherework,
+                  hintStyle: TextStyle(color: Colors.black87),
                   border: InputBorder.none,
                   helperStyle: TextStyle(
-                    color: Colors.grey.shade100,
+                    color: Colors.grey,
                   ),
                   filled: true,
                   fillColor: Colors.grey.shade50,
-
                 ),
               ),
             ),
@@ -43,13 +45,16 @@ class SearchScreen extends StatelessWidget {
                 right: 20,
               ),
               child: Row(
-
                 children: [
-                  const Text('Booking for:',style: TextStyle(
-                    color: Colors.black54,
+                   Text(S().Bookingfor,style: TextStyle(
+                    color:PreferenceUtils.getBool(PreferenceKey.darkTheme)
+                        ? Colors.white
+                        : Colors.black,
                   ),),
-                  const Text(' 26 june',style: TextStyle(
-                    color: Colors.black,
+                   Text(' 26 june',style: TextStyle(
+                    color: PreferenceUtils.getBool(PreferenceKey.darkTheme)
+                        ? Colors.white
+                        : Colors.black,
                   ),),
                   
                   const SizedBox(
@@ -59,9 +64,11 @@ class SearchScreen extends StatelessWidget {
                       onPressed: (){},
                       icon: const Icon(Icons.filter_list,
                       color: Colors.black,)),
-                  const Text('Filters',
+                   Text(S().filters,
                     style: TextStyle(
-                      color: Colors.black,
+                      color: PreferenceUtils.getBool(PreferenceKey.darkTheme)
+                          ? Colors.white
+                          : Colors.black,
                       fontSize: 15,
                     ),
                   ),

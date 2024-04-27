@@ -2,22 +2,19 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:graduationproject/constants.dart';
-import 'package:graduationproject/view/custom_details/workspace_details_cubit.dart';
-import 'package:graduationproject/view/forget_password/view/view.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:graduationproject/constants/constants.dart';
+import 'package:graduationproject/constants/themes.dart';
+import 'package:graduationproject/core/app_manager/app_cubit.dart';
+import 'package:graduationproject/view/workspace/work_screen.dart';
+import 'package:graduationproject/view/workspac_details/details_view/details_cubit.dart';
 import 'package:graduationproject/view/home/manager/home_cubit.dart';
-import 'package:graduationproject/view/home/view/view.dart';
 import 'package:graduationproject/view/login/login_cubit.dart';
-import 'package:graduationproject/view/login/view.dart';
 import 'package:graduationproject/view/nav_bar/view.dart';
 import 'package:graduationproject/view/register/register_cubit.dart';
-import 'package:graduationproject/view/register/view.dart';
-import 'package:graduationproject/view/search/search_screen.dart';
-import 'package:graduationproject/view/profile/profile_screen.dart';
-import 'package:graduationproject/view/welcome_screen.dart';
-import 'package:graduationproject/view/workspace/manager/workspace_cubit.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'core/shared_preferences.dart';
+import 'generated/l10n.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -45,47 +42,35 @@ class MyApp extends StatelessWidget {
             create: (context) => RegisterCubit(),
           ),
           BlocProvider(
-              create: (context) =>WorkspaceDetailsCubit(),
+              create: (context) =>DetailsCubit(),
           ),
-          BlocProvider(create: (context) => HomeCubit()..getWorkspaces()),
+          BlocProvider(create: (context) => AppCubit()),
+          //BlocProvider(create: (context) => HomeCubit()..getWorkspaces()),
+          BlocProvider(create: (context) => DetailsCubit()..getWorkspacesDetail(id: '661fb22e7ce19a0ee9a1d78c')),
         ],
-        child: BlocBuilder<RegisterCubit, RegisterState>(builder: (context, state) {
+        child: BlocBuilder<AppCubit, AppState>(builder: (context, state) {
           return ResponsiveSizer(builder: (context, orientation, screenType) {
             return MaterialApp(
-                locale: DevicePreview.locale(context),
-                builder: DevicePreview.appBuilder,
+              locale: Locale(PreferenceUtils.getString(PreferenceKey.language)),
+              supportedLocales :S.delegate.supportedLocales,
+              localizationsDelegates: [
+                S.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
                 title: 'Flutter Demo',
                 debugShowCheckedModeBanner: false,
-                theme:
-                ThemeData(
-                    brightness: Brightness.light,
-                    useMaterial3: true,
-                    appBarTheme: AppBarTheme(
-                        color: Colors.white,
-                        titleTextStyle:
-                            TextStyle(color: Colors.black87, fontSize: 20),
-                        iconTheme: IconThemeData(color: Colors.black87)),
-                    scaffoldBackgroundColor: Colors.white,
-                    textTheme: TextTheme(
-                        titleSmall: TextStyle(
-                          color: Colors.black87.withOpacity(0.8),
-                          fontSize: 15,
-                        ),
-                        titleMedium: TextStyle(
-                          color: Colors.black87,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500,
-                        ),
-                        titleLarge: TextStyle(
-                            color: Colors.black87,
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold)),
-                    iconTheme: IconThemeData(color: mainColor)),
+                theme: lightTheme,
+                darkTheme: darkTheme,
+              themeMode: PreferenceUtils.getBool(PreferenceKey.darkTheme)
+                  ? ThemeMode.dark
+                  : ThemeMode.light,
                 home:
                 // token == null
                 //     ? SignInScreen()
                 //     :
-                NavBarView()
+                NavBarView(),
             );
           });
         }));

@@ -2,13 +2,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '../core/assets/app_assets.dart';
-import '../view/workspac_details/view/details_review.dart';
-import '../view/workspac_details/view/text_sliver_bar.dart';
-import '../view/workspac_details/view/workspace_available.dart';
-import '../widget/booking_button.dart';
-import '../widget/rating_bar_widget.dart';
-import '../widget/rich_text_widget.dart';
+import '../../../core/assets/app_assets.dart';
+import '../../../widget/booking_button.dart';
+import '../../../widget/rating_bar_widget.dart';
+import '../../../widget/rich_text_widget.dart';
+import '../view/details_review.dart';
+import '../view/text_sliver_bar.dart';
+import '../view/workspace_available.dart';
 import 'model.dart';
 
 class Testoooo extends StatefulWidget {

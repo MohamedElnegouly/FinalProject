@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:graduationproject/constants.dart';
+import 'package:graduationproject/constants/constants.dart';
 import 'package:graduationproject/view/register/view.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+
+import '../constants/colors.dart';
 
 class DontHaveAnAccountWidget extends StatelessWidget {
   const DontHaveAnAccountWidget({

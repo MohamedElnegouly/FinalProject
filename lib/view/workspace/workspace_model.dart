@@ -3,7 +3,7 @@ class WorkspaceModel {
   String? name;
   String? address;
   String? country;
-  String? city;
+   String? city;
   String? cover;
 
   WorkspaceModel.fromJson({required Map<String, dynamic> data})
@@ -11,9 +11,9 @@ class WorkspaceModel {
     id= data['id'] ;
     name= data['name'] ;
     address= data['address'];
-    country= data['country'] ;
-    city= data['city'] ;
-    cover= data['cover'] ;
+     country= data['country']['name'] ;
+     city= data['city']['name'];
+    cover= data['cover'];
   }
 
 }

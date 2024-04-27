@@ -2,8 +2,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:graduationproject/constants.dart';
+import 'package:graduationproject/constants/constants.dart';
+import 'package:graduationproject/widget/rating_bar_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+
+import '../constants/colors.dart';
+import '../core/shared_preferences.dart';
 
 class SearchCategory extends StatelessWidget {
   const SearchCategory({super.key});
@@ -15,7 +19,9 @@ class SearchCategory extends StatelessWidget {
         padding: EdgeInsets.all(10.sp),
         child: Container(
           decoration: BoxDecoration(
-              color:Colors.grey[100],
+              color: PreferenceUtils.getBool(PreferenceKey.darkTheme)
+                  ? Colors.black38
+                  : Colors.white,
               borderRadius: BorderRadius.circular(15)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,32 +82,17 @@ class SearchCategory extends StatelessWidget {
                   ],
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(left: 15,bottom: 15,top: 10),
-                child: RatingBar.builder(
-                  initialRating: 3,
-                  minRating: 1,
-                  itemSize: 15,
-                  direction: Axis.horizontal,
-                  allowHalfRating: true,
-                  itemCount: 5,
-                  itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                  itemBuilder: (context, _) => Icon(
-                    Icons.star,
-                    color: mainColor,
-                  ),
-                  onRatingUpdate: (rating) {
-                    print(rating);
-                  },
-                ),
-              ),
+              StarRatingBar(size: 15),
+
               Padding(
                 padding: EdgeInsets.only(left: 15,bottom: 15),
           child: RichText(
-                    text: const TextSpan(
+                    text: TextSpan(
                       text: '\$20 ',
                       style: TextStyle(
-                          color: Colors.black,
+                          color: PreferenceUtils.getBool(PreferenceKey.darkTheme)
+                              ? Colors.white
+                              : Colors.black54,
                           fontWeight: FontWeight.w900, fontSize: 15),
                       children: [
                         TextSpan(

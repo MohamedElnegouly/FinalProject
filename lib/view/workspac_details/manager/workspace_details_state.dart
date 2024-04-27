@@ -5,5 +5,6 @@ abstract class WorkspaceDetailsState {}
 
 class WorkspaceDetailsInitial extends WorkspaceDetailsState {}
 
+class WorkspaceLoading extends WorkspaceDetailsState {}
 class GetWorkspacesDetailsSuccess extends WorkspaceDetailsState {}
 class FailedGetWorkspacesDetails extends WorkspaceDetailsState {}

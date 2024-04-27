@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:graduationproject/constants/colors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-
-import '../constants.dart';
+import '../core/shared_preferences.dart';
 
 class ProfileItem extends StatelessWidget {
    ProfileItem({super.key,
@@ -29,24 +29,26 @@ class ProfileItem extends StatelessWidget {
                   padding: EdgeInsets.all(8.sp),
                   child: Icon(
                     icon,
+                    color: PreferenceUtils.getBool(PreferenceKey.darkTheme)
+                        ? Colors.white
+                        : mainColor,),
                   ),
-                ),
+
                 const SizedBox(width: 5),
                 Text(
                   title!,
-                  style: Theme
-                      .of(context)
-                      .textTheme
-                      .titleSmall,
+                  style: TextStyle(color:PreferenceUtils.getBool(PreferenceKey.darkTheme)
+                      ? Colors.white
+                      : Colors.black,),
                 ),
                 const Spacer(),
                 Padding(
                   padding: EdgeInsets.only(top: 10.sp,right: 15.sp),
                   child: Text(
                     value!,
-                    style: const TextStyle(
-                        fontSize: 15,
-                        color: mainColor
+                    style: TextStyle(color:PreferenceUtils.getBool(PreferenceKey.darkTheme)
+                        ? Colors.white
+                        : mainColor,
                     ),
                   ),
                 ),

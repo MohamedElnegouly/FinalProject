@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../constants.dart';
+import '../../../constants/constants.dart';
 import '../../../core/shared_preferences.dart';
+import '../../../constants/languages.dart';
 
 class ContactItem extends StatefulWidget {
   const ContactItem({super.key,
@@ -64,6 +65,7 @@ class _ContactItemState extends State<ContactItem> {
                       PreferenceKey.language,
                       languages[widget.index].name
                   );
+
                   Navigator.pop(context);
                 });
               } else {

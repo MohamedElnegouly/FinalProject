@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:toggle_switch/toggle_switch.dart';
-
-import '../../core/shared_preferences.dart';
+import '../../generated/l10n.dart';
 
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({super.key});
@@ -13,20 +11,20 @@ class NotificationScreen extends StatefulWidget {
 
 class _NotificationScreenState extends State<NotificationScreen> {
   List common = [
-    'General Notification',
-    'Sound',
-    "Vibrate"
+    S().general,
+    S().sound,
+    S().vib
     ];
   List system = [
-    'App Update',
-    'Bill Reminder',
-    "Promotion",
-    "Discount Available",
-    "Payment Request"
+    S().update,
+    S().reminder,
+    S().promotion,
+    S().discount,
+    S().payment
     ];
   List others = [
-    'New Service Available',
-    "New Tips Available"
+    S().newservice,
+    S().newtips,
   ];
   bool viewVisible = false;
   @override
@@ -35,7 +33,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
         appBar: AppBar(
           centerTitle: true,
           elevation: 0,
-          title: Text("Notifications",
+          title: Text(S().Notification,
               style: Theme.of(context).textTheme.titleMedium),
         ),
         body:
@@ -43,13 +41,14 @@ class _NotificationScreenState extends State<NotificationScreen> {
           children: [
             Padding(
               padding: const EdgeInsets.only(top: 10,left: 10),
-              child: Text("Common",
+              child: Text(S().common,
                 style: Theme.of(context).textTheme.titleMedium,),
             ),
             ListView.builder(
                 itemCount:
                 common.length,
                 shrinkWrap: true,
+                physics: PageScrollPhysics(),
                 itemBuilder: (context,index){
                   return SwitchItem(title:common[index]);
                 }),
@@ -61,13 +60,14 @@ class _NotificationScreenState extends State<NotificationScreen> {
 
             Padding(
               padding: const EdgeInsets.only(top: 10,left: 10),
-              child: Text("System & Services Update",
+              child: Text(S().system,
                 style: Theme.of(context).textTheme.titleMedium,),
             ),
             ListView.builder(
                 itemCount:
                 system.length,
                 shrinkWrap: true,
+                physics: PageScrollPhysics(),
                 itemBuilder: (context,index){
                   return SwitchItem(title:system[index]);
                 }),
@@ -79,13 +79,14 @@ class _NotificationScreenState extends State<NotificationScreen> {
 
             Padding(
               padding: const EdgeInsets.only(top: 10,left: 10),
-              child: Text("Others",
+              child: Text(S().others,
                 style: Theme.of(context).textTheme.titleMedium,),
             ),
             ListView.builder(
                 itemCount:
                 others.length,
                 shrinkWrap: true,
+                physics: PageScrollPhysics(),
                 itemBuilder: (context,index){
                   return SwitchItem(title:others[index]);
                 }),

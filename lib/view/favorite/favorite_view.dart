@@ -1,9 +1,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:graduationproject/constants.dart';
+import 'package:graduationproject/constants/constants.dart';
 
 import '../../core/shared_preferences.dart';
+import '../../generated/l10n.dart';
 import 'favorite_body.dart';
 
 class FavoriteScreen extends StatefulWidget {
@@ -20,7 +21,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
-        title:  Text("Favorite"),
+        title:  Center(child: Text(S().favorite)),
       ),
       body:
       ListView.builder(
