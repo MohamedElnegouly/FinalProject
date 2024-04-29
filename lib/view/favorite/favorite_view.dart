@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:graduationproject/constants/constants.dart';
 
-import '../../core/shared_preferences.dart';
+import '../../core/shared/shared_preferences.dart';
 import '../../generated/l10n.dart';
 import 'favorite_body.dart';
 
 class FavoriteScreen extends StatefulWidget {
+  static String id = 'Favorite view';
+
   const FavoriteScreen({super.key});
 
   @override

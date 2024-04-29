@@ -1,21 +1,21 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-
 import '../../../constants/colors.dart';
-import '../../../core/shared_preferences.dart';
+import '../../../core/shared/shared_preferences.dart';
 import '../../../widget/rating_bar_widget.dart';
-import '../../workspac_details/details_view/vieww.dart';
 
 class PopularItem extends StatelessWidget {
    PopularItem({super.key,
     required this.imageUrl,
     required this.name,
+    required this.hours,
   required this.address
   });
   String imageUrl;
   String name;
   String address;
+  String hours;
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +27,9 @@ class PopularItem extends StatelessWidget {
               children: [
                 InkWell(
                   onTap: () {
-                    print('taped');
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context)=> DetailView() ,));
+                    // print('taped');
+                    // Navigator.push(context,
+                    //     MaterialPageRoute(builder: (context)=> DetailView() ,));
                   },
                   child:
                   Stack(
@@ -82,7 +82,7 @@ class PopularItem extends StatelessWidget {
                           child:
                           RichText(
                             text: TextSpan(
-                              text: '\$17 ',
+                              text: '\$${hours} ',
                               style: TextStyle(
                                   color:PreferenceUtils.getBool(PreferenceKey.darkTheme)
                                       ? Colors.white

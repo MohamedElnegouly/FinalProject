@@ -4,7 +4,7 @@ import 'package:graduationproject/widget/change_language_bottom_sheet.dart';
 import 'package:graduationproject/widget/profile_item.dart';
 import 'package:graduationproject/widget/show_model_bottom_sheet.dart';
 import '../../../core/app_manager/app_cubit.dart';
-import '../../../core/shared_preferences.dart';
+import '../../../core/shared/shared_preferences.dart';
 import '../../../generated/l10n.dart';
 import '../../language/view/view.dart';
 import '../../sub_pages/edit_screen.dart';

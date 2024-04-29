@@ -11,6 +11,7 @@ class CustomInputField extends StatefulWidget {
   final bool suffixIcon;
   final bool? isDense;
   final bool obscureText;
+  final void Function(String)? onChange;
   final String? Function(String?)? validator;
 
 
@@ -24,6 +25,7 @@ class CustomInputField extends StatefulWidget {
         this.validator,
         this.obscureText = false,
         this.controller,
+        this.onChange,
         this.labelText='',
       })
       : super(key: key);
@@ -80,6 +82,7 @@ class _CustomInputFieldState extends State<CustomInputField> {
             ),
             autovalidateMode: AutovalidateMode.onUserInteraction,
             validator: widget.validator,
+            onChanged: widget.onChange,
             controller: widget.controller,
           ),
         ],

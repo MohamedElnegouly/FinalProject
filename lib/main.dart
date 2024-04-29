@@ -6,14 +6,18 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:graduationproject/constants/constants.dart';
 import 'package:graduationproject/constants/themes.dart';
 import 'package:graduationproject/core/app_manager/app_cubit.dart';
-import 'package:graduationproject/view/workspace/work_screen.dart';
-import 'package:graduationproject/view/workspac_details/details_view/details_cubit.dart';
+import 'package:graduationproject/view/favorite/favorite_view.dart';
+import 'package:graduationproject/view/search/search_view.dart';
+import 'package:graduationproject/view/welcome_screen/welcome_view.dart';
+import 'package:graduationproject/view/workspac_details/view/details_view.dart';
+import 'package:graduationproject/view/search/search_cubit.dart';
+import 'package:graduationproject/view/workspace/view/workspace_screen.dart';
 import 'package:graduationproject/view/home/manager/home_cubit.dart';
 import 'package:graduationproject/view/login/login_cubit.dart';
 import 'package:graduationproject/view/nav_bar/view.dart';
 import 'package:graduationproject/view/register/register_cubit.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'core/shared_preferences.dart';
+import 'core/shared/shared_preferences.dart';
 import 'generated/l10n.dart';
 
 void main() async {
@@ -41,12 +45,9 @@ class MyApp extends StatelessWidget {
           BlocProvider(
             create: (context) => RegisterCubit(),
           ),
-          BlocProvider(
-              create: (context) =>DetailsCubit(),
-          ),
           BlocProvider(create: (context) => AppCubit()),
-          //BlocProvider(create: (context) => HomeCubit()..getWorkspaces()),
-          BlocProvider(create: (context) => DetailsCubit()..getWorkspacesDetail(id: '661fb22e7ce19a0ee9a1d78c')),
+          BlocProvider(create: (context) => LayoutCubit()..getProducts()),
+          //BlocProvider(create: (context) => DetailsCubit()..getWorkspacesDetail(id: '6622c211e5b1d7c1f63d21f0')),
         ],
         child: BlocBuilder<AppCubit, AppState>(builder: (context, state) {
           return ResponsiveSizer(builder: (context, orientation, screenType) {
@@ -66,11 +67,14 @@ class MyApp extends StatelessWidget {
               themeMode: PreferenceUtils.getBool(PreferenceKey.darkTheme)
                   ? ThemeMode.dark
                   : ThemeMode.light,
-                home:
-                // token == null
-                //     ? SignInScreen()
-                //     :
-                NavBarView(),
+              routes: {
+                NavBarView.id: (context) => const NavBarView(),
+                SearchView.id: (context) =>  SearchView(),
+                WorkScreen.id: (context) => const WorkScreen(),
+                FavoriteScreen.id:(context) => const FavoriteScreen(),
+                Details.id:(context) => const Details()
+              },
+              initialRoute: NavBarView.id,
             );
           });
         }));

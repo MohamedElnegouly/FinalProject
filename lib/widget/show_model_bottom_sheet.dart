@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../constants/colors.dart';
-import '../core/shared_preferences.dart';
+import '../core/shared/shared_preferences.dart';
 import '../generated/l10n.dart';
 
 class showThemeBottomSheet extends StatefulWidget {

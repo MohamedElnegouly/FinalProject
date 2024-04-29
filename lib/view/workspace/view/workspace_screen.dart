@@ -2,15 +2,13 @@ import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:graduationproject/detailss/details_view.dart';
-import 'package:graduationproject/view/workspac_details/details_view/vieww.dart';
-import 'package:graduationproject/view/workspace/workspace_model.dart';
+import 'package:graduationproject/view/workspac_details/view/details_view.dart';
+import 'package:graduationproject/view/workspace/data/workspace_model.dart';
 import 'package:http/http.dart'as http;
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../constants/colors.dart';
-import '../../core/shared_preferences.dart';
-import '../home/view/body_home.dart';
-import '../../widget/rating_bar_widget.dart';
+import '../../../constants/colors.dart';
+import '../../../core/shared/shared_preferences.dart';
+import '../../../widget/rating_bar_widget.dart';
 class WorkScreen extends StatefulWidget {
   static String id = 'WorkScreen view';
 
@@ -127,7 +125,6 @@ class _WorkScreenState extends State<WorkScreen> {
                             Stack(
                               alignment: Alignment.topLeft,
                               children: [
-                                //items[index]['cover'] == null
                                 items[index].cover == null
                                     ? Padding(
                                   padding: EdgeInsets.only(top: 20),

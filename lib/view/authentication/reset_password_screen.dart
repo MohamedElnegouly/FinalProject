@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:graduationproject/view/login/view.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/constants.dart';
+import '../../core/validator/validator.dart';
+import '../../widget/custom_text_field.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
   const ResetPasswordScreen({super.key});
@@ -48,18 +51,20 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   style: TextStyle(fontSize: 18),
                 ),
                 SizedBox(height: 50,),
-                //new password textfiled
-                TextField(
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: "New password"),
+                CustomInputField(
+                  hintText: 'New Password',
+                  labelText: 'password',
+                  validator: (value) {
+                    return Validator.validatePassword(value);
+                  },
                 ),
-// confirm password text fild
                 SizedBox(height: 15),
-                TextField(
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: "Confirm Password"),
+                CustomInputField(
+                  hintText: 'Confirm Password',
+                  labelText: 'confirm',
+                  validator: (value) {
+                    return Validator.validatePassword(value);
+                  },
                 ),
                 //reset passwords
                 SizedBox(height: 30),
@@ -76,8 +81,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                       ),
                     ),
                     onPressed: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> ResetPasswordScreen()));
-
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> LoginScreen()));
                     },
                     child: Text(
                       "Reset Password",

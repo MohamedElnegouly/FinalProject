@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduationproject/constants/colors.dart';
-import 'package:graduationproject/core/shared_preferences.dart';
+import 'package:graduationproject/core/shared/shared_preferences.dart';
 import 'package:graduationproject/view/profile/view/profile_container.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -73,7 +73,8 @@ class _ProfileScreenState extends State<ProfileScreen>
                             child: SizedBox.fromSize(
                                 size: Size.fromRadius(48), // Image radius
                                 child: Image.file(
-                                  _selectedImage!, fit: BoxFit.cover,)
+                                  _selectedImage!,
+                                  fit: BoxFit.cover,)
                             ),
                           )
                               : CircleAvatar(
@@ -141,5 +142,4 @@ class _ProfileScreenState extends State<ProfileScreen>
       _selectedImage = File(returnedImage!.path);
     });
   }
-
 }

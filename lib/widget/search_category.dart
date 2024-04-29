@@ -7,7 +7,7 @@ import 'package:graduationproject/widget/rating_bar_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../constants/colors.dart';
-import '../core/shared_preferences.dart';
+import '../core/shared/shared_preferences.dart';
 
 class SearchCategory extends StatelessWidget {
   const SearchCategory({super.key});

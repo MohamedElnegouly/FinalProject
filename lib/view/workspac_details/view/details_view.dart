@@ -1,23 +1,25 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:graduationproject/constants/colors.dart';
-import 'package:graduationproject/view/workspace/workspace_model.dart';
+import 'package:graduationproject/view/workspace/data/workspace_model.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../core/assets/app_assets.dart';
+import 'details_review.dart';
+import 'text_sliver_bar.dart';
+import 'workspace_available.dart';
+import '../../../widget/booking_button.dart';
+import '../../../widget/rating_bar_widget.dart';
+import '../../../widget/rich_text_widget.dart';
 
-import '../core/assets/app_assets.dart';
-import '../view/workspac_details/view/details_review.dart';
-import '../view/workspac_details/view/sliver_bar_details.dart';
-import '../view/workspac_details/view/text_sliver_bar.dart';
-import '../view/workspac_details/view/workspace_available.dart';
-import '../widget/booking_button.dart';
-import '../widget/rating_bar_widget.dart';
-import '../widget/rich_text_widget.dart';
-
-class Details extends StatelessWidget {
+class Details extends StatefulWidget {
   static String id = 'Details view';
 
   const Details({super.key});
 
+  @override
+  State<Details> createState() => _DetailsState();
+}
+
+class _DetailsState extends State<Details> {
   @override
   Widget build(BuildContext context) {
     WorkspaceModel model =
@@ -83,7 +85,6 @@ class Details extends StatelessWidget {
         )
             : Hero(
           tag: model.cover!,
-          //widget.workspaceDetails!.id!,
           child: CachedNetworkImage(
             imageUrl: model.cover!,
             width: double.infinity,
@@ -180,9 +181,6 @@ class Details extends StatelessWidget {
                       ]))
           ),
         ],
-        //   );
-        //
-        // })
       )
     );
   }

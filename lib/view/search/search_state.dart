@@ -1,4 +1,4 @@
-part of 'layout_cubit.dart';
+part of 'search_cubit.dart';
 
 @immutable
 abstract class LayoutStates {}

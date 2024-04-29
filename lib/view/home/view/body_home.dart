@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:graduationproject/core/assets/app_assets.dart';
-import 'package:graduationproject/view/workspace/work_screen.dart';
+import 'package:graduationproject/view/workspace/view/workspace_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../core/shared_preferences.dart';
+import '../../../core/shared/shared_preferences.dart';
 import '../../../generated/l10n.dart';
 
 class BodyHomeScreen extends StatefulWidget {

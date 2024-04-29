@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:meta/meta.dart';
 import '../../workspace/manager/workspace_cubit.dart';
-import '../../workspace/workspace_model.dart';
+import '../../workspace/data/workspace_model.dart';
 
 part 'home_state.dart';
 

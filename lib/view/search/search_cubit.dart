@@ -6,7 +6,7 @@ import 'package:http/http.dart'as http;
 import 'package:http/http.dart';
 import 'package:meta/meta.dart';
 
-part 'layout_state.dart';
+part 'search_state.dart';
 class LayoutCubit extends Cubit<LayoutStates>{
   LayoutCubit() : super(LayoutInitialState());
   //

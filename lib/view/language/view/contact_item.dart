@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../constants/constants.dart';
-import '../../../core/shared_preferences.dart';
+import '../../../core/shared/shared_preferences.dart';
 import '../../../constants/languages.dart';
 
 class ContactItem extends StatefulWidget {

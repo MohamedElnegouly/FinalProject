@@ -1,4 +1,4 @@
-import 'package:graduationproject/core/shared_preferences.dart';
+import 'package:graduationproject/core/shared/shared_preferences.dart';
 
 class LanguageModel{
   String name;

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:graduationproject/widget/rating_bar_widget.dart';
 import '../../constants/constants.dart';
-import '../../core/shared_preferences.dart';
+import '../../core/shared/shared_preferences.dart';
 
 class BodyOfFavoriteScreen extends StatelessWidget {
   const BodyOfFavoriteScreen({super.key});

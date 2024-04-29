@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:graduationproject/constants/constants.dart';
 import 'package:graduationproject/view/authentication/reset_password_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -50,18 +51,39 @@ class _ReciveOtpScreenState extends State<ReciveOtpScreen> {
                   style: TextStyle(fontSize: 18),
                 ),
                 SizedBox(height: 20.sp,),
-                //Verify
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Textfiledotp(),
-                      Textfiledotp(),
-                      Textfiledotp(),
-                      Textfiledotp()
-                    ]),
-
+                OtpTextField(
+                  numberOfFields: 4,
+                  borderColor: grey,
+                  focusedBorderColor: mainColor,
+                  fieldWidth: 60,
+                  //set to true to show as box or false to show as dash
+                  showFieldAsBox: true,
+                  //runs when a code is typed in
+                  onCodeChanged: (String code) {
+                    //handle validation or checks here
+                  },
+                  //runs when every textfield is filled
+                  onSubmit: (String verificationCode){
+                    showDialog(
+                        context: context,
+                        builder: (context){
+                          return AlertDialog(
+                            title: Text("Verification Code"),
+                            content: Text('Code entered is $verificationCode'),
+                          );
+                        }
+                    );
+                  }, // end onSubmit
+                ),
+                // Row(
+                //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                //     children: [
+                //       Textfiledotp(),
+                //       Textfiledotp(),
+                //       Textfiledotp(),
+                //       Textfiledotp()
+                //     ]),
                 SizedBox(height:20.sp),
-
                 SizedBox(
                   width: double.infinity,
                   height: 30.sp,
@@ -75,7 +97,6 @@ class _ReciveOtpScreenState extends State<ReciveOtpScreen> {
                     ),
                     onPressed: (){
                       Navigator.push(context, MaterialPageRoute(builder: (context)=> ResetPasswordScreen()));
-
                     },
                     child: Text(
                       "Verify",

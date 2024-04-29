@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:graduationproject/view/language/language_model.dart';
 
 import '../../../constants/constants.dart';
-import '../../../core/shared_preferences.dart';
+import '../../../core/shared/shared_preferences.dart';
 import '../../../constants/languages.dart';
 import 'contact_item.dart';
 

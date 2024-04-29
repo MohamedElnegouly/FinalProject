@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduationproject/view/authentication/otp_screen.dart';
 import 'package:graduationproject/widget/custom_text_field.dart';
 import '../../../constants/constants.dart';
 import '../../../core/validator/validator.dart';
@@ -53,11 +54,12 @@ class ForgetScreenBody extends StatelessWidget {
                   AppButton(
                     title: 'SEND CODE',
                     onTap: () {
-                      if (cubit.formKey.currentState!.validate()) {
-                        cubit.formKey.currentState!.save();
-                      } else {
-                        cubit.autovalidateMode = AutovalidateMode.always;
-                      }
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>ReciveOtpScreen()));
+                      // if (cubit.formKey.currentState!.validate()) {
+                      //   cubit.formKey.currentState!.save();
+                      // } else {
+                      //   cubit.autovalidateMode = AutovalidateMode.always;
+                      // }
                     },
                   ),
                 ],

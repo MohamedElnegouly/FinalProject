@@ -7,7 +7,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/constants.dart';
-import '../../core/shared_preferences.dart';
+import '../../core/shared/shared_preferences.dart';
 
 class EditScreen extends StatefulWidget {
   const EditScreen({super.key});

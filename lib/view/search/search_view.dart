@@ -2,16 +2,16 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:graduationproject/view/workspace/workspace_model.dart';
+import 'package:graduationproject/view/workspace/data/workspace_model.dart';
 import 'package:graduationproject/widget/search_category.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-
-import '../constants/colors.dart';
-import '../core/shared_preferences.dart';
-import '../widget/rating_bar_widget.dart';
-import 'layout_cubit.dart';
+import '../../constants/colors.dart';
+import '../../core/shared/shared_preferences.dart';
+import '../../widget/rating_bar_widget.dart';
+import 'search_cubit.dart';
 
 class SearchView extends StatefulWidget {
+  static String id = 'SearchView view';
 
   SearchView({Key? key}) : super(key: key);
 
@@ -21,7 +21,6 @@ class SearchView extends StatefulWidget {
 
 class _SearchViewState extends State<SearchView> {
   final pageController = PageController();
-
 
   @override
   Widget build(BuildContext context) {
