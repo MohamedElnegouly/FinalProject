@@ -2,6 +2,9 @@ import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:graduationproject/detailss/details_view.dart';
+import 'package:graduationproject/view/workspac_details/details_view/vieww.dart';
+import 'package:graduationproject/view/workspace/workspace_model.dart';
 import 'package:http/http.dart'as http;
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../constants/colors.dart';
@@ -9,6 +12,8 @@ import '../../core/shared_preferences.dart';
 import '../home/view/body_home.dart';
 import '../../widget/rating_bar_widget.dart';
 class WorkScreen extends StatefulWidget {
+  static String id = 'WorkScreen view';
+
   const WorkScreen({super.key});
 
   @override
@@ -16,29 +21,41 @@ class WorkScreen extends StatefulWidget {
 }
 
 class _WorkScreenState extends State<WorkScreen> {
-  List items = [];
+ // List items = [];
+  List<WorkspaceModel> items = [];
   int skip = 0;
   int limit = 7;
   bool isLoadMore = false;
   ScrollController scrollController =ScrollController();
 
   fetchData() async {
-    var url = Uri.parse("https://desk-share-api.onrender.com/workspaces?limit=$limit&skip=$skip");
+    var url = Uri.parse(
+        "https://desk-share-api.onrender.com/workspaces?limit=$limit&skip=$skip");
     var response = await http.get(url,
         headers:
         {
-          'Authorization' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZjM5YWNmYjMzM2Q0OTk3ZjVhZTVlNiIsImlhdCI6MTcxMzk5NjkwNywiZXhwIjoxNzE0NjAxNzA3fQ.ofv2qR5qa6du1so1wQ6RUc75JMWWg6LqBW37dCzbguo',
-          'x-api-key' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiQzJabXkwNktHNUplaU9qSWhQNUZOTkg2OVFoMGR6a0UifQ.pSRkGDcH0wpkGP1GetT02mLStF6KUBIr9Iq4B9cvzR8',
+          'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZjM5YWNmYjMzM2Q0OTk3ZjVhZTVlNiIsImlhdCI6MTcxMzk5NjkwNywiZXhwIjoxNzE0NjAxNzA3fQ.ofv2qR5qa6du1so1wQ6RUc75JMWWg6LqBW37dCzbguo',
+          'x-api-key': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiQzJabXkwNktHNUplaU9qSWhQNUZOTkg2OVFoMGR6a0UifQ.pSRkGDcH0wpkGP1GetT02mLStF6KUBIr9Iq4B9cvzR8',
         }
     );
-    if(response.statusCode == 200){
-      var json = jsonDecode(response.body)['workspaces'] as List;
-      if (!mounted) return;
-      setState(() {
-        items.addAll(json);
-      });
-      print('workspacedata is : ${response.body}');
+    if (response.statusCode == 200) {
+      // var json = jsonDecode(response.body)['workspaces'] as List;
+      // if (!mounted) return;
+      // setState(() {
+      //   items.addAll(json);
+      // });
+      // print('workspacedata is : ${response.body}');
+      var responseBody = jsonDecode(response.body);
+      print('workspacedata is : ${responseBody}');
 
+      if (response.statusCode == 200) {
+        for (int i = 0; i < responseBody['limit']; i++) {
+          items.add(
+              WorkspaceModel.fromJson(data: responseBody['workspaces'][i])
+          );
+        }
+        print('length: ${items.length}');
+      }
     }
   }
 
@@ -101,12 +118,17 @@ class _WorkScreenState extends State<WorkScreen> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           InkWell(
-                            onTap: () {},
+                              onTap: () {
+                           Navigator.pushNamed(context, Details.id,
+                           arguments: items[index],
+                            );
+                                },
                             child:
                             Stack(
                               alignment: Alignment.topLeft,
                               children: [
-                                items[index]['cover'] == null
+                                //items[index]['cover'] == null
+                                items[index].cover == null
                                     ? Padding(
                                   padding: EdgeInsets.only(top: 20),
                                   child: Center(
@@ -116,11 +138,14 @@ class _WorkScreenState extends State<WorkScreen> {
                                     ),
                                   ),
                                 )
-                                    : CachedNetworkImage(
-                                  imageUrl: items[index]['cover'],
+                                    : Hero(
+                                    tag: items[index].cover!,
+                                  child: CachedNetworkImage(
+                                  imageUrl: items[index].cover!,
                                   width: 50.sp,
                                   height: 50.sp,
                                   fit: BoxFit.cover,
+                                ),
                                 ),
                                 Positioned(
                                   height: 40,
@@ -143,7 +168,7 @@ class _WorkScreenState extends State<WorkScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    items[index]['name'],
+                                    items[index].name!,
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 20),
@@ -151,7 +176,7 @@ class _WorkScreenState extends State<WorkScreen> {
                                   Row(
                                       children: [
                                         Icon(Icons.location_on_outlined),
-                                        Text(items[index]['address'],
+                                        Text(items[index].address!,
                                           style: TextStyle(
                                               color: PreferenceUtils.getBool(
                                                   PreferenceKey.darkTheme)

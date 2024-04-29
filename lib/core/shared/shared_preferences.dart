@@ -5,6 +5,7 @@ enum PreferenceKey{
   email,
   loggedIn,
   ProfileData,
+  profileImage,
   token,
   phone,
   language,

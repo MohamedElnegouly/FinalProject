@@ -1,5 +1,5 @@
 class WorkspaceModel {
-  int? id;
+  String? id;
   String? name;
   String? address;
   String? country;
