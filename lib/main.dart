@@ -12,6 +12,8 @@ import 'package:graduationproject/view/login/view.dart';
 import 'package:graduationproject/view/nav_bar/view.dart';
 import 'package:graduationproject/view/register/register_cubit.dart';
 import 'package:graduationproject/view/register/view.dart';
+import 'package:graduationproject/view/search/cubit/search_cubit.dart';
+import 'package:graduationproject/view/search/repos/search_repo_implement.dart';
 import 'package:graduationproject/view/search/search_screen.dart';
 import 'package:graduationproject/view/profile/profile_screen.dart';
 import 'package:graduationproject/view/welcome_screen.dart';
@@ -33,7 +35,8 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+  SearchRepoImplement search = SearchRepoImplement();
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -42,22 +45,25 @@ class MyApp extends StatelessWidget {
             create: (context) => LoginCubit(),
           ),
           BlocProvider(
+            create: (context) => SearchCubit(search)..getWorkspaces(),
+          ),
+          BlocProvider(
             create: (context) => RegisterCubit(),
           ),
           BlocProvider(
-              create: (context) =>WorkspaceDetailsCubit(),
+            create: (context) => WorkspaceDetailsCubit(),
           ),
           BlocProvider(create: (context) => HomeCubit()..getWorkspaces()),
         ],
-        child: BlocBuilder<RegisterCubit, RegisterState>(builder: (context, state) {
+        child: BlocBuilder<RegisterCubit, RegisterState>(
+            builder: (context, state) {
           return ResponsiveSizer(builder: (context, orientation, screenType) {
             return MaterialApp(
                 locale: DevicePreview.locale(context),
                 builder: DevicePreview.appBuilder,
                 title: 'Flutter Demo',
                 debugShowCheckedModeBanner: false,
-                theme:
-                ThemeData(
+                theme: ThemeData(
                     brightness: Brightness.light,
                     useMaterial3: true,
                     appBarTheme: AppBarTheme(
@@ -82,11 +88,10 @@ class MyApp extends StatelessWidget {
                             fontWeight: FontWeight.bold)),
                     iconTheme: IconThemeData(color: mainColor)),
                 home:
-                // token == null
-                //     ? SignInScreen()
-                //     :
-                NavBarView()
-            );
+                    // token == null
+                    //     ? SignInScreen()
+                    //     :
+                    SearchScreen());
           });
         }));
   }
