@@ -5,7 +5,7 @@ import 'package:graduationproject/view/register/register_cubit.dart';
 import 'package:graduationproject/widget/app_button.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../core/assets/app_assets.dart';
-import '../../core/shared_preferences.dart';
+import '../../core/shared/shared_preferences.dart';
 import '../../widget/app_text.dart';
 import '../../widget/square_tile.dart';
 import '../../widget/custom_text_field.dart';

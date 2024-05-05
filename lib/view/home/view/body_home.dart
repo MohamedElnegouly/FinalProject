@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:graduationproject/core/assets/app_assets.dart';
+import 'package:graduationproject/view/workspace/view/workspace_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../core/shared/shared_preferences.dart';
+import '../../../generated/l10n.dart';
 
 class BodyHomeScreen extends StatefulWidget {
   const BodyHomeScreen({super.key});
@@ -8,7 +11,6 @@ class BodyHomeScreen extends StatefulWidget {
   @override
   State<BodyHomeScreen> createState() => _BodyHomeScreenState();
 }
-
 class _BodyHomeScreenState extends State<BodyHomeScreen> {
   @override
   Widget build(BuildContext context) {
@@ -19,16 +21,20 @@ class _BodyHomeScreenState extends State<BodyHomeScreen> {
           child: Icon(Icons.location_on_outlined),
         ),
         RichText(
-          text: const TextSpan(
-            text: 'Current location\n',
+          text: TextSpan(
+            text: S().Currentlocation+'\n',
             style: TextStyle(
-              color: Colors.black38,
+              color: PreferenceUtils.getBool(PreferenceKey.darkTheme)
+                  ? Colors.white
+                  : Colors.black54,
             ),
             children: [
               TextSpan(
-                text: 'Kuala Lumpur, Malaysia',
+                text: S().KualaLumpur +','+ S().Malaysia,
                 style: TextStyle(
-                  color: Colors.black,
+                  color: PreferenceUtils.getBool(PreferenceKey.darkTheme)
+                      ? Colors.white
+                      : Colors.black54,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -41,19 +47,16 @@ class _BodyHomeScreenState extends State<BodyHomeScreen> {
           size: 30,
         )
       ]),
-      TextField(
-        decoration: InputDecoration(
-            prefixIcon: Icon(
-              Icons.search,
-              size: 20,
-            ),
-            border: InputBorder.none,
-            hintText: "  Where do you want yo work?",
-            hintStyle: TextStyle(height: 4,fontSize: 15)),
-      ),
-      Text(
-        "  Only for Today",
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            S().OnlyforToday,
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+          ),
+        ),
       ),
       Stack(children: [
         Image.asset(
@@ -66,21 +69,21 @@ class _BodyHomeScreenState extends State<BodyHomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("30% Off",
+              Text(S().percent,
                   style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
-                      fontSize: 33)),
-              Text("All Food & Beverage",
+                      fontSize: 30)),
+              Text(S().foodBeverage,
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
                   )),
               SizedBox(
-                height: 25,
+                height: 25.sp,
               ),
-              Text("By Only book for 1 hour",
+              Text(S().ByOnlybookfor1hour,
                   style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -89,18 +92,28 @@ class _BodyHomeScreenState extends State<BodyHomeScreen> {
           ),
         )
       ]),
-      Text("Sponsored by Some random place",style: TextStyle(color: Colors.grey),),
+      SizedBox(height: 10.sp,),
+      Align(
+          alignment: Alignment.centerLeft,
+          child: Text(S().SponsoredbySomerandomplace,style: TextStyle(color: Colors.grey),)),
       SizedBox(
-        height: 20,
+        height: 15.sp,
       ),
       Row(
         children: [
           Text(
-            "Popular Workspace",
+            S().PopularWorkspace,
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
           ),
           Spacer(),
-          Text("See all")
+          GestureDetector(
+            onTap: (){
+              Navigator.push(context,
+                  MaterialPageRoute(
+                      builder: (context)=> WorkScreen()
+                  ));
+            },
+              child: Text(S().Seeall))
         ],
       ),
     ],);

@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:meta/meta.dart';
 
-import '../../core/shared_preferences.dart';
+import '../../core/shared/shared_preferences.dart';
 
 part 'login_state.dart';
 

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '../constants.dart';
+import '../constants/colors.dart';
+import '../constants/constants.dart';
 import 'app_text.dart';
 
 class AppButton extends StatelessWidget {

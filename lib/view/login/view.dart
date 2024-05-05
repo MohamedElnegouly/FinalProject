@@ -9,7 +9,7 @@ import 'package:graduationproject/widget/app_text.dart';
 import 'package:graduationproject/widget/dont_have_account.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../core/assets/app_assets.dart';
-import '../../core/shared_preferences.dart';
+import '../../core/shared/shared_preferences.dart';
 import '../../core/validator/validator.dart';
 import 'login_cubit.dart';
 import '../../widget/square_tile.dart';
@@ -95,6 +95,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                   hintText: 'Enter your Email',
                                   controller: emailController,
                                   labelText: "email",
+                                  validator: (value){
+                                    return Validator.validateEmail(value);},
                                 ),
 
                                 const SizedBox(
@@ -109,6 +111,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                     obscureText: true,
                                     suffixIcon: true,
                                     controller: passwordController,
+                                    // validator: (value){
+                                    //   return Validator.validatePassword(value);},
                                   ),
                                 ),
                                 Align(
@@ -126,7 +130,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ),
                                 ),
 
-                                SizedBox(height: 10.sp),
+                                SizedBox(height: 20.sp),
                                 AppButton(
                                   title: state is LoginLoadingState
                                       ? "loading..."

@@ -1,18 +1,25 @@
 import 'package:flutter/material.dart';
+import '../constants/colors.dart';
+import '../core/shared/shared_preferences.dart';
+import '../generated/l10n.dart';
 
-import '../constants.dart';
-import '../core/shared_preferences.dart';
-
-class showThemeBottomSheet extends StatelessWidget {
+class showThemeBottomSheet extends StatefulWidget {
   const showThemeBottomSheet({super.key});
 
+  @override
+  State<showThemeBottomSheet> createState() => _showThemeBottomSheetState();
+}
+
+class _showThemeBottomSheetState extends State<showThemeBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return Material(
         child: Container(
               height: 200,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
+                color: PreferenceUtils.getBool(PreferenceKey.darkTheme)
+                  ? Colors.black38
+                    : Colors.white
               ),
               child: Center(
                 child: Column(
@@ -20,7 +27,7 @@ class showThemeBottomSheet extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   children: <Widget>[
                     const SizedBox(height: 20),
-                    const Text('Select Theme',style: TextStyle(color: mainColor,fontWeight: FontWeight.bold),),
+                     Text(S().SelectTheme,style: TextStyle(color: mainColor,fontWeight: FontWeight.bold),),
                     InkWell(
                       onTap: () async {
                         await PreferenceUtils.setBool(
@@ -33,8 +40,8 @@ class showThemeBottomSheet extends StatelessWidget {
                         width: double.infinity,
                         padding: const EdgeInsets.all(10),
                         // color: Colors.grey[200],
-                        child: const Text(
-                          'Light',
+                        child:  Text(
+                          S().Light,
                           style: TextStyle(
                               fontSize: 22,
                               color: mainColor
@@ -55,8 +62,8 @@ class showThemeBottomSheet extends StatelessWidget {
                         width: double.infinity,
                         padding: const EdgeInsets.all(10),
                         // color: Colors.grey[200],
-                        child: const Text(
-                          'Dark',
+                        child:  Text(
+                          S().Dark,
                           style: TextStyle(
                               fontSize: 22,
                               color: mainColor
@@ -67,7 +74,7 @@ class showThemeBottomSheet extends StatelessWidget {
                   ],
                 ),
               ),
-        ),
+        )
     );
   }
 }

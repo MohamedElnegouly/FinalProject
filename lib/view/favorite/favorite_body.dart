@@ -2,7 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:graduationproject/widget/rating_bar_widget.dart';
-import '../../constants.dart';
+import '../../constants/constants.dart';
+import '../../core/shared/shared_preferences.dart';
 
 class BodyOfFavoriteScreen extends StatelessWidget {
   const BodyOfFavoriteScreen({super.key});
@@ -14,7 +15,9 @@ class BodyOfFavoriteScreen extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         child: Container(
           decoration: BoxDecoration(
-              color: Colors.grey[100],
+              color: PreferenceUtils.getBool(PreferenceKey.darkTheme)
+                  ? Colors.black38
+                  : Colors.white,
               borderRadius: BorderRadius.circular(15)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -73,7 +76,7 @@ class BodyOfFavoriteScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              StarRatingBar(),
+              StarRatingBar(size: 15,),
             ],
           ),
         ),

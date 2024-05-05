@@ -1,12 +1,16 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:graduationproject/view/home/view/view.dart';
-import '../../constants.dart';
+import 'package:graduationproject/view/search/search_view.dart';
+import '../../constants/colors.dart';
+import '../../constants/constants.dart';
+import '../../core/shared/shared_preferences.dart';
 import '../favorite/favorite_view.dart';
-import '../profile/profile_screen.dart';
-import '../search/search_screen.dart';
+import '../profile/view/profile_screen.dart';
 
 class NavBarView extends StatefulWidget {
+  static String id = 'NavBar view';
+
   const NavBarView({super.key});
   @override
   State<NavBarView> createState() => _NavBarViewState();
@@ -15,7 +19,7 @@ class NavBarView extends StatefulWidget {
 class _NavBarViewState extends State<NavBarView> {
   List screens = [
     HomeView(),
-    SearchScreen(),
+    SearchView(),
     FavoriteScreen(),
     ProfileScreen(),
   ];
@@ -41,9 +45,13 @@ class _NavBarViewState extends State<NavBarView> {
             child: CurvedNavigationBar(
               animationCurve: Curves.easeInOut,
               animationDuration: Duration(milliseconds: 300),
-              color: mainColor,
+              color: PreferenceUtils.getBool(PreferenceKey.darkTheme)
+                  ? Colors.white24
+                  : mainColor,
               backgroundColor:
-              Colors.transparent,
+              PreferenceUtils.getBool(PreferenceKey.darkTheme)
+                  ? Colors.black87
+                  : Colors.white,
               height: 60,
               index: currentIndex,
               items: items,
