@@ -1,12 +1,12 @@
 part of 'reservation_cubit.dart';
 
 @immutable
-abstract class ReservationState {}
+abstract class PostReservationState {}
 
-class ReservationInitial extends ReservationState {}
-class ReservationLoadingState extends ReservationState {}
-class ReservationSuccessState extends ReservationState {}
-class ReservationFailedState extends ReservationState {
+class ReservationInitial extends PostReservationState {}
+class ReservationLoadingState extends PostReservationState {}
+class ReservationSuccessState extends PostReservationState {}
+class ReservationFailedState extends PostReservationState {
   final String errorMessage;
 
   ReservationFailedState({required this.errorMessage});

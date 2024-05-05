@@ -2,13 +2,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:graduationproject/view/reservations/data/reservation_model.dart';
-import 'package:graduationproject/view/reservations/manager/reservation_cubit.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-
-import '../../../constants/colors.dart';
 import '../../../core/shared/shared_preferences.dart';
 import '../../../widget/rating_bar_widget.dart';
+import '../data/reservation_model.dart';
+import '../manager/reservation_cubit.dart';
 
 class ReservationView extends StatefulWidget {
   static String id = 'Reservation view';
@@ -22,8 +20,8 @@ class ReservationView extends StatefulWidget {
 class _ReservationViewState extends State<ReservationView> {
   @override
   Widget build(BuildContext context) {
-    final cubit = BlocProvider.of<ReservationCubit>(context);
-    return BlocConsumer<ReservationCubit,ReservationState>(
+    final cubit = BlocProvider.of<GetReservationCubit>(context);
+    return BlocConsumer<GetReservationCubit,GetReservationState>(
         listener: (context,state){},
         builder:(context,state){
           return Scaffold(
@@ -62,7 +60,7 @@ class _ReservationViewState extends State<ReservationView> {
   }
 }
 
-Widget _reservationItem({required ReservationModel model,required ReservationCubit cubit}){
+Widget _reservationItem({required GetReservationModel model,required GetReservationCubit cubit}){
   return Padding(
     padding: EdgeInsets.all(2.sp),
     child: Container(

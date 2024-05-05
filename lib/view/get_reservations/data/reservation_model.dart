@@ -1,4 +1,4 @@
-class ReservationModel {
+class GetReservationModel {
   String? id;
   String? date;
   String? status;
@@ -6,7 +6,7 @@ class ReservationModel {
   String? address;
   String? cover;
 
-  ReservationModel.fromJson({required Map<String, dynamic> data})
+  GetReservationModel.fromJson({required Map<String, dynamic> data})
   {
     id= data['id'];
     date= data['date'] ;

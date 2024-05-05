@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:graduationproject/view/home/view/body_home.dart';
 import 'package:graduationproject/view/home/view/item.dart';
+import 'package:graduationproject/view/workspac_details/view/details_view.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class HomeView extends StatefulWidget {
@@ -24,10 +25,7 @@ class _HomeViewState extends State<HomeView> {
                         BodyHomeScreen(),
                         InkWell(
                           onTap: (){
-                            // Navigator.push(
-                            //     context, MaterialPageRoute(
-                            //     builder: (context)=> DetailView()));
-                          },
+                            },
                           child: PopularItem(
                               imageUrl: 'https://www.dgicommunications.com/wp-content/uploads/2022/08/Design_a_Flexible_Workspace.jpg',
                               name: "workspace 1",

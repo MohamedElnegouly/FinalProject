@@ -3,10 +3,15 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:graduationproject/book_screen.dart';
 import 'package:graduationproject/constants/constants.dart';
 import 'package:graduationproject/constants/themes.dart';
 import 'package:graduationproject/core/app_manager/app_cubit.dart';
+import 'package:graduationproject/view/get_reservations/manager/reservation_cubit.dart';
+import 'package:graduationproject/view/get_reservations/view/reservation_view.dart';
+import 'package:graduationproject/widget/show_time_picker.dart';
 import 'package:graduationproject/view/favorite/favorite_view.dart';
+import 'package:graduationproject/view/profile/view/profile_screen.dart';
 import 'package:graduationproject/view/search/search_view.dart';
 import 'package:graduationproject/view/welcome_screen/welcome_view.dart';
 import 'package:graduationproject/view/workspac_details/view/details_view.dart';
@@ -39,15 +44,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
         providers: [
-          BlocProvider(
-            create: (context) => LoginCubit(),
-          ),
-          BlocProvider(
-            create: (context) => RegisterCubit(),
-          ),
+          BlocProvider(create: (context) => LoginCubit(),),
+          BlocProvider(create: (context) => RegisterCubit(),),
           BlocProvider(create: (context) => AppCubit()),
           BlocProvider(create: (context) => LayoutCubit()..getProducts()),
-          //BlocProvider(create: (context) => DetailsCubit()..getWorkspacesDetail(id: '6622c211e5b1d7c1f63d21f0')),
+          BlocProvider(create: (context) => GetReservationCubit()..getReservations()),
         ],
         child: BlocBuilder<AppCubit, AppState>(builder: (context, state) {
           return ResponsiveSizer(builder: (context, orientation, screenType) {
@@ -70,11 +71,16 @@ class MyApp extends StatelessWidget {
               routes: {
                 NavBarView.id: (context) => const NavBarView(),
                 SearchView.id: (context) =>  SearchView(),
-                WorkScreen.id: (context) => const WorkScreen(),
                 FavoriteScreen.id:(context) => const FavoriteScreen(),
-                Details.id:(context) => const Details()
+                Details.id:(context) => const Details(),
+                ReservationView.id:(context) => const ReservationView(),
+                ProfileScreen.id:(context) => const ProfileScreen(),
+                BookingScreen.id:(context) => const BookingScreen(),
               },
-              initialRoute: NavBarView.id,
+              initialRoute: BookingScreen.id,
+             // home:
+              //ShowTimePickerApp(),
+              //NavBarView(),
             );
           });
         }));

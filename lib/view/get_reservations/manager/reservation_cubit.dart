@@ -1,14 +1,15 @@
 import 'dart:convert';
 import 'package:bloc/bloc.dart';
-import 'package:graduationproject/view/reservations/data/reservation_model.dart';
 import 'package:meta/meta.dart';
 import 'package:http/http.dart'as http;
+import '../../post_reservation/data/reservation_model.dart';
+import '../data/reservation_model.dart';
 part 'reservation_state.dart';
 
-class ReservationCubit extends Cubit<ReservationState> {
-  ReservationCubit() : super(ReservationInitial());
+class GetReservationCubit extends Cubit<GetReservationState> {
+  GetReservationCubit() : super(ReservationInitial());
 
-  List<ReservationModel> reservationList = [];
+  List<GetReservationModel> reservationList = [];
   void getReservations() async {
     var url = Uri.parse("https://desk-share-api.onrender.com/reservations");
     var response = await http.get(url,
@@ -25,7 +26,7 @@ class ReservationCubit extends Cubit<ReservationState> {
     {
       for (int i = 0; i < 4; i++) {
         reservationList.add(
-            ReservationModel.fromJson(data:responseBody['reservations'][i])
+            GetReservationModel.fromJson( data: responseBody['reservations'][i])
         );
       }
       print('length: ${reservationList.length}');

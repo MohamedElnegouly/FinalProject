@@ -4,13 +4,10 @@ import 'package:bloc/bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:meta/meta.dart';
-
-import '../../core/shared/shared_preferences.dart';
-
 part 'reservation_state.dart';
 
-class ReservationCubit extends Cubit<ReservationState> {
-  ReservationCubit() : super(ReservationInitial());
+class PostReservationCubit extends Cubit<PostReservationState> {
+  PostReservationCubit() : super(ReservationInitial());
 
   Future<void> login({
     required String id,

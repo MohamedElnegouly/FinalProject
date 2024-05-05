@@ -10,6 +10,8 @@ import '../../../generated/l10n.dart';
 import '../../sub_pages/edit_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
+  static String id = 'profile view';
+
   const ProfileScreen({super.key});
 
   @override

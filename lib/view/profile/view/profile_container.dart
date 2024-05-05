@@ -6,8 +6,8 @@ import 'package:graduationproject/widget/show_model_bottom_sheet.dart';
 import '../../../core/app_manager/app_cubit.dart';
 import '../../../core/shared/shared_preferences.dart';
 import '../../../generated/l10n.dart';
-import '../../language/view/view.dart';
-import '../../sub_pages/edit_screen.dart';
+import '../../get_reservations/view/reservation_view.dart';
+
 import '../../sub_pages/notifications.dart';
 
 class BodyOfContainer extends StatefulWidget {
@@ -52,12 +52,11 @@ class _BodyOfContainerState extends State<BodyOfContainer> {
             Column(children: [
               ProfileItem(
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(
-                            builder: (context)=> EditScreen()));
+                    Navigator.pushNamed(context, ReservationView.id
+                    );
                   },
-                  icon: Icons.edit_note_outlined,
-                  title: S().EditProfileInformation
+                  icon: Icons.calendar_month_outlined,
+                  title: "Reservations"
               ),
 
               ProfileItem(

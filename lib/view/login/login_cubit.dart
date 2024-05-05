@@ -55,6 +55,7 @@ class LoginCubit extends Cubit<LoginState> {
       print('error message : ${e.toString()}');
     }
   }
+
   void isLoggedIn() async {
     final loggedIn = PreferenceUtils.getBool(PreferenceKey.loggedIn);
     print('LoggedIn => $loggedIn');

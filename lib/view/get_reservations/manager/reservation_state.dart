@@ -1,9 +1,9 @@
 part of 'reservation_cubit.dart';
 
 @immutable
-abstract class ReservationState {}
+abstract class GetReservationState {}
 
-class ReservationInitial extends ReservationState {}
-class ReservationLoading extends ReservationState {}
-class ReservationSuccess extends ReservationState {}
-class FailedGetReservation extends ReservationState {}
+class ReservationInitial extends GetReservationState {}
+class ReservationLoading extends GetReservationState {}
+class ReservationSuccess extends GetReservationState {}
+class FailedGetReservation extends GetReservationState {}

@@ -1,10 +1,10 @@
-class ReservationModel {
+class PostReservationModel {
   String? id;
   String? message;
   String? date;
   String? status;
 
-  ReservationModel.fromJson({required Map<String, dynamic> jsonData})
+  PostReservationModel.fromJson({required Map<String, dynamic> jsonData})
   {
     id= jsonData['id'] ;
     message= jsonData['message'] ;
