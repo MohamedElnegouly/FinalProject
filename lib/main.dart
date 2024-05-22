@@ -29,6 +29,16 @@ import 'package:graduationproject/view/home/manager/home_cubit.dart';
 import 'package:graduationproject/view/login/login_cubit.dart';
 import 'package:graduationproject/view/nav_bar/view.dart';
 import 'package:graduationproject/view/register/register_cubit.dart';
+<<<<<<< HEAD
+import 'package:graduationproject/view/register/view.dart';
+import 'package:graduationproject/view/search/cubit/search_cubit.dart';
+import 'package:graduationproject/view/search/repos/search_repo_implement.dart';
+import 'package:graduationproject/view/search/search_screen.dart';
+import 'package:graduationproject/view/profile/profile_screen.dart';
+import 'package:graduationproject/view/welcome_screen.dart';
+import 'package:graduationproject/view/workspace/manager/workspace_cubit.dart';
+=======
+>>>>>>> 9ccc7b2672632b396963307426f363ce873b9867
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'core/shared/shared_preferences.dart';
 import 'generated/l10n.dart';
@@ -47,13 +57,35 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+  SearchRepoImplement search = SearchRepoImplement();
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
         providers: [
+<<<<<<< HEAD
           BlocProvider(create: (context) => LoginCubit(),),
           BlocProvider(create: (context) => RegisterCubit(),),
+=======
+          BlocProvider(
+            create: (context) => LoginCubit(),
+          ),
+          BlocProvider(
+            create: (context) => SearchCubit(search)..getWorkspaces(),
+          ),
+          BlocProvider(
+            create: (context) => RegisterCubit(),
+          ),
+<<<<<<< HEAD
+          BlocProvider(
+            create: (context) => WorkspaceDetailsCubit(),
+          ),
+          BlocProvider(create: (context) => HomeCubit()..getWorkspaces()),
+        ],
+        child: BlocBuilder<RegisterCubit, RegisterState>(
+            builder: (context, state) {
+=======
+>>>>>>> 72e2be945975d366cdcc11922d13fdd309e92bcd
           BlocProvider(create: (context) => AppCubit()),
           //BlocProvider(create: (context) => LayoutCubit()..getProducts()),
           BlocProvider(create: (context) => GetReservationCubit()..getReservations()),
@@ -64,6 +96,7 @@ class MyApp extends StatelessWidget {
          // BlocProvider(create: (context) => GetReservationCubit()..getReservations()),
         ],
         child: BlocBuilder<AppCubit, AppState>(builder: (context, state) {
+>>>>>>> 9ccc7b2672632b396963307426f363ce873b9867
           return ResponsiveSizer(builder: (context, orientation, screenType) {
             return MaterialApp(
               locale: Locale(PreferenceUtils.getString(PreferenceKey.language,'en')),
@@ -74,10 +107,48 @@ class MyApp extends StatelessWidget {
                 GlobalWidgetsLocalizations.delegate,
                 GlobalCupertinoLocalizations.delegate,
               ],
+<<<<<<< HEAD
               title: 'Flutter Demo',
               debugShowCheckedModeBanner: false,
               theme: lightTheme,
               darkTheme: darkTheme,
+=======
+                title: 'Flutter Demo',
+                debugShowCheckedModeBanner: false,
+<<<<<<< HEAD
+                theme: ThemeData(
+                    brightness: Brightness.light,
+                    useMaterial3: true,
+                    appBarTheme: AppBarTheme(
+                        color: Colors.white,
+                        titleTextStyle:
+                            TextStyle(color: Colors.black87, fontSize: 20),
+                        iconTheme: IconThemeData(color: Colors.black87)),
+                    scaffoldBackgroundColor: Colors.white,
+                    textTheme: TextTheme(
+                        titleSmall: TextStyle(
+                          color: Colors.black87.withOpacity(0.8),
+                          fontSize: 15,
+                        ),
+                        titleMedium: TextStyle(
+                          color: Colors.black87,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        titleLarge: TextStyle(
+                            color: Colors.black87,
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold)),
+                    iconTheme: IconThemeData(color: mainColor)),
+                home:
+                    // token == null
+                    //     ? SignInScreen()
+                    //     :
+                    SearchScreen());
+=======
+                theme: lightTheme,
+                darkTheme: darkTheme,
+>>>>>>> 72e2be945975d366cdcc11922d13fdd309e92bcd
               themeMode: PreferenceUtils.getBool(PreferenceKey.darkTheme)
                   ? ThemeMode.dark
                   : ThemeMode.light,
@@ -101,6 +172,7 @@ class MyApp extends StatelessWidget {
               //  home:
               //  NavBarView(),
             );
+>>>>>>> 9ccc7b2672632b396963307426f363ce873b9867
           });
         }));
   }
