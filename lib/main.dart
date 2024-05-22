@@ -10,12 +10,20 @@ import 'package:graduationproject/core/app_manager/app_cubit.dart';
 import 'package:graduationproject/view/get_reservations/manager/reservation_cubit.dart';
 import 'package:graduationproject/view/get_reservations/view/reservation_view.dart';
 import 'package:graduationproject/widget/show_time_picker.dart';
+//import 'package:graduationproject/book_screen.dart';
+import 'package:graduationproject/constants/constants.dart';
+import 'package:graduationproject/constants/themes.dart';
+import 'package:graduationproject/core/app_manager/app_cubit.dart';
+// import 'package:graduationproject/view/get_reservations/manager/reservation_cubit.dart';
+// import 'package:graduationproject/view/get_reservations/view/reservation_view.dart';
+// import 'package:graduationproject/widget/show_time_picker.dart';
 import 'package:graduationproject/view/favorite/favorite_view.dart';
 import 'package:graduationproject/view/profile/view/profile_screen.dart';
 import 'package:graduationproject/view/search/search_view.dart';
 import 'package:graduationproject/view/welcome_screen/welcome_view.dart';
 import 'package:graduationproject/view/workspac_details/view/details_view.dart';
 import 'package:graduationproject/view/search/search_cubit.dart';
+import 'package:graduationproject/view/workspace/manager/workspace_cubit.dart';
 import 'package:graduationproject/view/workspace/view/workspace_screen.dart';
 import 'package:graduationproject/view/home/manager/home_cubit.dart';
 import 'package:graduationproject/view/login/login_cubit.dart';
@@ -47,13 +55,18 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (context) => LoginCubit(),),
           BlocProvider(create: (context) => RegisterCubit(),),
           BlocProvider(create: (context) => AppCubit()),
-          BlocProvider(create: (context) => LayoutCubit()..getProducts()),
+          //BlocProvider(create: (context) => LayoutCubit()..getProducts()),
           BlocProvider(create: (context) => GetReservationCubit()..getReservations()),
+          BlocProvider(create: (context) => WorkspaceCubit()..getWorkspacess(),),
+          BlocProvider(create: (context) => RegisterCubit(),),
+          BlocProvider(create: (context) => AppCubit()),
+          BlocProvider(create: (context) => SearchCubit()..getProducts()),
+         // BlocProvider(create: (context) => GetReservationCubit()..getReservations()),
         ],
         child: BlocBuilder<AppCubit, AppState>(builder: (context, state) {
           return ResponsiveSizer(builder: (context, orientation, screenType) {
             return MaterialApp(
-              locale: Locale(PreferenceUtils.getString(PreferenceKey.language)),
+              locale: Locale(PreferenceUtils.getString(PreferenceKey.language,'en')),
               supportedLocales :S.delegate.supportedLocales,
               localizationsDelegates: [
                 S.delegate,
@@ -61,10 +74,10 @@ class MyApp extends StatelessWidget {
                 GlobalWidgetsLocalizations.delegate,
                 GlobalCupertinoLocalizations.delegate,
               ],
-                title: 'Flutter Demo',
-                debugShowCheckedModeBanner: false,
-                theme: lightTheme,
-                darkTheme: darkTheme,
+              title: 'Flutter Demo',
+              debugShowCheckedModeBanner: false,
+              theme: lightTheme,
+              darkTheme: darkTheme,
               themeMode: PreferenceUtils.getBool(PreferenceKey.darkTheme)
                   ? ThemeMode.dark
                   : ThemeMode.light,
@@ -77,10 +90,16 @@ class MyApp extends StatelessWidget {
                 ProfileScreen.id:(context) => const ProfileScreen(),
                 BookingScreen.id:(context) => const BookingScreen(),
               },
-              initialRoute: BookingScreen.id,
              // home:
               //ShowTimePickerApp(),
               //NavBarView(),
+                //ReservationView.id:(context) => const ReservationView(),
+               // ProfileScreen.id:(context) => const ProfileScreen(),
+              //  BookingScreen.id:(context) => const BookingScreen(),
+
+              initialRoute: NavBarView.id,
+              //  home:
+              //  NavBarView(),
             );
           });
         }));
