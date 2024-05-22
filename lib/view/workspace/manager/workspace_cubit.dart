@@ -13,20 +13,49 @@ class WorkspaceCubit extends Cubit<WorkspaceState> {
   WorkspaceCubit() : super(WorkspaceInitial());
 
   List <WorkspaceModel> workspaceList = [];
-  int skip = 0;
-  int limit = 17;
+  // void getProducts() async {
+  //   int limit =17;
+  //   int skip = 0;
+  //   var url = Uri.parse("https://desk-share-api.onrender.com/workspaces?limit=18&skip=0");
+  //   var response = await http.get(url,
+  //       headers:
+  //       {
+  //         'Authorization' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZjM5YWNmYjMzM2Q0OTk3ZjVhZTVlNiIsImlhdCI6MTcxMzk0Mjk5Mn0.x41tk7I0cAubXh1T2eSfSKmBbxKI4rVXhaSkurzt51s',
+  //         'x-api-key' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiQzJabXkwNktHNUplaU9qSWhQNUZOTkg2OVFoMGR6a0UifQ.pSRkGDcH0wpkGP1GetT02mLStF6KUBIr9Iq4B9cvzR8',
+  //       }
+  //   );
+  //   var responseBody = jsonDecode(response.body);
+  //   print('workspaceSearchdata is : ${responseBody}');
+  //
+  //   if(response.statusCode == 200)
+  //   {
+  //     for (int i = 0; i < responseBody['limit']; i++) {
+  //       workspaceList.add(
+  //           WorkspaceModel.fromJson(data: responseBody['workspaces'][i])
+  //       );
+  //     }
+  //     print('length: ${workspaceList.length}');
+  //     emit(GetWorkspacesSuccess());
+  //   }
+  //   else{
+  //     emit(FailedGetWorkspaces());
+  //   }
+  // }
 
-  getWorkspacesData() async {
-    var url = Uri.parse("https://desk-share-api.onrender.com/workspaces?limit=$limit&skip=$skip");
+  //List<WorkspaceModel> products = [];
+  void getWorkspacess() async {
+    int limit =17;
+    int skip = 0;
+    var url = Uri.parse("https://desk-share-api.onrender.com/workspaces?limit=17&skip=0");
     var response = await http.get(url,
         headers:
         {
-          'Authorization' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZjM5YWNmYjMzM2Q0OTk3ZjVhZTVlNiIsImlhdCI6MTcxMzk5NjkwNywiZXhwIjoxNzE0NjAxNzA3fQ.ofv2qR5qa6du1so1wQ6RUc75JMWWg6LqBW37dCzbguo',
+          'Authorization' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZjM5YWNmYjMzM2Q0OTk3ZjVhZTVlNiIsImlhdCI6MTcxMzk0Mjk5Mn0.x41tk7I0cAubXh1T2eSfSKmBbxKI4rVXhaSkurzt51s',
           'x-api-key' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiQzJabXkwNktHNUplaU9qSWhQNUZOTkg2OVFoMGR6a0UifQ.pSRkGDcH0wpkGP1GetT02mLStF6KUBIr9Iq4B9cvzR8',
         }
     );
     var responseBody = jsonDecode(response.body);
-    print('workspacedata is : ${responseBody}');
+    print('workspaceSearchdata is : ${responseBody}');
 
     if(response.statusCode == 200)
     {
@@ -42,6 +71,10 @@ class WorkspaceCubit extends Cubit<WorkspaceState> {
       emit(FailedGetWorkspaces());
     }
   }
+
 }
+
+
+
 
 

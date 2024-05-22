@@ -16,6 +16,7 @@ import 'package:graduationproject/view/search/search_view.dart';
 import 'package:graduationproject/view/welcome_screen/welcome_view.dart';
 import 'package:graduationproject/view/workspac_details/view/details_view.dart';
 import 'package:graduationproject/view/search/search_cubit.dart';
+import 'package:graduationproject/view/workspace/manager/workspace_cubit.dart';
 import 'package:graduationproject/view/workspace/view/workspace_screen.dart';
 import 'package:graduationproject/view/home/manager/home_cubit.dart';
 import 'package:graduationproject/view/login/login_cubit.dart';
@@ -45,9 +46,10 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => LoginCubit(),),
+          BlocProvider(create: (context) => WorkspaceCubit()..getWorkspacess(),),
           BlocProvider(create: (context) => RegisterCubit(),),
           BlocProvider(create: (context) => AppCubit()),
-          BlocProvider(create: (context) => LayoutCubit()..getProducts()),
+          BlocProvider(create: (context) => SearchCubit()..getProducts()),
          // BlocProvider(create: (context) => GetReservationCubit()..getReservations()),
         ],
         child: BlocBuilder<AppCubit, AppState>(builder: (context, state) {
@@ -79,8 +81,7 @@ class MyApp extends StatelessWidget {
               },
               initialRoute: NavBarView.id,
               //  home:
-              // //ShowTimePickerApp(),
-              // NavBarView(),
+              //  NavBarView(),
             );
           });
         }));

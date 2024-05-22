@@ -1,10 +1,11 @@
 part of 'search_cubit.dart';
 
 @immutable
-abstract class LayoutStates {}
+abstract class SearchStates {}
 
-class LayoutInitialState extends LayoutStates{}
-class GetProductsSuccessState extends LayoutStates{}
-class FailedToGetProductsState extends LayoutStates{}
-class FilterProductsSuccessState extends LayoutStates{}
+class LayoutInitialState extends SearchStates{}
+class SearchLoading extends SearchStates{}
+class GetProductsSuccessState extends SearchStates{}
+class FailedToGetProductsState extends SearchStates{}
+class FilterProductsSuccessState extends SearchStates{}
 

@@ -7,8 +7,8 @@ import 'package:http/http.dart';
 import 'package:meta/meta.dart';
 
 part 'search_state.dart';
-class LayoutCubit extends Cubit<LayoutStates>{
-  LayoutCubit() : super(LayoutInitialState());
+class SearchCubit extends Cubit<SearchStates>{
+  SearchCubit() : super(LayoutInitialState());
   //
   // Future<void> getUserData() async {
   //   emit(GetUserDataLoadingState());
@@ -82,7 +82,7 @@ class LayoutCubit extends Cubit<LayoutStates>{
   void getProducts() async {
     int limit =17;
     int skip = 0;
-      var url = Uri.parse("https://desk-share-api.onrender.com/workspaces?limit=18&skip=0");
+      var url = Uri.parse("https://desk-share-api.onrender.com/workspaces?limit=17&skip=0");
       var response = await http.get(url,
           headers:
           {

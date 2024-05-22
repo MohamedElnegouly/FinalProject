@@ -33,7 +33,7 @@ class BodyOfFavoriteScreen extends StatelessWidget {
                         height: 170,
                         child: ClipRRect(
                             borderRadius: BorderRadius.circular(10),
-                            child: Image.network('https://thumbs.dreamstime.com/b/green-landscape-13598486.jpg',
+                            child: Image.network('https://images.inc.com/uploaded_files/image/1920x1080/getty_517610514_353435.jpg',
                               fit: BoxFit.fill,)),
                       ),
                       Padding(

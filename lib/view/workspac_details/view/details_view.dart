@@ -98,7 +98,7 @@ class _DetailsState extends State<Details> {
               Container(
                   padding: const EdgeInsets.all(10),
                   decoration: const BoxDecoration(color: Colors.white),
-                  height: 1000,
+                  height: 1050,
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
