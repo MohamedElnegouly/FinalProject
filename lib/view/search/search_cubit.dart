@@ -8,7 +8,7 @@ import 'package:meta/meta.dart';
 
 part 'search_state.dart';
 class SearchCubit extends Cubit<SearchStates>{
-  SearchCubit() : super(LayoutInitialState());
+  SearchCubit() : super(SearchInitialState());
   //
   // Future<void> getUserData() async {
   //   emit(GetUserDataLoadingState());
@@ -82,32 +82,31 @@ class SearchCubit extends Cubit<SearchStates>{
   void getProducts() async {
     int limit =17;
     int skip = 0;
-      var url = Uri.parse("https://desk-share-api.onrender.com/workspaces?limit=17&skip=0");
-      var response = await http.get(url,
-          headers:
-          {
-            'Authorization' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZjM5YWNmYjMzM2Q0OTk3ZjVhZTVlNiIsImlhdCI6MTcxMzk0Mjk5Mn0.x41tk7I0cAubXh1T2eSfSKmBbxKI4rVXhaSkurzt51s',
-            'x-api-key' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiQzJabXkwNktHNUplaU9qSWhQNUZOTkg2OVFoMGR6a0UifQ.pSRkGDcH0wpkGP1GetT02mLStF6KUBIr9Iq4B9cvzR8',
-          }
-      );
-      var responseBody = jsonDecode(response.body);
-      print('workspacesearchdata is : ${responseBody}');
-      print('workspaceSearchdata is : ${responseBody}');
-
-      if(response.statusCode == 200)
-      {
-        for (int i = 0; i < responseBody['limit']; i++) {
-          products.add(
-              WorkspaceModel.fromJson(data: responseBody['workspaces'][i])
-          );
+    var url = Uri.parse("https://desk-share-api.onrender.com/workspaces?limit=17&skip=0");
+    var response = await http.get(url,
+        headers:
+        {
+          'Authorization' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZjM5YWNmYjMzM2Q0OTk3ZjVhZTVlNiIsImlhdCI6MTcxMzk0Mjk5Mn0.x41tk7I0cAubXh1T2eSfSKmBbxKI4rVXhaSkurzt51s',
+          'x-api-key' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiQzJabXkwNktHNUplaU9qSWhQNUZOTkg2OVFoMGR6a0UifQ.pSRkGDcH0wpkGP1GetT02mLStF6KUBIr9Iq4B9cvzR8',
         }
-        print('length: ${products.length}');
-        emit(GetProductsSuccessState());
+    );
+    var responseBody = jsonDecode(response.body);
+    print('workspaceSearchdata is : ${responseBody}');
+
+    if(response.statusCode == 200)
+    {
+      for (int i = 0; i < responseBody['limit']; i++) {
+        products.add(
+            WorkspaceModel.fromJson(data: responseBody['workspaces'][i])
+        );
       }
-      else{
-        emit(FailedToGetProductsState());
-      }
+      print('length: ${products.length}');
+      emit(GetProductsSuccessState());
     }
+    else{
+      emit(FailedToGetProductsState());
+    }
+  }
 
   // filtered products
   List<WorkspaceModel> filteredProducts = [];

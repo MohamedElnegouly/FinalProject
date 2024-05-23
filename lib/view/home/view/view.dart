@@ -24,8 +24,7 @@ class _HomeViewState extends State<HomeView> {
                       children: [
                         BodyHomeScreen(),
                         InkWell(
-                          onTap: (){
-                            },
+                          onTap: (){},
                           child: PopularItem(
                               imageUrl: 'https://www.dgicommunications.com/wp-content/uploads/2022/08/Design_a_Flexible_Workspace.jpg',
                               name: "workspace 1",

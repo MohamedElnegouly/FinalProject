@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduationproject/view/workspace/data/workspace_model.dart';
-import 'package:graduationproject/widget/search_category.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../constants/colors.dart';
 import '../../core/shared/shared_preferences.dart';
@@ -29,37 +28,37 @@ class _SearchViewState extends State<SearchView> {
     // return BlocConsumer<SearchCubit,SearchStates>(
     //     listener: (context,state){},
     //     builder:(context,state){
-          return Scaffold(
-              appBar: AppBar(
-                toolbarHeight: 100,
-                elevation: 0,
-                title: TextFormField(
-                  onChanged:(input)
-                  {
-                    cubit.filterProducts(input: input);
-                  } ,
-                  decoration: InputDecoration(
-                    prefixIcon: const Icon(Icons.search),
-                    hintText: "Search...",
-                    filled: true,
-                    fillColor: Colors.black12.withOpacity(0.1),
-                    contentPadding: EdgeInsets.symmetric(vertical: 17),
-                    border: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.grey),
-                      borderRadius: BorderRadius.circular(50),
-                    ),
-                  ),
-                ),
+    return Scaffold(
+        appBar: AppBar(
+          toolbarHeight: 100,
+          elevation: 0,
+          title: TextFormField(
+            onChanged:(input)
+            {
+              cubit.filterProducts(input: input);
+            } ,
+            decoration: InputDecoration(
+              prefixIcon: const Icon(Icons.search),
+              hintText: "Search...",
+              filled: true,
+              fillColor: Colors.black12.withOpacity(0.1),
+              contentPadding: EdgeInsets.symmetric(vertical: 17),
+              border: OutlineInputBorder(
+                borderSide: const BorderSide(color: Colors.grey),
+                borderRadius: BorderRadius.circular(50),
               ),
-              body: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 5),
-                child: ListView(
-                  shrinkWrap: true,
-                  children:
-                  [
-                    const SizedBox(height: 15,),
-                  BlocBuilder(
-                   bloc: cubit,
+            ),
+          ),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 5),
+          child: ListView(
+            shrinkWrap: true,
+            children:
+            [
+              const SizedBox(height: 15,),
+              BlocBuilder(
+                  bloc: cubit,
                   builder: (context, state) {
                     return state is SearchLoading
                         ? const Center(child: CupertinoActivityIndicator(),)
@@ -87,10 +86,10 @@ class _SearchViewState extends State<SearchView> {
                         }
                     );
                   })
-                  ],
-                ),
-              )
-          );
+            ],
+          ),
+        )
+    );
     //     }
     // );
   }
@@ -164,7 +163,7 @@ Widget _productItem({required WorkspaceModel model,required SearchCubit cubit}){
           Padding(
             padding: EdgeInsets.only(left: 15),
             child: Text(
-                model.name!,
+              model.name!,
             ),
           ),
           Padding(
@@ -173,7 +172,7 @@ Widget _productItem({required WorkspaceModel model,required SearchCubit cubit}){
               children: [
                 Icon(Icons.location_on),
                 Text(
-                    model.address!,
+                  model.address!,
                 ),
               ],
             ),
