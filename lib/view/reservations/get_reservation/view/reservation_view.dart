@@ -20,8 +20,8 @@ class ReservationView extends StatefulWidget {
 class _ReservationViewState extends State<ReservationView> {
   @override
   Widget build(BuildContext context) {
-    final cubit = BlocProvider.of<GetReservationCubit>(context);
-    return BlocConsumer<GetReservationCubit,GetReservationState>(
+    final cubit = BlocProvider.of<ReservationCubit>(context);
+    return BlocConsumer<ReservationCubit,ReservationState>(
         listener: (context,state){},
         builder:(context,state){
           return Scaffold(
@@ -60,7 +60,7 @@ class _ReservationViewState extends State<ReservationView> {
   }
 }
 
-Widget _reservationItem({required GetReservationModel model,required GetReservationCubit cubit}){
+Widget _reservationItem({required ReservationModel model,required ReservationCubit cubit}){
   return Padding(
     padding: EdgeInsets.all(2.sp),
     child: Container(
@@ -120,29 +120,29 @@ Widget _reservationItem({required GetReservationModel model,required GetReservat
               ],
             ),
           ),
-          StarRatingBar(size: 15),
+
+          Padding(
+            padding: EdgeInsets.only(left: 15),
+            child:
+            Text(model.date!,
+              style: TextStyle(
+                  color: PreferenceUtils.getBool(PreferenceKey.darkTheme)
+                      ? Colors.white
+                      : Colors.black54,
+                  fontWeight: FontWeight.w900, fontSize: 15),),
+
+          ),
 
           Padding(
             padding: EdgeInsets.only(left: 15,bottom: 15),
-            child: RichText(
-              text: TextSpan(
-                text: "model",
-                style: TextStyle(
+            child:
+                Text(model.status!,
+                  style: TextStyle(
                     color: PreferenceUtils.getBool(PreferenceKey.darkTheme)
                         ? Colors.white
                         : Colors.black54,
-                    fontWeight: FontWeight.w900, fontSize: 15),
-                children: [
-                  TextSpan(
-                    text: '/Hour',
-                    style: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.normal
-                    ),
-                  ),
-                ],
-              ),
-            ),
+                    fontWeight: FontWeight.w900, fontSize: 15),),
+
           ),
         ],
       ),
