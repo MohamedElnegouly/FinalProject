@@ -3,10 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../core/shared/shared_preferences.dart';
-import '../../../widget/rating_bar_widget.dart';
-import '../data/reservation_model.dart';
-import '../manager/reservation_cubit.dart';
+import '../../../../core/shared/shared_preferences.dart';
+import '../../data/reservation_model.dart';
+import '../../manager/reservation_cubit.dart';
 
 class ReservationView extends StatefulWidget {
   static String id = 'Reservation view';
@@ -20,6 +19,8 @@ class ReservationView extends StatefulWidget {
 class _ReservationViewState extends State<ReservationView> {
   @override
   Widget build(BuildContext context) {
+    // final cubit = BlocProvider.of<ReservationCubit>(context);
+    // return BlocConsumer<ReservationCubit,ReservationState>(
     final cubit = BlocProvider.of<ReservationCubit>(context);
     return BlocConsumer<ReservationCubit,ReservationState>(
         listener: (context,state){},
@@ -36,17 +37,19 @@ class _ReservationViewState extends State<ReservationView> {
                   children:
                   [
                     const SizedBox(height: 15,),
-                    cubit.reservationList.isEmpty ?
+                    //cubit.reservationList.isEmpty ?
+                    cubit.reservList.isEmpty ?
                     const Center(child: CupertinoActivityIndicator(),) :
                     ListView.builder(
                         itemCount:
-                        cubit.reservationList.length,
+                      //  cubit.reservationList.length,
+                        cubit.reservList.length,
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (context,index)
                         {
                           return _reservationItem(
-                              model: cubit.reservationList[index],
+                              model: cubit.reservList[index],
                               cubit: cubit
                           );
                         }

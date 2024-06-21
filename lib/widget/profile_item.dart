@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:graduationproject/constants/colors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../core/constants/colors.dart';
 import '../core/shared/shared_preferences.dart';
 
 class ProfileItem extends StatelessWidget {

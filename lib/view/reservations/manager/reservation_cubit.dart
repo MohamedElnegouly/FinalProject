@@ -7,14 +7,14 @@ import 'package:http/http.dart'as http;
 import 'package:http/http.dart';
 import 'package:meta/meta.dart';
 
-part 'test_state.dart';
+part 'reservation_state.dart';
 
 class ReservationCubit extends Cubit<ReservationState> {
   ReservationCubit() : super(ReservationInitial());
   List<ReservationModel> reservList = [];
   Set<String> reservID = {};
 
-  Future<void> getReserv() async{
+  Future<void> getReservation() async{
     reservList.clear();
     Response response = await http.get(
         Uri.parse("https://desk-share-api.onrender.com/reservations"),
@@ -43,7 +43,7 @@ class ReservationCubit extends Cubit<ReservationState> {
     }
   }
 
-  Future<dynamic> AddToReserv({
+  Future<dynamic> AddToReservation({
     required String id,
     required String date,}) async {
     try {
@@ -70,7 +70,7 @@ class ReservationCubit extends Cubit<ReservationState> {
         print('added to reserv');
         emit(AddedToReserv());
       }
-      await getReserv();
+      await getReservation();
 
     } catch (e) {
       debugPrint(e.toString());

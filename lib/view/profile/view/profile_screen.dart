@@ -1,12 +1,13 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:graduationproject/constants/colors.dart';
 import 'package:graduationproject/core/shared/shared_preferences.dart';
 import 'package:graduationproject/view/profile/view/profile_container.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../core/constants/colors.dart';
 import '../../../generated/l10n.dart';
+import '../../reservations/get_reservation/view/reservation_view.dart';
 import '../../sub_pages/edit_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -35,8 +36,13 @@ class _ProfileScreenState extends State<ProfileScreen>
             ? Colors.black87
             : Colors.white,
         appBar: AppBar(
-          leading: Icon(Icons.notifications_none,
-            size: 30,
+          leading: InkWell(
+            onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> ReservationView()));
+            },
+            child: Icon(Icons.notifications_none,
+              size: 30,
+            ),
           ),
           actions: [
             Padding(

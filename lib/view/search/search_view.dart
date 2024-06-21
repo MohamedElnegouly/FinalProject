@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduationproject/view/workspace/data/workspace_model.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../constants/colors.dart';
+import '../../core/constants/colors.dart';
 import '../../core/shared/shared_preferences.dart';
 import '../../widget/rating_bar_widget.dart';
 import '../workspac_details/view/details_view.dart';

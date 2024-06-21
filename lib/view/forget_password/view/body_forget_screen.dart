@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduationproject/view/authentication/otp_screen.dart';
 import 'package:graduationproject/widget/custom_text_field.dart';
-import '../../../constants/constants.dart';
+
+import '../../../core/constants/constants.dart';
 import '../../../core/validator/validator.dart';
 import '../../../widget/app_button.dart';
 import '../../../widget/app_text.dart';

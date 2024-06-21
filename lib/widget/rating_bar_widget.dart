@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
-import '../constants/constants.dart';
 
 class StarRatingBar extends StatelessWidget {
   const StarRatingBar({super.key, this.itemCount, required this.size});

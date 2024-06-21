@@ -4,9 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:graduationproject/widget/app_button.dart';
 import 'package:graduationproject/widget/custom_text_field.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-
-import '../../constants/colors.dart';
-import '../../constants/constants.dart';
 import '../../core/shared/shared_preferences.dart';
 
 class EditScreen extends StatefulWidget {

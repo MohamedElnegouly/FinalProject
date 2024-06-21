@@ -138,11 +138,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                   onTap: () {
                                     if (formKey.currentState!
                                         .validate()) {
-                                      BlocProvider.of<LoginCubit>(context)
-                                          .login(
+                                      cubit.login(
                                           email: emailController.text,
-                                          password: passwordController
-                                              .text);
+                                          password: passwordController.text);
                                     }
                                   },
                                 ),

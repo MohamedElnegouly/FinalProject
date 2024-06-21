@@ -8,7 +8,7 @@ class WorkspaceModel {
 
   WorkspaceModel.fromJson({required Map<String, dynamic> data})
   {
-    id= data['id'] ;
+    id= data['_id'] ;
     name= data['name'] ;
     address= data['address'];
      country= data['country']['name'] ;

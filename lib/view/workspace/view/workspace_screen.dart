@@ -1,14 +1,11 @@
-import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduationproject/view/workspac_details/view/details_view.dart';
-import 'package:graduationproject/view/workspace/data/workspace_model.dart';
-import 'package:http/http.dart'as http;
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../constants/colors.dart';
 import '../../../core/shared/shared_preferences.dart';
+import '../../../widget/favorite_button.dart';
 import '../../../widget/rating_bar_widget.dart';
 import '../manager/workspace_cubit.dart';
 class WorkScreen extends StatefulWidget {
@@ -143,14 +140,8 @@ class _WorkScreenState extends State<WorkScreen> {
                                       ),
                                       Positioned(
                                         height: 40,
-                                        child: IconButton(
-                                          icon: const Icon(Icons.favorite_border,
-                                            size: 27,),
-                                          color: mainColor,
-                                          onPressed: () {
-                                            //Navigator.push(context, route),
-                                          },
-                                        ),
+                                        child: 
+                                        FavoriteButton(product: cubit.workspaceList[index])
                                       ),
                                     ],
                                   ),

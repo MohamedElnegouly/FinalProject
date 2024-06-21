@@ -1,4 +1,4 @@
-part of 'test_cubit.dart';
+part of 'reservation_cubit.dart';
 
 @immutable
 abstract class ReservationState {}

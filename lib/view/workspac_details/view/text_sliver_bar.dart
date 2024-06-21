@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-
 import '../../../widget/rich_text_widget.dart';
 
 class SliverBarText extends StatelessWidget {

@@ -1,12 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduationproject/view/workspace/data/workspace_model.dart';
+import 'package:graduationproject/widget/app_button.dart';
+import 'package:omni_datetime_picker/omni_datetime_picker.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../core/assets/app_assets.dart';
+import '../../reservations/manager/reservation_cubit.dart';
 import 'details_review.dart';
 import 'text_sliver_bar.dart';
 import 'workspace_available.dart';
-import '../../../widget/booking_button.dart';
 import '../../../widget/rating_bar_widget.dart';
 import '../../../widget/rich_text_widget.dart';
 
@@ -22,6 +25,7 @@ class Details extends StatefulWidget {
 class _DetailsState extends State<Details> {
   @override
   Widget build(BuildContext context) {
+    final cubit = BlocProvider.of<ReservationCubit>(context);
     WorkspaceModel model =
     ModalRoute.of(context)!.settings.arguments as WorkspaceModel;
     return Scaffold(
@@ -173,15 +177,81 @@ class _DetailsState extends State<Details> {
                                   WorkSpaceAvailable();
                               }),
                         ),
-                        SizedBox(
-                            width: double.infinity,
-                            height: 40.sp,
-                            child: BookingButton()
-                        ),
-                      ]))
-          ),
+
+                        AppButton(title: "Booking Now",onTap: () async {
+                          DateTime? dateTime = await showOmniDateTimePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate:
+                            DateTime(1600).subtract(const Duration(days: 3652)),
+                            lastDate: DateTime.now().add(
+                              const Duration(days: 3652),
+                            ),
+                            is24HourMode: false,
+                            isShowSeconds: false,
+                            minutesInterval: 1,
+                            secondsInterval: 1,
+                            borderRadius: const BorderRadius.all(Radius.circular(16)),
+                            constraints: const BoxConstraints(
+                              maxWidth: 350,
+                              maxHeight: 650,
+                            ),
+                            transitionBuilder: (context, anim1, anim2, child) {
+                              return FadeTransition(
+                                opacity: anim1.drive(
+                                  Tween(
+                                    begin: 0,
+                                    end: 1,
+                                  ),
+                                ),
+                                child: child,
+                              );
+                            },
+                            transitionDuration: const Duration(milliseconds: 200),
+                            barrierDismissible: true,
+                          );
+                          print("id:${model.id}\n date: ${dateTime} ");
+                          cubit.AddToReservation(id: model.id!, date: "${dateTime}");
+                        },),
+
+                       ] )
+
+    ))
+
         ],
       )
     );
   }
+  // showBookingBottomSheet({required id}) async {
+  //   //final cubit = BlocProvider.of<CreateReservationCubit>(context);
+  //   final cubit = BlocProvider.of<TestCubit>(context);
+  //   DateTime selectedDate = DateTime.now();
+  //   showModalBottomSheet<void>(
+  //       context: context,
+  //       builder: (BuildContext context) {
+  //         return Column(
+  //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  //           children: [
+  //             // BookingButton(),
+  //             // ShowTimePickerApp(),
+  //             DateTimePicker(),
+  //             Padding(
+  //               padding: const EdgeInsets.all(8.0),
+  //               child: AppButton(title: "Create",
+  //                 onTap: (){
+  //                   print('id:$id');
+  //                  // print('date : ${selectedDate.year.toString()+'-'+selectedDate.month.toString()+'-'+selectedDate.day.toString()}');
+  //
+  //                   cubit.AddToReserv(id: id, date: "${selectedDate.year.toString()+'-'+selectedDate.month.toString()+'-'+selectedDate.day.toString()}");
+  //                   Navigator.push(context,
+  //                       MaterialPageRoute(builder: (context)=> SuccessReservation()));
+  //                 },),
+  //             )
+  //           ],);
+  //       });
+  //     //   .then((value) {
+  //     // BlocProvider.of<AppCubit>(context).themeChanged();
+  //   //});
+  //
+  // }
 }

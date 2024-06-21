@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graduationproject/view/login/view.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-
-import '../../constants/colors.dart';
-import '../../constants/constants.dart';
+import '../../core/constants/colors.dart';
 import '../../core/validator/validator.dart';
 import '../../widget/custom_text_field.dart';
 

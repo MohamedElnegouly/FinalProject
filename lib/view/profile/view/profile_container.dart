@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduationproject/widget/change_language_bottom_sheet.dart';
 import 'package:graduationproject/widget/profile_item.dart';
-import 'package:graduationproject/widget/show_model_bottom_sheet.dart';
+import 'package:graduationproject/widget/change_theme_bottom_sheet.dart';
 import '../../../core/app_manager/app_cubit.dart';
 import '../../../core/shared/shared_preferences.dart';
 import '../../../generated/l10n.dart';
-import '../../get_reservations/view/reservation_view.dart';
-
+import '../../reservations/get_reservation/view/reservation_view.dart';
 import '../../sub_pages/notifications.dart';
 
 class BodyOfContainer extends StatefulWidget {

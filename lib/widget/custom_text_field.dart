@@ -1,9 +1,8 @@
 
 import 'package:flutter/material.dart';
-import 'package:graduationproject/constants/constants.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '../constants/colors.dart';
+import '../core/constants/colors.dart';
 
 class CustomInputField extends StatefulWidget {
   final String hintText;
