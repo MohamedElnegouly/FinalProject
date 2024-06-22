@@ -37,9 +37,7 @@ class _ProfileScreenState extends State<ProfileScreen>
             : Colors.white,
         appBar: AppBar(
           leading: InkWell(
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=> ReservationView()));
-            },
+            onTap: (){},
             child: Icon(Icons.notifications_none,
               size: 30,
             ),

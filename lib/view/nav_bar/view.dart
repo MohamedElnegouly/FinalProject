@@ -2,7 +2,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:graduationproject/view/favorite/view/fav_view.dart';
 import 'package:graduationproject/view/home/view/view.dart';
-import 'package:graduationproject/view/search/search_view.dart';
+import 'package:graduationproject/view/search/view/search_view.dart';
 import '../../core/constants/colors.dart';
 import '../../core/shared/shared_preferences.dart';
 import '../profile/view/profile_screen.dart';

@@ -18,22 +18,22 @@ class _SuccessReservationState extends State<SuccessReservation> {
   Widget build(BuildContext context) {
     // final cubit = BlocProvider.of<ReservationCubit>(context);
     // return BlocConsumer<ReservationCubit,ReservationState>(
-    final cubit = BlocProvider.of<ReservationCubit>(context);
-    return BlocConsumer<ReservationCubit,ReservationState>(
-        listener: (context,state){},
-    builder:(context,state) {
+    // final cubit = BlocProvider.of<ReservationCubit>(context);
+    // return BlocConsumer<ReservationCubit,ReservationState>(
+    //     listener: (context,state){},
+    // builder:(context,state) {
       return Scaffold(
         body: Center(child:
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             AppText(
-              text: "created", fontSize: 25, color: mainColor,),
+              text: "created successfully", fontSize: 25, color: mainColor,),
             Lottie.asset('assets/animations/success.json'),
           ],)
         ),
       );
-    } );
+    // } );
 
 
   }

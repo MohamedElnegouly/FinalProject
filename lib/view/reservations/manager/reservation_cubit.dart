@@ -7,6 +7,8 @@ import 'package:http/http.dart'as http;
 import 'package:http/http.dart';
 import 'package:meta/meta.dart';
 
+import '../../../core/constants/constants.dart';
+
 part 'reservation_state.dart';
 
 class ReservationCubit extends Cubit<ReservationState> {
@@ -20,8 +22,8 @@ class ReservationCubit extends Cubit<ReservationState> {
         Uri.parse("https://desk-share-api.onrender.com/reservations"),
         headers:
         {
-          'Authorization' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NGM3Mjk3OWU2YjFmNmNmNmVkM2IyYyIsImlhdCI6MTcxNjQwNTYwOH0.m8RsUGZ5Da7xfFX4Fi-VaTIA_Q0z5EbnQnurMA4w6PI',
-          'x-api-key'     : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiQzJabXkwNktHNUplaU9qSWhQNUZOTkg2OVFoMGR6a0UifQ.pSRkGDcH0wpkGP1GetT02mLStF6KUBIr9Iq4B9cvzR8',
+          'x-api-key'     : apiKey,
+          "Authorization" : token
         }
     );
     var responseBody = jsonDecode(response.body);
@@ -51,8 +53,8 @@ class ReservationCubit extends Cubit<ReservationState> {
           Uri.parse("https://desk-share-api.onrender.com/reservations"),
           headers:
           {
-            'x-api-key'     : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiQzJabXkwNktHNUplaU9qSWhQNUZOTkg2OVFoMGR6a0UifQ.pSRkGDcH0wpkGP1GetT02mLStF6KUBIr9Iq4B9cvzR8',
-            "Authorization" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NGM3Mjk3OWU2YjFmNmNmNmVkM2IyYyIsImlhdCI6MTcxNjQwNTYwOH0.m8RsUGZ5Da7xfFX4Fi-VaTIA_Q0z5EbnQnurMA4w6PI",
+            'x-api-key'     : apiKey,
+            "Authorization" : token,
             "Content-Type" : "application/x-www-form-urlencoded"
           },
           body:

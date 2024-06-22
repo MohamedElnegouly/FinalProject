@@ -51,8 +51,8 @@ class _BodyOfContainerState extends State<BodyOfContainer> {
             Column(children: [
               ProfileItem(
                   onTap: () {
-                    Navigator.pushNamed(context, ReservationView.id
-                    );
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> ReservationView()));
+
                   },
                   icon: Icons.calendar_month_outlined,
                   title: "Reservations"

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:bloc/bloc.dart';
+import 'package:graduationproject/core/constants/constants.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:meta/meta.dart';
@@ -16,14 +17,14 @@ class RegisterCubit extends Cubit<RegisterState> {
   }) async {
     Response response = await http.post(Uri.parse("https://desk-share-api.onrender.com/auth/signup"),
         headers: {
-          'x-api-key': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiQzJabXkwNktHNUplaU9qSWhQNUZOTkg2OVFoMGR6a0UifQ.pSRkGDcH0wpkGP1GetT02mLStF6KUBIr9Iq4B9cvzR8",
+          'x-api-key': apiKey,
         },
         body: {
           "name":name,
           "email":email,
           "password":password,
-          "country":country,
-          "city":city
+          "country":"65ea2167eedefdf87f991d35",
+          "city":"65e9b5b4583cfabbd459bfe7"
         }
     );
     var responseBody = jsonDecode(response.body);

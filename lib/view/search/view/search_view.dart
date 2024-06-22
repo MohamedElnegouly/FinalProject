@@ -4,11 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduationproject/view/workspace/data/workspace_model.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../core/constants/colors.dart';
-import '../../core/shared/shared_preferences.dart';
-import '../../widget/rating_bar_widget.dart';
-import '../workspac_details/view/details_view.dart';
-import 'search_cubit.dart';
+import '../../../core/shared/shared_preferences.dart';
+import '../../../widget/rating_bar_widget.dart';
+import '../../workspac_details/view/details_view.dart';
+import '../manager/search_cubit.dart';
 
 class SearchView extends StatefulWidget {
   static String id = 'SearchView view';
@@ -25,9 +24,6 @@ class _SearchViewState extends State<SearchView> {
   @override
   Widget build(BuildContext context) {
     final cubit = BlocProvider.of<SearchCubit>(context);
-    // return BlocConsumer<SearchCubit,SearchStates>(
-    //     listener: (context,state){},
-    //     builder:(context,state){
     return Scaffold(
         appBar: AppBar(
           toolbarHeight: 100,
@@ -139,23 +135,7 @@ Widget _productItem({required WorkspaceModel model,required SearchCubit cubit}){
                     ),
 
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Container(
-                      height: 30,
-                      width: 30,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.grey.withOpacity(0.4),
-                      ),
-                      child:
-                      InkWell(
-                          onTap: (){
-                          },
-                          child: Icon(Icons.favorite_border,color: mainColor,)
-                      ),
-                    ),
-                  ),
+
                 ]
             ),
 

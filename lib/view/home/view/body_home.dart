@@ -4,6 +4,7 @@ import 'package:graduationproject/view/workspace/view/workspace_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../core/shared/shared_preferences.dart';
 import '../../../generated/l10n.dart';
+import '../../login/view.dart';
 
 class BodyHomeScreen extends StatefulWidget {
   const BodyHomeScreen({super.key});
@@ -42,9 +43,13 @@ class _BodyHomeScreenState extends State<BodyHomeScreen> {
           ),
         ),
         Spacer(),
-        Icon(
-          Icons.notifications_none,
-          size: 30,
+        IconButton(
+          onPressed: ()
+          {
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>LoginScreen()));
+
+          },
+          icon: Icon(Icons.logout),
         )
       ]),
 

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +9,10 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../core/shared/shared_preferences.dart';
 import '../../../widget/favorite_button.dart';
 import '../../../widget/rating_bar_widget.dart';
+import '../data/workspace_model.dart';
 import '../manager/workspace_cubit.dart';
+import 'package:http/http.dart' as http;
+
 class WorkScreen extends StatefulWidget {
   static String id = 'WorkScreen view';
 
@@ -18,61 +23,6 @@ class WorkScreen extends StatefulWidget {
 }
 
 class _WorkScreenState extends State<WorkScreen> {
-
-  // List<WorkspaceModel> items = [];
-  // int skip = 0;
-  // int limit = 17;
-  // bool isLoadMore = false;
-  // ScrollController scrollController =ScrollController();
-  //
-  // fetchData() async {
-  //   var url = Uri.parse(
-  //       "https://desk-share-api.onrender.com/workspaces?limit=$limit&skip=$skip");
-  //   var response = await http.get(url,
-  //       headers:
-  //       {
-  //         'Authorization' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NGIwZWNkODg4NjYyNDExNGVkMzE5MSIsImlhdCI6MTcxNjE5NTAyNn0.9IBB_DfQxtbb0M8c_ZHxVzZ4mAEFXkSvaBZbYJkSD0U',
-  //         'x-api-key': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiQzJabXkwNktHNUplaU9qSWhQNUZOTkg2OVFoMGR6a0UifQ.pSRkGDcH0wpkGP1GetT02mLStF6KUBIr9Iq4B9cvzR8',
-  //       }
-  //   );
-  //   if (response.statusCode == 200) {
-  //
-  //     var responseBody = jsonDecode(response.body);
-  //     print('workspacedata is : ${responseBody}');
-  //
-  //     if (response.statusCode == 200) {
-  //       for (int i = 0; i < responseBody['limit']; i++) {
-  //         items.add(
-  //             WorkspaceModel.fromJson(data: responseBody['workspaces'][i])
-  //         );
-  //       }
-  //       print('length: ${items.length}');
-  //     }
-  //   }
-  // }
-  //
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   fetchData();
-  //   scrollController.addListener(() async {
-  //     if(isLoadMore) return;
-  //     if(scrollController.position.pixels ==
-  //         scrollController.position.maxScrollExtent
-  //     ){
-  //       if (!mounted) return;
-  //       setState(() {
-  //      isLoadMore = true;
-  //    });
-  //    skip= skip+limit;
-  //    await fetchData();
-  //       if (!mounted) return;
-  //       setState(() {
-  //      isLoadMore=false;
-  //    });
-  //     }
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -92,17 +42,20 @@ class _WorkScreenState extends State<WorkScreen> {
                 child: ListView.builder(
                     shrinkWrap: true,
                     physics: PageScrollPhysics(),
-                    // controller: scrollController,
+                     //controller: scrollController,
                     itemCount:
                     // isLoadMore
                     //     ? items.length + 1
                     //     :items.length,
                     cubit.workspaceList.length,
                     itemBuilder: (context, index) {
-                      // if (index >= cubit.workspaceList.length) {
-                      //   return Center(child: CircularProgressIndicator(),);
-                      // }
-                      // else {
+                      if (index >=
+                          cubit.workspaceList.length
+                      //    cubit.workspaceList.length
+                      ) {
+                        return Center(child: CircularProgressIndicator(),);
+                      }
+                      else {
                       return Padding(
                           padding: const EdgeInsets.only(bottom: 8),
                           child:
@@ -112,13 +65,15 @@ class _WorkScreenState extends State<WorkScreen> {
                                 InkWell(
                                   onTap: () {
                                     Navigator.pushNamed(context, Details.id,
-                                      arguments: cubit.workspaceList[index],
+                                      arguments: cubit.workspaceList[index]
+                                      //cubit.workspaceList[index],
                                     );
                                   },
                                   child:
                                   Stack(
                                     alignment: Alignment.topLeft,
                                     children: [
+                                     // cubit.workspaceList[index].cover == null
                                       cubit.workspaceList[index].cover == null
                                           ? Padding(
                                         padding: EdgeInsets.only(top: 20),
@@ -207,7 +162,7 @@ class _WorkScreenState extends State<WorkScreen> {
                                 )
                               ])
                       );
-                      //  }
+                       }
                     }),
               );
             } )

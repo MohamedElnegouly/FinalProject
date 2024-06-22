@@ -4,6 +4,8 @@ import 'package:graduationproject/view/login/view.dart';
 import 'package:graduationproject/view/welcome_screen/welcome_body.dart';
 
 class WelcomeScreen extends StatefulWidget {
+  static String id = 'Welcome view';
+
   const WelcomeScreen({super.key});
 
   @override

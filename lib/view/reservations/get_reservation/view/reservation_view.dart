@@ -109,7 +109,7 @@ Widget _reservationItem({required ReservationModel model,required ReservationCub
           Padding(
             padding: EdgeInsets.only(left: 15),
             child: Text(
-              model.name!,
+               model.name!,
             ),
           ),
           Padding(
@@ -118,7 +118,9 @@ Widget _reservationItem({required ReservationModel model,required ReservationCub
               children: [
                 Icon(Icons.location_on),
                 Text(
-                  model.address!,
+                  model.address!.length > 15
+                      ? model.address!.substring(0, 20) + '...'
+                      :model.address!,
                 ),
               ],
             ),

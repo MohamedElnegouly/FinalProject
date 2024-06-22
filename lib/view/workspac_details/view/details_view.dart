@@ -1,8 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduationproject/view/reservations/create_reservation/view/success_reservation.dart';
 import 'package:graduationproject/view/workspace/data/workspace_model.dart';
 import 'package:graduationproject/widget/app_button.dart';
+import 'package:lottie/lottie.dart';
 import 'package:omni_datetime_picker/omni_datetime_picker.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../core/assets/app_assets.dart';

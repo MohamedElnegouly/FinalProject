@@ -30,7 +30,8 @@ class LoginCubit extends Cubit<LoginState> {
           },
           body: {
             "email": email,
-            "password": password
+            "password": password,
+
           }
       );
       var data = jsonDecode(response.body);
@@ -56,12 +57,4 @@ class LoginCubit extends Cubit<LoginState> {
     }
   }
 
-  void isLoggedIn() async {
-    final loggedIn = PreferenceUtils.getBool(PreferenceKey.loggedIn);
-    print('LoggedIn => $loggedIn');
-  }
-
-  void saveLogout() async {
-    PreferenceUtils.setBool(PreferenceKey.loggedIn, false);
-  }
 }

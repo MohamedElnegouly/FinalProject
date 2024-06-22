@@ -3,22 +3,18 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-//import 'package:graduationproject/book_screen.dart';
 import 'package:graduationproject/core/app_manager/app_cubit.dart';
-// import 'package:graduationproject/view/get_reservations/manager/reservation_cubit.dart';
-// import 'package:graduationproject/view/get_reservations/view/reservation_view.dart';
-// import 'package:graduationproject/widget/show_time_picker.dart';
 import 'package:graduationproject/view/favorite/manager/favorite_cubit.dart';
-import 'package:graduationproject/view/profile/view/profile_screen.dart';
+import 'package:graduationproject/view/login/view.dart';
 import 'package:graduationproject/view/reservations/manager/reservation_cubit.dart';
-import 'package:graduationproject/view/search/search_view.dart';
+import 'package:graduationproject/view/search/view/search_view.dart';
+import 'package:graduationproject/view/welcome_screen/welcome_view.dart';
 import 'package:graduationproject/view/workspac_details/view/details_view.dart';
-import 'package:graduationproject/view/search/search_cubit.dart';
+import 'package:graduationproject/view/search/manager/search_cubit.dart';
 import 'package:graduationproject/view/workspace/manager/workspace_cubit.dart';
 import 'package:graduationproject/view/login/login_cubit.dart';
 import 'package:graduationproject/view/nav_bar/view.dart';
 import 'package:graduationproject/view/register/register_cubit.dart';
-import 'package:graduationproject/widget/date_time_picker.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'core/constants/constants.dart';
 import 'core/constants/themes.dart';
@@ -51,7 +47,6 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (context) => SearchCubit()..getProducts()),
           BlocProvider(create: (context) => FavoriteCubit()..getFavorites()),
           BlocProvider(create: (context) => ReservationCubit()..getReservation()),
-         // BlocProvider(create: (context) => CreateReservationCubit()),
         ],
         child: BlocBuilder<AppCubit, AppState>(builder: (context, state) {
           return ResponsiveSizer(builder: (context, orientation, screenType) {
@@ -74,15 +69,14 @@ class MyApp extends StatelessWidget {
               routes: {
                 NavBarView.id: (context) => const NavBarView(),
                 SearchView.id: (context) =>  SearchView(),
-                //Favorite.id:(context) => const FavoriteScreen(),
+                WelcomeScreen.id:(context)=> WelcomeScreen(),
                 Details.id:(context) => const Details(),
-                //ReservationView.id:(context) => const ReservationView(),
-                // ProfileScreen.id:(context) => const ProfileScreen(),
-                //  BookingScreen.id:(context) => const BookingScreen(),
               },
-              initialRoute: NavBarView.id,
-             //   home:
-             //   DateTimePicker(),
+            //  initialRoute: WelcomeScreen.id,
+               home:
+               token == null ?
+               LoginScreen()
+                   : NavBarView()
             );
           });
         }));

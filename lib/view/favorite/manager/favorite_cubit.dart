@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
+import '../../../core/constants/constants.dart';
 import '../../workspace/data/workspace_model.dart';
 part 'favorite_state.dart';
 
@@ -48,8 +49,8 @@ class FavoriteCubit extends Cubit<FavoriteState> {
           Uri.parse("https://desk-share-api.onrender.com/favorites/$id"),
           headers:
           {
-            'x-api-key'     : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiQzJabXkwNktHNUplaU9qSWhQNUZOTkg2OVFoMGR6a0UifQ.pSRkGDcH0wpkGP1GetT02mLStF6KUBIr9Iq4B9cvzR8',
-            "Authorization" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NGM3Mjk3OWU2YjFmNmNmNmVkM2IyYyIsImlhdCI6MTcxNjQwNTYwOH0.m8RsUGZ5Da7xfFX4Fi-VaTIA_Q0z5EbnQnurMA4w6PI"
+            'x-api-key'     : apiKey,
+            "Authorization" : token
           },
       );
       if (favoritsID.contains(id)) {

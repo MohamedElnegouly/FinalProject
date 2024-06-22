@@ -23,7 +23,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final countryController = TextEditingController();
   final cityController = TextEditingController();
   final formKey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
     return
@@ -130,28 +129,28 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ),
            SizedBox(height: 10.sp),
 
-          SizedBox(
-            height: 42.sp,
-            child:
-            CustomInputField(
-              hintText: 'country',
-              controller: countryController,
-                validator: (value) {
-                  return Validator.validateAnotherField(value);
-                }
-            ),
-          ),
-          SizedBox(
-            height: 42.sp,
-            child:
-            CustomInputField(
-              hintText: 'city ',
-              controller: cityController,
-                validator: (value) {
-                  return Validator.validateAnotherField(value);
-                }
-            ),
-          ),
+          // SizedBox(
+          //   height: 42.sp,
+          //   child:
+          //   CustomInputField(
+          //     hintText: 'country',
+          //     controller: countryController,
+          //       // validator: (value) {
+          //       //   return Validator.validateAnotherField(value);
+          //       // }
+          //   ),
+          // ),
+          // SizedBox(
+          //   height: 42.sp,
+          //   child:
+          //   CustomInputField(
+          //     hintText: 'city ',
+          //     controller: cityController,
+          //       // validator: (value) {
+          //       //   return Validator.validateAnotherField(value);
+          //       // }
+          //   ),
+          // ),
            SizedBox(height: 20.sp),
           AppButton(title:
            state is RegisterLoadingState
