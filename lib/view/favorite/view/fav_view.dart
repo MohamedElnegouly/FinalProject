@@ -1,7 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduationproject/view/favorite/manager/favorite_cubit.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../core/shared/shared_preferences.dart';
 import '../../../widget/rating_bar_widget.dart';
 
@@ -66,8 +68,22 @@ class _SearchViewState extends State<FavoriteView> {
                                             height: 170,
                                             child: ClipRRect(
                                                 borderRadius: BorderRadius.circular(10),
-                                                child: Image.network('https://images.inc.com/uploaded_files/image/1920x1080/getty_517610514_353435.jpg',
-                                                  fit: BoxFit.fill,)),
+                                                child:
+                                                cubit.favorites[index].cover == null
+                                                    ? Padding(
+                                                  padding: EdgeInsets.only(top: 20),
+                                                  child: Center(
+                                                    child: Icon(
+                                                      Icons.image_not_supported_outlined,
+                                                      size: 50.sp,
+                                                    ),
+                                                  ),
+                                                )
+                                                    :  CachedNetworkImage(
+                                                      imageUrl: cubit.favorites[index].cover!,
+                                                      fit: BoxFit.cover,
+                                                    ),
+                                            ),
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.all(10),
@@ -82,12 +98,9 @@ class _SearchViewState extends State<FavoriteView> {
                                                 width: 36,
                                                 height: 36,
                                                 decoration: BoxDecoration(
-                                                    color: Colors.white,
+                                                    color: Colors.grey.withOpacity(0.5),
                                                     borderRadius: BorderRadius.circular(18),
-                                                    boxShadow: const [
-                                                      BoxShadow(
-                                                          color: Colors.black12, offset: Offset(0, 4), blurRadius: 4)
-                                                    ]),
+                                                   ),
                                                 child: Icon(
                                                   cubit.favoritsID.contains(cubit.favorites[index].id)
                                                       ? Icons.favorite_rounded
@@ -95,7 +108,7 @@ class _SearchViewState extends State<FavoriteView> {
                                                   color:
                                                   cubit.favoritsID.contains(cubit.favorites[index].id) ?  Colors.red :
                                                   Colors.grey,
-                                                  size: 16,
+                                                  size: 25,
                                                 ),
                                               ),
                                             )

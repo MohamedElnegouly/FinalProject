@@ -20,7 +20,7 @@ class FavoriteCubit extends Cubit<FavoriteState> {
     Uri.parse("https://desk-share-api.onrender.com/favorites"),
     headers:
     {
-      'Authorization' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NGM3Mjk3OWU2YjFmNmNmNmVkM2IyYyIsImlhdCI6MTcxNjQwNTYwOH0.m8RsUGZ5Da7xfFX4Fi-VaTIA_Q0z5EbnQnurMA4w6PI',
+      'Authorization' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NzZiNzM3MjlkYzk0Y2E3OGJkMDkxMCIsImlhdCI6MTcxOTE0MzU2M30.W9iCbks6ONwtGGwmjqCPadC8V-A4-up5j6epVBkjpYM',
       'x-api-key'     : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiQzJabXkwNktHNUplaU9qSWhQNUZOTkg2OVFoMGR6a0UifQ.pSRkGDcH0wpkGP1GetT02mLStF6KUBIr9Iq4B9cvzR8',
     }
   );
@@ -50,7 +50,7 @@ class FavoriteCubit extends Cubit<FavoriteState> {
           headers:
           {
             'x-api-key'     : apiKey,
-            "Authorization" : token
+            "Authorization" : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NzZiNzM3MjlkYzk0Y2E3OGJkMDkxMCIsImlhdCI6MTcxOTE0MzU2M30.W9iCbks6ONwtGGwmjqCPadC8V-A4-up5j6epVBkjpYM'
           },
       );
       if (favoritsID.contains(id)) {
@@ -77,7 +77,7 @@ class FavoriteCubit extends Cubit<FavoriteState> {
         headers:
         {
           'x-api-key'     : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiQzJabXkwNktHNUplaU9qSWhQNUZOTkg2OVFoMGR6a0UifQ.pSRkGDcH0wpkGP1GetT02mLStF6KUBIr9Iq4B9cvzR8',
-          "Authorization" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NGM3Mjk3OWU2YjFmNmNmNmVkM2IyYyIsImlhdCI6MTcxNjQwNTYwOH0.m8RsUGZ5Da7xfFX4Fi-VaTIA_Q0z5EbnQnurMA4w6PI"
+          "Authorization" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NzZiNzM3MjlkYzk0Y2E3OGJkMDkxMCIsImlhdCI6MTcxOTE0MzU2M30.W9iCbks6ONwtGGwmjqCPadC8V-A4-up5j6epVBkjpYM"
         },
       );
       if (favoritsID.contains(id)) {

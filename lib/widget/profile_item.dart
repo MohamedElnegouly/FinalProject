@@ -22,7 +22,7 @@ class ProfileItem extends StatelessWidget {
           onTap: onTap,
           child:
           Padding(
-            padding: EdgeInsets.only(left: 15.sp, top: 15.sp),
+            padding: EdgeInsets.only(left: 15.sp, top: 15.sp,bottom: 10.sp),
             child: Row(
               children: [
                 Padding(

@@ -1,14 +1,16 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduationproject/core/shared/shared_preferences.dart';
+import 'package:graduationproject/view/profile/manager/profile_cubit.dart';
 import 'package:graduationproject/view/profile/view/profile_container.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../core/constants/colors.dart';
-import '../../../generated/l10n.dart';
-import '../../reservations/get_reservation/view/reservation_view.dart';
+import '../../../core/constants/constants.dart';
 import '../../sub_pages/edit_screen.dart';
+import 'package:http/http.dart' as http;
 
 class ProfileScreen extends StatefulWidget {
   static String id = 'profile view';
@@ -27,6 +29,48 @@ class _ProfileScreenState extends State<ProfileScreen>
   String imageUrl = '';
   bool uploading = false;
   File ? _selectedImage;
+  Map<String, dynamic> _userData = {};
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchUserProfile();
+  }
+
+  Future<void> _fetchUserProfile() async {
+    final url = Uri.parse('https://desk-share-api.onrender.com/profile'); // Replace with your URL
+    try {
+      final response = await http.get(url,
+          headers:
+              {
+                'x-api-key'     : apiKey,
+                "Authorization" : token
+              }
+      );
+
+      if (response.statusCode == 200) {
+        // If the server returns a 200 OK response, parse the JSON
+        final data = json.decode(response.body);
+
+        if (data['status'] == 'true') {
+          setState(() {
+            _userData = data['user'];
+          });
+        } else {
+          setState(() {
+            _userData = {'error': data['message']};
+          });
+        }
+      } else {
+        // If the server did not return a 200 OK response, throw an exception
+        throw Exception('Failed to load profile');
+      }
+    } catch (e) {
+      setState(() {
+        _userData = {'error': 'Error: $e'};
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -92,60 +136,68 @@ class _ProfileScreenState extends State<ProfileScreen>
                               Icons.person,
                               size: 45,
                               color: PreferenceUtils.getBool(PreferenceKey.darkTheme)
-                               ? Colors.black54
-                               : mainColor,
+                                  ? Colors.black54
+                                  : mainColor,
                             ),
                           ),
                         ),
                       ),
 
-                      CircleAvatar(
-                        radius: 17,
-                        backgroundColor: Colors.white,
+                          CircleAvatar(
+                            radius: 17,
+                            backgroundColor: Colors.white,
+                          ),
+                          CircleAvatar(
+                              radius: 15,
+                              backgroundColor: PreferenceUtils.getBool(
+                                  PreferenceKey.darkTheme)
+                                  ? Colors.grey
+                                  : Colors.grey.withOpacity(0.5),
+                              child: IconButton(
+                                color: Colors.black87,
+                                onPressed: () {
+                                  Navigator.push(context,
+                                      MaterialPageRoute(
+                                          builder: (context) => EditScreen()));
+                                },
+                                icon: Icon(Icons.edit_outlined,
+                                  size: 17,
+                                )
+                                ,)
+                          ),
+                        ],
                       ),
-                      CircleAvatar(
-                          radius: 15,
-                          backgroundColor: PreferenceUtils.getBool(PreferenceKey.darkTheme)
-                          ? Colors.grey
-                          : Colors.grey.withOpacity(0.5),
-                          child: IconButton(
-                            color: Colors.black87,
-                            onPressed: () { Navigator.push(context,
-                              MaterialPageRoute(
-                                  builder: (context)=> EditScreen()));
-                              },
-                            icon: Icon(Icons.edit_outlined,
-                            size: 17,
-                            )
-                            ,)
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 10.sp,),
+                    ),
+                    SizedBox(height: 10.sp,),
+                    _userData.isEmpty
+                        ? SizedBox(height: 40,)
+                        : _userData.containsKey('error')
+                ? Text(_userData['error'])
+                : Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text('${_userData['name']}',style: TextStyle(color: Colors.black),),
+                Text('${_userData['email']}'),
+              ],
+            ),
+                    SizedBox(height: 10,),
+                    BodyOfContainer(),
+                  ]),
+            ),
 
-                Text(S().yourname,
-                  style: Theme
-                      .of(context)
-                      .textTheme
-                      .titleMedium,),
-                Text("Youremail@gmail.com | +01234565643",
-                  style:TextStyle(color:PreferenceUtils.getBool(PreferenceKey.darkTheme)
-                      ? Colors.white
-                      : Colors.black,),
-                ),
-                SizedBox(height: 10,),
-                BodyOfContainer(),
-              ]),
-        ),
-      );
+    );
   }
 
   void pickImage() async {
     final ImagePicker picker = ImagePicker();
     final returnedImage = await picker.pickImage(source: ImageSource.gallery);
     setState(() {
+      PreferenceUtils.setBool(
+          PreferenceKey.image,
+          true
+      );
       _selectedImage = File(returnedImage!.path);
     });
   }
+
 }

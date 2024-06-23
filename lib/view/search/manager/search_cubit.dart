@@ -16,12 +16,12 @@ class SearchCubit extends Cubit<SearchStates>{
   void getProducts() async {
     int limit =17;
     int skip = 0;
-    var url = Uri.parse("https://desk-share-api.onrender.com/workspaces?limit=25&skip=0");
+    var url = Uri.parse("https://desk-share-api.onrender.com/workspaces?limit=26&skip=0");
     var response = await http.get(url,
         headers:
         {
           'x-api-key'     : apiKey,
-          "Authorization" : token
+          "Authorization" : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NzZiNzM3MjlkYzk0Y2E3OGJkMDkxMCIsImlhdCI6MTcxOTE0MzU2M30.W9iCbks6ONwtGGwmjqCPadC8V-A4-up5j6epVBkjpYM'
         }
     );
     var responseBody = jsonDecode(response.body);

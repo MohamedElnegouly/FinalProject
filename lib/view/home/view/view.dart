@@ -16,6 +16,9 @@ class HomeView extends StatefulWidget {
   @override
   State<HomeView> createState() => _HomeViewState();
 }
+List<String> hours = ["19", "17"];
+
+List<int> rates = [5, 4];
 class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
@@ -118,13 +121,13 @@ class _HomeViewState extends State<HomeView> {
                                                                 ),
                                                               )
                                                             ]),
-                                                        StarRatingBar(size: 15),
+                                                        StarRatingBar(size: 15,itemCount: rates[index],),
                                                         Padding(
                                                           padding: EdgeInsets.only(top: 25.sp),
                                                           child:
                                                           RichText(
                                                             text: TextSpan(
-                                                              text: '\$17 ',
+                                                              text: '\$${hours[index]} ',
                                                               style: TextStyle(
                                                                   color: PreferenceUtils.getBool(
                                                                       PreferenceKey.darkTheme)

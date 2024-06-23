@@ -1,3 +1,4 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduationproject/core/validator/validator.dart';
@@ -23,6 +24,38 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final countryController = TextEditingController();
   final cityController = TextEditingController();
   final formKey = GlobalKey<FormState>();
+
+  // List<String> listCity = [
+  //   "Alexandria",
+  //   "Beni Suef",
+  //   "Cairo",
+  //   "Ismailia",
+  //   "Mansoura",
+  //   "Obour",
+  //   "Tanta",
+  //   "Zagazig",
+  //   "Egypt",
+  //   "France",
+  //   "Gabon",
+  //   "Germany",
+  //   "Italy",
+  // ];
+  List<String> listCountry = [
+    "Afghanistan",
+    "Australia",
+    "American",
+    "Brasil",
+    "Bulgaria",
+    "Canada",
+    "Egypt",
+    "France",
+    "Gabon",
+    "Germany",
+    "Italy",
+  ];
+  String? selectedCountry;
+  String? selectedCity;
+
   @override
   Widget build(BuildContext context) {
     return
@@ -129,28 +162,83 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ),
            SizedBox(height: 10.sp),
 
-          // SizedBox(
-          //   height: 42.sp,
-          //   child:
-          //   CustomInputField(
-          //     hintText: 'country',
-          //     controller: countryController,
-          //       // validator: (value) {
-          //       //   return Validator.validateAnotherField(value);
-          //       // }
-          //   ),
-          // ),
-          // SizedBox(
-          //   height: 42.sp,
-          //   child:
-          //   CustomInputField(
-          //     hintText: 'city ',
-          //     controller: cityController,
-          //       // validator: (value) {
-          //       //   return Validator.validateAnotherField(value);
-          //       // }
-          //   ),
-          // ),
+      DropdownButtonHideUnderline(
+        child: DropdownButton2<String>(
+          isExpanded: true,
+          hint: const Row(
+            children: [
+              Expanded(
+                child: Text(
+                  'Select Your Country',
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.black,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
+          ),
+          items: listCountry
+              .map((String item) => DropdownMenuItem<String>(
+            value: item,
+            child: Text(
+              item,
+              style: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
+              overflow: TextOverflow.ellipsis,
+            ),
+          ))
+              .toList(),
+          value: selectedCountry,
+          onChanged: (String? value) {
+            setState(() {
+              selectedCountry = value;
+            });
+          },
+          buttonStyleData: ButtonStyleData(
+            height: 50,
+            width: 160,
+            padding: const EdgeInsets.only(left: 14, right: 14),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(14),
+              border: Border.all(
+                color: Colors.black26,
+              ),
+              color: Colors.grey.shade200,
+            ),
+          ),
+          iconStyleData: const IconStyleData(
+            icon: Icon(
+              Icons.arrow_drop_down,
+            ),
+            iconSize: 14,
+            iconEnabledColor: Colors.black,
+            iconDisabledColor: Colors.grey,
+          ),
+          dropdownStyleData: DropdownStyleData(
+            maxHeight: 200,
+            width: 300,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(14),
+              color: Colors.white,
+            ),
+            offset: const Offset(20, 40),
+            scrollbarTheme: ScrollbarThemeData(
+              radius: const Radius.circular(40),
+              thickness: MaterialStateProperty.all<double>(6),
+              thumbVisibility: MaterialStateProperty.all<bool>(true),
+            ),
+          ),
+          menuItemStyleData: const MenuItemStyleData(
+            height: 40,
+            padding: EdgeInsets.only(left: 24, right: 14),
+          ),
+        ),
+      ),
            SizedBox(height: 20.sp),
           AppButton(title:
            state is RegisterLoadingState

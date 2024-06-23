@@ -6,11 +6,13 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:graduationproject/core/app_manager/app_cubit.dart';
 import 'package:graduationproject/view/favorite/manager/favorite_cubit.dart';
 import 'package:graduationproject/view/login/view.dart';
+import 'package:graduationproject/view/register/view.dart';
 import 'package:graduationproject/view/reservations/manager/reservation_cubit.dart';
 import 'package:graduationproject/view/search/view/search_view.dart';
 import 'package:graduationproject/view/welcome_screen/welcome_view.dart';
 import 'package:graduationproject/view/workspac_details/view/details_view.dart';
 import 'package:graduationproject/view/search/manager/search_cubit.dart';
+import 'package:graduationproject/view/workspac_details/view/workspace_available.dart';
 import 'package:graduationproject/view/workspace/manager/workspace_cubit.dart';
 import 'package:graduationproject/view/login/login_cubit.dart';
 import 'package:graduationproject/view/nav_bar/view.dart';
@@ -74,9 +76,10 @@ class MyApp extends StatelessWidget {
               },
             //  initialRoute: WelcomeScreen.id,
                home:
-               token == null ?
-               LoginScreen()
-                   : NavBarView()
+               NavBarView()
+               // token == null ?
+               // LoginScreen()
+               //    : NavBarView()
             );
           });
         }));

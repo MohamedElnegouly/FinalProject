@@ -22,12 +22,9 @@ class FavoriteButton extends StatelessWidget {
           width: 36,
           height: 36,
           decoration: BoxDecoration(
-              color: Colors.white,
+              color: Colors.grey.withOpacity(0.5),
               borderRadius: BorderRadius.circular(18),
-              boxShadow: const [
-                BoxShadow(
-                    color: Colors.black12, offset: Offset(0, 4), blurRadius: 4)
-              ]),
+          ),
           child: Icon(
             cubit.favoritsID.contains(product.id)
                 ? Icons.favorite_rounded
@@ -35,7 +32,7 @@ class FavoriteButton extends StatelessWidget {
             color:
             cubit.favoritsID.contains(product.id) ? Colors.red :
             Colors.grey,
-            size: 16,
+            size: 25,
           ),
         ),
       );

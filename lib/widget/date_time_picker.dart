@@ -27,7 +27,6 @@ class _DateTimePickerState extends State<DateTimePicker> {
     ),
         ]);
   }
-
   showDatePicker() async {
     DateTime? dateTime = await showOmniDateTimePicker(
       context: context,

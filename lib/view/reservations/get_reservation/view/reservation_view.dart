@@ -19,8 +19,6 @@ class ReservationView extends StatefulWidget {
 class _ReservationViewState extends State<ReservationView> {
   @override
   Widget build(BuildContext context) {
-    // final cubit = BlocProvider.of<ReservationCubit>(context);
-    // return BlocConsumer<ReservationCubit,ReservationState>(
     final cubit = BlocProvider.of<ReservationCubit>(context);
     return BlocConsumer<ReservationCubit,ReservationState>(
         listener: (context,state){},

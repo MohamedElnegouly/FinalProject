@@ -3,7 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 enum PreferenceKey{
   name,
   email,
-  loggedIn,
+  image,
   ProfileData,
   profileImage,
   token,

@@ -31,7 +31,7 @@ class _BodyHomeScreenState extends State<BodyHomeScreen> {
             ),
             children: [
               TextSpan(
-                text: S().KualaLumpur +','+ S().Malaysia,
+                text: "Cairo, Egypt",
                 style: TextStyle(
                   color: PreferenceUtils.getBool(PreferenceKey.darkTheme)
                       ? Colors.white

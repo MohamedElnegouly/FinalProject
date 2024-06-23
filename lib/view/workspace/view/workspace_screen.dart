@@ -21,7 +21,13 @@ class WorkScreen extends StatefulWidget {
   @override
   State<WorkScreen> createState() => _WorkScreenState();
 }
+List<String> hourList = [
+  "19", "17", "8", "15", "12", "7", "14", "6", "19", "17", "8", "15", "12", "7", "14", "6",
+  "11", "9", "17", "12", "5", "13", "18","14"];
 
+List<int> rate = [
+  5, 4, 3, 2, 5, 3, 4, 5,5, 3, 4, 2, 5, 3, 4, 5,
+  5, 3, 4, 2, 5, 3, 4,5];
 class _WorkScreenState extends State<WorkScreen> {
 
   @override
@@ -132,13 +138,13 @@ class _WorkScreenState extends State<WorkScreen> {
                                                 ),
                                               )
                                             ]),
-                                        StarRatingBar(size: 15),
+                                        StarRatingBar(size: 15,itemCount: rate[index] ,),
                                         Padding(
                                           padding: EdgeInsets.only(top: 25.sp),
                                           child:
                                           RichText(
                                             text: TextSpan(
-                                              text: '\$17 ',
+                                              text: '\$${hourList[index]}',
                                               style: TextStyle(
                                                   color: PreferenceUtils.getBool(
                                                       PreferenceKey.darkTheme)

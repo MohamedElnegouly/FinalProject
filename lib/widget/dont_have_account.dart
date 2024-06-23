@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:graduationproject/view/CountryScreen/view/country_view.dart';
 import 'package:graduationproject/view/register/view.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
-
 import '../core/constants/colors.dart';
 
 

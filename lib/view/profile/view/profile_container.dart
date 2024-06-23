@@ -19,9 +19,9 @@ class _BodyOfContainerState extends State<BodyOfContainer> {
   @override
   Widget build(BuildContext context) {
     return Material(
-    color: PreferenceUtils.getBool(PreferenceKey.darkTheme)
-        ? Colors.black87
-        : Colors.white,
+      color: PreferenceUtils.getBool(PreferenceKey.darkTheme)
+          ? Colors.black87
+          : Colors.white,
       child: Column(
         children: [
           Container(
@@ -33,10 +33,10 @@ class _BodyOfContainerState extends State<BodyOfContainer> {
                   ? Colors.black38
                   : Colors.white,
               borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  topRight: Radius.circular(10),
-                  bottomLeft: Radius.circular(10),
-                  bottomRight: Radius.circular(10)
+                  topLeft: Radius.circular(15),
+                  topRight: Radius.circular(15),
+                  bottomLeft: Radius.circular(15),
+                  bottomRight: Radius.circular(15)
               ),
               boxShadow: [
                 BoxShadow(
@@ -52,7 +52,6 @@ class _BodyOfContainerState extends State<BodyOfContainer> {
               ProfileItem(
                   onTap: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context)=> ReservationView()));
-
                   },
                   icon: Icons.calendar_month_outlined,
                   title: "Reservations"
@@ -71,7 +70,6 @@ class _BodyOfContainerState extends State<BodyOfContainer> {
                   title: S().Language,
                   value: PreferenceUtils.getString(PreferenceKey.language)
               ),
-              SizedBox(height: 10,),
             ],),
           ),
           Container(
@@ -115,7 +113,7 @@ class _BodyOfContainerState extends State<BodyOfContainer> {
                   value:  PreferenceUtils.getBool(PreferenceKey.darkTheme)
                       ? S().Dark
                       : S().Light),
-              SizedBox(height: 10,),
+
             ],),
           ),
       Container(
@@ -159,7 +157,6 @@ class _BodyOfContainerState extends State<BodyOfContainer> {
             icon: Icons.lock_outline,
             title: S().privacy,
           ),
-          SizedBox(height: 10,),
         ],),
       ),
         ],

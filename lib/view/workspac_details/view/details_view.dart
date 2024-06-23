@@ -1,13 +1,16 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduationproject/core/constants/colors.dart';
 import 'package:graduationproject/view/reservations/create_reservation/view/success_reservation.dart';
+import 'package:graduationproject/view/workspac_details/view/facilities_images.dart';
 import 'package:graduationproject/view/workspace/data/workspace_model.dart';
 import 'package:graduationproject/widget/app_button.dart';
 import 'package:lottie/lottie.dart';
 import 'package:omni_datetime_picker/omni_datetime_picker.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../core/assets/app_assets.dart';
+import '../../../widget/favorite_button.dart';
 import '../../reservations/manager/reservation_cubit.dart';
 import 'details_review.dart';
 import 'text_sliver_bar.dart';
@@ -23,7 +26,13 @@ class Details extends StatefulWidget {
   @override
   State<Details> createState() => _DetailsState();
 }
-
+List placesImages = [
+  "https://ec.europa.eu/eurostat/documents/747990/17157919/Davide_Angelini_AdobeStock_437556662_RV.jpg/ecb23e13-0be4-354d-f4a8-25c0ff17d413?t=1689325477418",
+  "https://webunwto.s3.eu-west-1.amazonaws.com/2020-07/wtd-old-event.jpg",
+  "https://www.un.org/sites/un2.un.org/files/2020/09/sustainable_tourism.jpg",
+  "https://images.pexels.com/photos/572056/pexels-photo-572056.jpeg?auto=compress&cs=tinysrgb&w=600",
+  "https://images.pexels.com/photos/572056/pexels-photo-572056.jpeg?auto=compress&cs=tinysrgb&w=600",
+];
 class _DetailsState extends State<Details> {
   @override
   Widget build(BuildContext context) {
@@ -54,10 +63,7 @@ class _DetailsState extends State<Details> {
           ),
           CircleAvatar(
             backgroundColor: Colors.white.withOpacity(0.5),
-            child: IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.favorite_border),
-            ),
+            child: FavoriteButton(product: model)
           ),
         ],
       ),
@@ -104,7 +110,7 @@ class _DetailsState extends State<Details> {
               Container(
                   padding: const EdgeInsets.all(10),
                   decoration: const BoxDecoration(color: Colors.white),
-                  height: 1050,
+                  height: 1000,
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -135,27 +141,8 @@ class _DetailsState extends State<Details> {
                               ),
                             ]),
                         SliverBarText(),
-                        SizedBox(
-                          height: 100,
-                          child:
-                          ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: 5,
-                              itemBuilder: (context, index) {
-                                return Padding(
-                                  padding: EdgeInsets.only(left: 10.sp,top: 10.sp),
-                                  child:
-                                  Container(
-                                    height: 50.sp,
-                                    width: 40.sp,
-                                    child: Image.asset(
-                                      AppAssets.imageTest1,
-                                      fit: BoxFit.fill,
-                                    ),
-                                  ),
-                                );
-                              }),
-                        ),
+
+                           Facilites(),
 
                         SizedBox(
                           height: 20,
@@ -168,53 +155,56 @@ class _DetailsState extends State<Details> {
                         SizedBox(
                           height: 10,
                         ),
-                        SizedBox(
-                          height: 200,
-                          child:
-                          ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: 5,
-                              itemBuilder: (context, index) {
-                                return
-                                  WorkSpaceAvailable();
-                              }),
+                        WorkSpaceAvailable(),
+                        Center(
+                          child: ElevatedButton(onPressed:() async {
+    DateTime? dateTime = await showOmniDateTimePicker(
+    context: context,
+    initialDate: DateTime.now(),
+    firstDate:
+    DateTime(1600).subtract(const Duration(days: 3652)),
+    lastDate: DateTime.now().add(
+    const Duration(days: 3652),
+    ),
+    is24HourMode: false,
+    isShowSeconds: false,
+    minutesInterval: 1,
+    secondsInterval: 1,
+    borderRadius: const BorderRadius.all(Radius.circular(16)),
+    constraints: const BoxConstraints(
+    maxWidth: 350,
+    maxHeight: 650,
+    ),
+    transitionBuilder: (context, anim1, anim2, child) {
+    return FadeTransition(
+    opacity: anim1.drive(
+    Tween(
+    begin: 0,
+    end: 1,
+    ),
+    ),
+    child: child,
+    );
+    },
+    transitionDuration: const Duration(milliseconds: 200),
+    barrierDismissible: true,
+    );
+    print("id:${model.id}\n date: ${dateTime} ");
+    cubit.AddToReservation(id: model.id!, date: "${dateTime}");
+    },
+                              child: Text("Booking Now",style: TextStyle(color: mainColor),)),
                         ),
-
-                        AppButton(title: "Booking Now",onTap: () async {
-                          DateTime? dateTime = await showOmniDateTimePicker(
-                            context: context,
-                            initialDate: DateTime.now(),
-                            firstDate:
-                            DateTime(1600).subtract(const Duration(days: 3652)),
-                            lastDate: DateTime.now().add(
-                              const Duration(days: 3652),
-                            ),
-                            is24HourMode: false,
-                            isShowSeconds: false,
-                            minutesInterval: 1,
-                            secondsInterval: 1,
-                            borderRadius: const BorderRadius.all(Radius.circular(16)),
-                            constraints: const BoxConstraints(
-                              maxWidth: 350,
-                              maxHeight: 650,
-                            ),
-                            transitionBuilder: (context, anim1, anim2, child) {
-                              return FadeTransition(
-                                opacity: anim1.drive(
-                                  Tween(
-                                    begin: 0,
-                                    end: 1,
-                                  ),
-                                ),
-                                child: child,
-                              );
-                            },
-                            transitionDuration: const Duration(milliseconds: 200),
-                            barrierDismissible: true,
-                          );
-                          print("id:${model.id}\n date: ${dateTime} ");
-                          cubit.AddToReservation(id: model.id!, date: "${dateTime}");
-                        },),
+                        SizedBox(height: 10,),
+                        AppButton(title: "Confirm",
+                          onTap: () {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content:
+                                Lottie.asset("assets/animations/success.json"),
+                                  behavior: SnackBarBehavior.floating,
+                                  backgroundColor: Colors.white,
+                                  duration: Duration(seconds: 1),
+                                ));
+                          },),
 
                        ] )
 
@@ -224,36 +214,4 @@ class _DetailsState extends State<Details> {
       )
     );
   }
-  // showBookingBottomSheet({required id}) async {
-  //   //final cubit = BlocProvider.of<CreateReservationCubit>(context);
-  //   final cubit = BlocProvider.of<TestCubit>(context);
-  //   DateTime selectedDate = DateTime.now();
-  //   showModalBottomSheet<void>(
-  //       context: context,
-  //       builder: (BuildContext context) {
-  //         return Column(
-  //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-  //           children: [
-  //             // BookingButton(),
-  //             // ShowTimePickerApp(),
-  //             DateTimePicker(),
-  //             Padding(
-  //               padding: const EdgeInsets.all(8.0),
-  //               child: AppButton(title: "Create",
-  //                 onTap: (){
-  //                   print('id:$id');
-  //                  // print('date : ${selectedDate.year.toString()+'-'+selectedDate.month.toString()+'-'+selectedDate.day.toString()}');
-  //
-  //                   cubit.AddToReserv(id: id, date: "${selectedDate.year.toString()+'-'+selectedDate.month.toString()+'-'+selectedDate.day.toString()}");
-  //                   Navigator.push(context,
-  //                       MaterialPageRoute(builder: (context)=> SuccessReservation()));
-  //                 },),
-  //             )
-  //           ],);
-  //       });
-  //     //   .then((value) {
-  //     // BlocProvider.of<AppCubit>(context).themeChanged();
-  //   //});
-  //
-  // }
 }
