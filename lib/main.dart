@@ -76,10 +76,10 @@ class MyApp extends StatelessWidget {
               },
             //  initialRoute: WelcomeScreen.id,
                home:
-               NavBarView()
-               // token == null ?
-               // LoginScreen()
-               //    : NavBarView()
+              // NavBarView()
+               token == null ?
+               LoginScreen()
+                  : NavBarView()
             );
           });
         }));
