@@ -111,8 +111,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                     obscureText: true,
                                     suffixIcon: true,
                                     controller: passwordController,
-                                    // validator: (value){
-                                    //   return Validator.validatePassword(value);},
+                                    validator:  (value){
+                                      if(value!.isEmpty){
+                                        return 'Enter Your password';
+                                      }if(value.length < 6){
+                                        return "Password must be at least 6 characters";
+                                      }
+                                      return null;
+                                    },
                                   ),
                                 ),
                                 Align(

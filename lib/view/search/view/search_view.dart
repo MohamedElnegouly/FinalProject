@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduationproject/view/workspace/data/workspace_model.dart';
+import 'package:graduationproject/view/workspace/view/workspace_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../core/shared/shared_preferences.dart';
 import '../../../widget/rating_bar_widget.dart';
@@ -19,8 +20,14 @@ class SearchView extends StatefulWidget {
 }
 
 class _SearchViewState extends State<SearchView> {
-  final pageController = PageController();
 
+  List<String> hourSearchList = [
+    "19", "17", "8", "15", "12", "7", "14", "6", "19", "17", "8", "15", "12", "7", "14", "6",
+    "11", "9", "17", "12", "5", "13", "18","14","17","5"];
+
+  List<int> rateSearch = [
+    5, 4, 3, 2, 5, 3, 4, 5,5, 3, 4, 2, 5, 3, 4, 5,
+    5, 3, 4, 2, 5, 3, 4,5,3,5];
   @override
   Widget build(BuildContext context) {
     final cubit = BlocProvider.of<SearchCubit>(context);
@@ -76,7 +83,9 @@ class _SearchViewState extends State<SearchView> {
                                 model: cubit.filteredProducts.isEmpty ?
                                 cubit.products[index] :
                                 cubit.filteredProducts[index],
-                                cubit: cubit
+                                cubit: cubit,
+                                hours: hourSearchList[index],
+                                rate: rateSearch[index]
                             ),
                           );
                         }
@@ -91,7 +100,7 @@ class _SearchViewState extends State<SearchView> {
   }
 }
 
-Widget _productItem({required WorkspaceModel model,required SearchCubit cubit}){
+Widget _productItem({required WorkspaceModel model,required SearchCubit cubit,required String hours,required int rate}){
   return Padding(
     padding: EdgeInsets.all(2.sp),
     child: Container(
@@ -157,13 +166,13 @@ Widget _productItem({required WorkspaceModel model,required SearchCubit cubit}){
               ],
             ),
           ),
-          StarRatingBar(size: 15),
+          StarRatingBar(size: 15,itemCount: rate,),
 
           Padding(
             padding: EdgeInsets.only(left: 15,bottom: 15),
             child: RichText(
               text: TextSpan(
-                text: '\$20 ',
+                text: '\$${hours}',
                 style: TextStyle(
                     color: PreferenceUtils.getBool(PreferenceKey.darkTheme)
                         ? Colors.white

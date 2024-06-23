@@ -136,7 +136,6 @@ class _SearchViewState extends State<FavoriteView> {
                                       ],
                                     ),
                                   ),
-                                  StarRatingBar(size: 15,),
                                 ],
                               ),
                             ),

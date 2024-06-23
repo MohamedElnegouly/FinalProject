@@ -20,8 +20,8 @@ class FavoriteCubit extends Cubit<FavoriteState> {
     Uri.parse("https://desk-share-api.onrender.com/favorites"),
     headers:
     {
-      'Authorization' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NzZiNzM3MjlkYzk0Y2E3OGJkMDkxMCIsImlhdCI6MTcxOTE0MzU2M30.W9iCbks6ONwtGGwmjqCPadC8V-A4-up5j6epVBkjpYM',
-      'x-api-key'     : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiQzJabXkwNktHNUplaU9qSWhQNUZOTkg2OVFoMGR6a0UifQ.pSRkGDcH0wpkGP1GetT02mLStF6KUBIr9Iq4B9cvzR8',
+      'Authorization' : token,
+      'x-api-key'     : apiKey,
     }
   );
     var responseBody = jsonDecode(response.body);
@@ -49,8 +49,8 @@ class FavoriteCubit extends Cubit<FavoriteState> {
           Uri.parse("https://desk-share-api.onrender.com/favorites/$id"),
           headers:
           {
+            'Authorization' : token,
             'x-api-key'     : apiKey,
-            "Authorization" : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NzZiNzM3MjlkYzk0Y2E3OGJkMDkxMCIsImlhdCI6MTcxOTE0MzU2M30.W9iCbks6ONwtGGwmjqCPadC8V-A4-up5j6epVBkjpYM'
           },
       );
       if (favoritsID.contains(id)) {
@@ -76,8 +76,8 @@ class FavoriteCubit extends Cubit<FavoriteState> {
         Uri.parse("https://desk-share-api.onrender.com/favorites/$id"),
         headers:
         {
-          'x-api-key'     : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiQzJabXkwNktHNUplaU9qSWhQNUZOTkg2OVFoMGR6a0UifQ.pSRkGDcH0wpkGP1GetT02mLStF6KUBIr9Iq4B9cvzR8',
-          "Authorization" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NzZiNzM3MjlkYzk0Y2E3OGJkMDkxMCIsImlhdCI6MTcxOTE0MzU2M30.W9iCbks6ONwtGGwmjqCPadC8V-A4-up5j6epVBkjpYM"
+          'Authorization' : token,
+          'x-api-key'     : apiKey,
         },
       );
       if (favoritsID.contains(id)) {

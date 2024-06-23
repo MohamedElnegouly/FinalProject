@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduationproject/core/shared/shared_preferences.dart';
-import 'package:graduationproject/view/profile/manager/profile_cubit.dart';
 import 'package:graduationproject/view/profile/view/profile_container.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -156,9 +155,9 @@ class _ProfileScreenState extends State<ProfileScreen>
                               child: IconButton(
                                 color: Colors.black87,
                                 onPressed: () {
-                                  Navigator.push(context,
-                                      MaterialPageRoute(
-                                          builder: (context) => EditScreen()));
+                                  // Navigator.push(context,
+                                  //     MaterialPageRoute(
+                                  //         builder: (context) => EditScreen()));
                                 },
                                 icon: Icon(Icons.edit_outlined,
                                   size: 17,

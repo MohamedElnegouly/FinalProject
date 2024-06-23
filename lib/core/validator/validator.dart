@@ -22,21 +22,11 @@ class Validator {
     if (value!.isEmpty) {
       return "Field is required";
     } else if (!RegExp(r'\S+@\S+\.\S+').hasMatch(value)) {
-      return "Please enter correct email";
+      return "Please Enter Valid Email";
     } else {
       return null;
     }
   }
-
-  // static String? validatePassword(String? value) {
-  //   if (value!.isEmpty) {
-  //     return "Field is required";
-  //   } else if (value.length < 6) {
-  //     return "Password must be at least 6 characters";
-  //   } else {
-  //     return null;
-  //   }
-  // }
 
   static bool passwordValidate(String pass) {
     String password = pass.trim();
@@ -50,12 +40,14 @@ class Validator {
   static String? validatePassword(String? value) {
     if (value!.isEmpty) {
       return 'Field is required';
+    } else if(value.length < 6){
+      return "Password must be at least 6 characters";
     } else {
       bool result = passwordValidate(value);
       if (result) {
         return null;
       } else {
-        return "Your password should contain capital, small, special characters";
+        return "password should contain capital,small,special characters";
       }
     }
   }

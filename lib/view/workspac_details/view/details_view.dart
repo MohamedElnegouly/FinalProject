@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduationproject/core/constants/colors.dart';
-import 'package:graduationproject/view/reservations/create_reservation/view/success_reservation.dart';
 import 'package:graduationproject/view/workspac_details/view/facilities_images.dart';
 import 'package:graduationproject/view/workspace/data/workspace_model.dart';
 import 'package:graduationproject/widget/app_button.dart';

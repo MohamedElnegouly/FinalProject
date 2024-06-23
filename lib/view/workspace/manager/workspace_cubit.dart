@@ -20,8 +20,8 @@ class WorkspaceCubit extends Cubit<WorkspaceState> {
     var response = await http.get(url,
         headers:
         {
-          'Authorization' :'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NzZiNzM3MjlkYzk0Y2E3OGJkMDkxMCIsImlhdCI6MTcxOTE0MzU2M30.W9iCbks6ONwtGGwmjqCPadC8V-A4-up5j6epVBkjpYM',
-          'x-api-key' : apiKey,
+          'Authorization' : token,
+          'x-api-key'     : apiKey,
         }
     );
     var responseBody = jsonDecode(response.body);
